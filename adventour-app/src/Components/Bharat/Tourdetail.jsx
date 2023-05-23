@@ -2,7 +2,7 @@ import React from 'react'
 
 function Tourdetail() {
   return (
-    <div>Tourdetail</div>
+    <div>new branch created</div>
   )
 }
 
