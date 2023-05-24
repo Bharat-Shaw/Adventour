@@ -1,0 +1,13 @@
+.main{
+    display:flex;
+    /* border:1px dashed rgb(21, 255, 0) */
+}
+.left{
+    border:1px solid red ; 
+
+  width:70% 
+}
+.right{
+    border:1px dashed red
+   
+}
