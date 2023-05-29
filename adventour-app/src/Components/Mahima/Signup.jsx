@@ -79,9 +79,9 @@ function Signup() {
 
 
     <>
-    <Box  p='30px 0' bg= {theme ? '#101214' : 'white' } >
+    <Box  p='30px 0' bg= {theme ? '#101214' : 'gray.100' } >
       <Center>
-        <Box borderRadius='20px'  bg= {theme ? '#191b1d' : 'gray.500' } my='20px' p='30px' color={theme ? 'white' : 'black'}>
+        <Box borderRadius='20px'  bg= {theme ? '#191b1d' : 'white' } my='20px' p='30px' color={theme ? 'white' : 'black'}>
 
           <Box mt='3' mb='25' ><Heading><Center>Sign up</Center></Heading></Box>
           <Stack spacing={3}>
@@ -106,7 +106,7 @@ function Signup() {
           </Box>
           <Box color='gray.300'>
 
-            <Checkbox colorScheme='blue' mt='25px'><Text fontSize='14px' name="termsAccepted" onChange={handleInput}>You accept our Terms and Privacy</Text></Checkbox>
+            <Checkbox colorScheme='blue' mt='25px'><Text fontSize='14px' name="termsAccepted" onChange={handleInput} color={theme ? 'white' : 'blackAlpha.700'}>You accept our Terms and Privacy</Text></Checkbox>
             {/* <Box fontSize='14px' mt='10px'>By loggingin, you accept out Terms of use,</Box>
             <Box fontSize='14px'> and Privacy & Cookies Statement.</Box> */}
 
@@ -117,7 +117,8 @@ function Signup() {
               // isDisabled={!validateState(state)}
               className={!validateState(state) ? "Disabled" : null}
               onClick={handleClick}
-
+              color={theme ? 'white' : 'blackAlpha.800'}
+              _hover={{bg:'#74d4f0'}}
             > Sign up</Button>
 {/* h='50px' width='100px' */}
           </Box>
