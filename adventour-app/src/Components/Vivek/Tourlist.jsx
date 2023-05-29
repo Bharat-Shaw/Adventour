@@ -11,8 +11,7 @@ function Tourlist() {
   return (
     <Box bg={theme ? "gray.100" : "#101214"} color={theme ? "black" : "white"}>
       <NavBar setTheme={setTheme} theme={theme} />
-      <TourlistBody setTheme={setTheme} theme={theme} />
-      
+      <TourlistBody setTheme={setTheme} theme={theme} />  
     </Box>
 
   )

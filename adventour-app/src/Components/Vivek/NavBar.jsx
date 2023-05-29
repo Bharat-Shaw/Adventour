@@ -4,7 +4,7 @@ import {
   Button, PopoverContent, PopoverHeader,
   PopoverBody, HStack, IconButton, useDisclosure,
   Drawer, DrawerOverlay, DrawerContent, DrawerCloseButton,
-  DrawerHeader, DrawerBody, Center, Divider
+  DrawerHeader, DrawerBody, Divider
 } from '@chakra-ui/react'
 import Logo from './Logos/LogoPic.png'
 import { SearchIcon } from '@chakra-ui/icons'
@@ -12,7 +12,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { FaMoon, FaSun } from "react-icons/fa";
 import { CgProfile } from "react-icons/cg";
 import { FaUserCircle } from "react-icons/fa";
-import { FaPrayingHands } from "react-icons/fa";
 
 import {
   faMessage, faPercent, faCamera, faLocationDot, faBars,
@@ -263,17 +262,6 @@ function NavBar({ setTheme, theme }) {
         </Flex>
       </Box >
       <Box>
-        {/* <IconButton
-          aria-label="toggle theme"
-          position={'fixed'}
-          bottom={'4'}
-          left={'4'}
-          rounded="full"
-          size="md"
-          colorScheme='none'
-          color={theme ? "black" : "white"}
-          onClick={() => { setTheme(!theme); }} icon={theme ? <FaSun size={"20px"} /> : <FaMoon size={"20px"} />}
-        /> */}
         <IconButton
           aria-label="toggle theme"
           rounded="full"

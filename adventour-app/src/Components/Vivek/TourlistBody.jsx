@@ -1,8 +1,16 @@
-import { Accordion, AccordionButton, AccordionIcon, AccordionItem, AccordionPanel, Box, Button, Center, Checkbox, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerHeader, DrawerOverlay, Flex, Image, RangeSlider, RangeSliderFilledTrack, RangeSliderThumb, RangeSliderTrack, Select, Text, VStack, useDisclosure } from '@chakra-ui/react'
+import {
+    Accordion, AccordionButton, AccordionIcon, AccordionItem,
+    AccordionPanel, Box, Button, Center, Checkbox, Drawer,
+    DrawerBody, DrawerCloseButton, DrawerContent, DrawerHeader,
+    DrawerOverlay, Flex, Image, RangeSlider, RangeSliderFilledTrack,
+    RangeSliderThumb, RangeSliderTrack, Select,
+    Text, VStack, useDisclosure
+} from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import { RiFilter3Line } from "react-icons/ri";
 import { GiStarsStack } from "react-icons/gi";
+import { Link } from 'react-router-dom'
 
 function TourlistBody({ setTheme, theme }) {
 
@@ -10,10 +18,10 @@ function TourlistBody({ setTheme, theme }) {
 
     useEffect(() => {
         axios.get(`https://weak-rose-seahorse-tutu.cyclic.app/api/Asia`)
-        .then((res) => {
-            setData(res.data);
-        })
-    },[])
+            .then((res) => {
+                setData(res.data);
+            })
+    }, [])
 
     console.log(data);
 
@@ -118,7 +126,10 @@ function TourlistBody({ setTheme, theme }) {
 
     const card_Right_Box = {
         w: { base: '100%', md: '23%', lg: '23%' },
-        p: { base: '10px', md: '10px', lg: '10px' }
+        pl: { base: '10px', md: '0px', lg: '0px' },
+        pt: { base: '10px', md: '10px', lg: '10px' },
+        pr: { base: '10px', md: '10px', lg: '10px' },
+        pb: { base: '10px', md: '10px', lg: '10px' }
     }
 
     const tour_Length_Text = {
@@ -151,17 +162,18 @@ function TourlistBody({ setTheme, theme }) {
     }
 
     const act_Price_Text = {
-        fontSize: { base: '14px', md: '16px', lg: '16px' },
+        fontSize: { base: '14px', md: '16px', lg: '17px' },
         fontWeight: { base: '500', md: '700', lg: '700' },
         color: '#41C4AB'
     }
 
     const view_Tour_Button = {
         bg: theme ? "#008cc9" : "#3DC6EF",
-        w: { base: '70%', md: '80%', lg: '85%' },
+        w: { base: '100%', md: '100%', lg: '100%' },
         mt: '20px',
         fontWeight: '700',
-        mb: { base: '10px' }
+        mb: { base: '10px' },
+        color: theme ? "white" : "black"
     }
 
 
@@ -205,7 +217,7 @@ function TourlistBody({ setTheme, theme }) {
                                 <option value='BG-HS' style={{ background: theme ? "white" : "#191b1d", fontSize: "15px" }}>Biggest Deals: Higest savings</option>
                             </Select>
                         </Box>
-                        <Box mt={'25px'}  borderRadius={'10px'} bg={theme ? "white" : "#191b1d"}>
+                        <Box mt={'25px'} borderRadius={'10px'} bg={theme ? "white" : "#191b1d"}>
                             <Accordion allowMultiple>
                                 <AccordionItem border={'none'} py={'10px'}>
                                     <h2>
@@ -373,306 +385,106 @@ function TourlistBody({ setTheme, theme }) {
                         {/*-------- Card Div -------*/}
 
                         <Box mt={'25px'} pt={'4px'}>
-                            <Flex sx={flex_Card_Styles} >
-                                {/*---- Left Box ----*/}
-                                <Box w={{ base: '100%', md: '28%', lg: '28%' }}>
-                                    <Image sx={main_Img_Styles} src="https://cdn.tourradar.com/s3/tour/232x170/136848_6470107ddcba9.jpg" alt="mainImg" />
-                                </Box>
-
-                                {/*---- Mid Box ----*/}
-                                <Box sx={card_Mid_Box_Styles}>
-                                    <Box borderBottom={"1px solid #DCDCDC"} pb={'15px'}>
-                                        <Text sx={card_Mid_Box_Text_I} >Explore</Text>
-                                        <Text sx={card_Mid_Box_Text_II} >Thai Experience</Text>
-                                        <Text sx={card_Mid_Box_Text_III} >417 reiviews</Text>
-                                    </Box>
-                                    <Box py={'6px'} >
-                                        <Flex >
-                                            <Box sx={detailsBox_1_Styles} >
-                                                <Text >Destinations</Text>
-                                            </Box>
-                                            <Box sx={detailsBox_2_Styles}>
-                                                <Text>Bangkok, Khao Sok National Park, Ko Pha Ngan, Ko Phi Phi, Phuket</Text>
-                                            </Box>
-                                        </Flex>
-                                        <Flex >
-                                            <Box sx={detailsBox_1_Styles}>
-                                                <Text>Age Range</Text>
-                                            </Box>
-                                            <Box sx={detailsBox_2_Styles}>
-                                                <Text>18 to 85 years old</Text>
-                                            </Box>
-                                        </Flex>
-                                        <Flex >
-                                            <Box sx={detailsBox_1_Styles}>
-                                                <Text>Travel Style</Text>
-                                            </Box>
-                                            <Box sx={detailsBox_2_Styles}>
-                                                <Text>Beach, Group, Fully Guided</Text>
-                                            </Box>
-                                        </Flex>
-                                        <Flex >
-                                            <Box sx={detailsBox_1_Styles}>
-                                                <Text pb={'8px'}>Operated in</Text>
-                                            </Box>
-                                            <Box sx={detailsBox_2_Styles} >
-                                                <Text pb={'8px'}>English</Text>
-                                            </Box>
-                                        </Flex>
-                                    </Box>
-                                </Box>
-
-                                {/*---- Right Box ----*/}
-                                <Box sx={card_Right_Box} >
-                                    <Flex justifyContent={'space-between'}>
-                                        <Box w='45%'>
-                                            <Flex alignItems={"center"} direction={{ base: 'row', md: "column", lg: "column" }} justifyContent={'space-between'}>
-                                                <Box>
-                                                    <Text sx={tour_Length_Text} >Tour Length</Text>
-                                                    <Text sx={tour_Days_Text} >15 Days</Text>
-                                                </Box>
-                                                <Box ml={{ base: "15px", md: "6px", lg: '6px' }}>
-                                                    <Text sx={price_Day_Text} >Price per day</Text>
-                                                    <Text sx={price_Text} >₹ 11,596</Text>
-                                                </Box>
-                                            </Flex>
+                            {data.map((ele) => {
+                                return (
+                                    <Flex sx={flex_Card_Styles} key={ele.id}>
+                                        {/*---- Left Box ----*/}
+                                        <Box w={{ base: '100%', md: '28%', lg: '28%' }} key={ele.id+1}>
+                                            <Link to='/'>
+                                                <Image sx={main_Img_Styles} src={ele.main_image} alt="mainImg" />
+                                            </Link>
                                         </Box>
-                                        <Box w='45%'>
-                                            <Text sx={from_Text}>From</Text>
-                                            <Text sx={act_Price_Text} >₹ 150,742</Text>
+
+                                        {/*---- Mid Box ----*/}
+                                        <Box sx={card_Mid_Box_Styles} key={ele.id+2}>
+                                            <Box borderBottom={"1px solid #DCDCDC"} pb={'15px'}>
+                                                <Text sx={card_Mid_Box_Text_I} >{ele.category}</Text>
+                                                <Link to='/'>
+                                                    <Text sx={card_Mid_Box_Text_II} >{ele.title}</Text>
+                                                </Link>
+                                                <Text sx={card_Mid_Box_Text_III} >{ele.reviews} reiviews</Text>
+                                            </Box>
+                                            <Box py={'6px'} >
+                                                <Flex >
+                                                    <Box sx={detailsBox_1_Styles} >
+                                                        <Text >Destinations</Text>
+                                                    </Box>
+                                                    <Box sx={detailsBox_2_Styles}>
+                                                        <Text>
+                                                            {ele.destinations.map((des) => {
+                                                                return (<span>{des}, </span>)
+                                                            })}
+                                                        </Text>
+                                                        {/* <Text>Bangkok, Khao Sok National Park, Ko Pha Ngan, Ko Phi Phi, Phuket</Text> */}
+                                                    </Box>
+                                                </Flex>
+                                                <Flex >
+                                                    <Box sx={detailsBox_1_Styles}>
+                                                        <Text>Age Range</Text>
+                                                    </Box>
+                                                    <Box sx={detailsBox_2_Styles}>
+                                                        <Text>{ele.age_range} years old</Text>
+                                                    </Box>
+                                                </Flex>
+                                                <Flex >
+                                                    <Box sx={detailsBox_1_Styles}>
+                                                        <Text>Travel Style</Text>
+                                                    </Box>
+                                                    <Box sx={detailsBox_2_Styles}>
+                                                        <Text>
+                                                            {ele.travel_style.map((styles) => {
+                                                                return (<span>{styles}, </span>)
+                                                            })}
+                                                        </Text>
+                                                        {/* <Text>Beach, Group, Fully Guided</Text> */}
+                                                    </Box>
+                                                </Flex>
+                                                <Flex >
+                                                    <Box sx={detailsBox_1_Styles}>
+                                                        <Text pb={'8px'}>Operated in</Text>
+                                                    </Box>
+                                                    <Box sx={detailsBox_2_Styles} >
+                                                        <Text pb={'8px'}>English</Text>
+                                                    </Box>
+                                                </Flex>
+                                            </Box>
+                                        </Box>
+
+                                        {/*---- Right Box ----*/}
+                                        <Box sx={card_Right_Box} key={ele.id+3}>
+                                            <Flex justifyContent={'space-between'}>
+                                                <Box w='45%'>
+                                                    <Flex alignItems={"center"} direction={{ base: 'row', md: "column", lg: "column" }} justifyContent={'space-between'}>
+                                                        <Box>
+                                                            <Text sx={tour_Length_Text} >Tour Length</Text>
+                                                            <Text sx={tour_Days_Text} >{ele.tour_length} Days</Text>
+                                                        </Box>
+                                                        <Box ml={{ base: "15px", md: "6px", lg: '6px' }}>
+                                                            <Text sx={price_Day_Text} >Price per day</Text>
+                                                            <Text sx={price_Text} >₹ {ele.price_per_day}</Text>
+                                                        </Box>
+                                                    </Flex>
+                                                </Box>
+                                                <Flex w='45%' direction={{ base: 'row', md: 'column', lg: 'column' }} justifyContent={'space-around'} mt={{ base: '0px', md: '-3px', lg: '-3px' }}>
+                                                    <Box>
+                                                        <Text sx={from_Text}>From</Text>
+                                                        <Text textDecoration={'line-through'} fontSize={'14px'} color={'gray'} my={"-4px"} fontWeight={'600'}>₹ {ele.str_price}</Text>
+                                                        <Text sx={act_Price_Text} >₹ {ele.act_price}</Text>
+                                                    </Box>
+                                                    <Box>
+                                                        <Text fontSize={'11px'} color={'gray'}>Save: ₹{ele.save_price}</Text>
+                                                    </Box>
+                                                </Flex>
+                                            </Flex>
+                                            <Center>
+                                                <Link to='/'>
+                                                    <Button sx={view_Tour_Button} colorScheme='none' >View Tour</Button>
+                                                </Link>
+                                            </Center>
                                         </Box>
                                     </Flex>
-                                    <Center>
-                                        <Button sx={view_Tour_Button} colorScheme= 'none' >View Tour</Button>
-                                    </Center>
-                                </Box>
-                            </Flex>
-
-                            <Flex sx={flex_Card_Styles}>
-                                {/*---- Left Box ----*/}
-                                <Box w={{ base: '100%', md: '28%', lg: '28%' }}>
-                                    <Image sx={main_Img_Styles} src="https://cdn.tourradar.com/s3/tour/232x170/136848_6470107ddcba9.jpg" alt="mainImg" />
-                                </Box>
-
-                                {/*---- Mid Box ----*/}
-                                <Box sx={card_Mid_Box_Styles}>
-                                    <Box borderBottom={"1px solid #DCDCDC"} pb={'15px'}>
-                                        <Text sx={card_Mid_Box_Text_I} >Explore</Text>
-                                        <Text sx={card_Mid_Box_Text_II} >Thai Experience</Text>
-                                        <Text sx={card_Mid_Box_Text_III} >417 reiviews</Text>
-                                    </Box>
-                                    <Box py={'6px'} >
-                                        <Flex >
-                                            <Box sx={detailsBox_1_Styles} >
-                                                <Text >Destinations</Text>
-                                            </Box>
-                                            <Box sx={detailsBox_2_Styles}>
-                                                <Text>Bangkok, Khao Sok National Park, Ko Pha Ngan, Ko Phi Phi, Phuket</Text>
-                                            </Box>
-                                        </Flex>
-                                        <Flex >
-                                            <Box sx={detailsBox_1_Styles}>
-                                                <Text>Age Range</Text>
-                                            </Box>
-                                            <Box sx={detailsBox_2_Styles}>
-                                                <Text>18 to 85 years old</Text>
-                                            </Box>
-                                        </Flex>
-                                        <Flex >
-                                            <Box sx={detailsBox_1_Styles}>
-                                                <Text>Travel Style</Text>
-                                            </Box>
-                                            <Box sx={detailsBox_2_Styles}>
-                                                <Text>Beach, Group, Fully Guided</Text>
-                                            </Box>
-                                        </Flex>
-                                        <Flex >
-                                            <Box sx={detailsBox_1_Styles}>
-                                                <Text pb={'8px'}>Operated in</Text>
-                                            </Box>
-                                            <Box sx={detailsBox_2_Styles} >
-                                                <Text pb={'8px'}>English</Text>
-                                            </Box>
-                                        </Flex>
-                                    </Box>
-                                </Box>
-
-                                {/*---- Right Box ----*/}
-                                <Box sx={card_Right_Box} >
-                                    <Flex justifyContent={'space-between'}>
-                                        <Box w='45%'>
-                                            <Flex alignItems={"center"} direction={{ base: 'row', md: "column", lg: "column" }} justifyContent={'space-between'}>
-                                                <Box>
-                                                    <Text sx={tour_Length_Text} >Tour Length</Text>
-                                                    <Text sx={tour_Days_Text} >15 Days</Text>
-                                                </Box>
-                                                <Box ml={{ base: "15px", md: "6px", lg: '6px' }}>
-                                                    <Text sx={price_Day_Text} >Price per day</Text>
-                                                    <Text sx={price_Text} >₹ 11,596</Text>
-                                                </Box>
-                                            </Flex>
-                                        </Box>
-                                        <Box w='44%'>
-                                            <Text sx={from_Text}>From</Text>
-                                            <Text sx={act_Price_Text} >₹ 150,742</Text>
-                                        </Box>
-                                    </Flex>
-                                    <Center>
-                                        <Button sx={view_Tour_Button} colorScheme= 'none' >View Tour</Button>
-                                    </Center>
-                                </Box>
-                            </Flex>
-
-                            <Flex sx={flex_Card_Styles}>
-                                {/*---- Left Box ----*/}
-                                <Box w={{ base: '100%', md: '28%', lg: '28%' }}>
-                                    <Image sx={main_Img_Styles} src="https://cdn.tourradar.com/s3/tour/232x170/136848_6470107ddcba9.jpg" alt="mainImg" />
-                                </Box>
-
-                                {/*---- Mid Box ----*/}
-                                <Box sx={card_Mid_Box_Styles}>
-                                    <Box borderBottom={"1px solid #DCDCDC"} pb={'15px'}>
-                                        <Text sx={card_Mid_Box_Text_I} >Explore</Text>
-                                        <Text sx={card_Mid_Box_Text_II} >Thai Experience</Text>
-                                        <Text sx={card_Mid_Box_Text_III} >417 reiviews</Text>
-                                    </Box>
-                                    <Box py={'6px'} >
-                                        <Flex >
-                                            <Box sx={detailsBox_1_Styles} >
-                                                <Text >Destinations</Text>
-                                            </Box>
-                                            <Box sx={detailsBox_2_Styles}>
-                                                <Text>Bangkok, Khao Sok National Park, Ko Pha Ngan, Ko Phi Phi, Phuket</Text>
-                                            </Box>
-                                        </Flex>
-                                        <Flex >
-                                            <Box sx={detailsBox_1_Styles}>
-                                                <Text>Age Range</Text>
-                                            </Box>
-                                            <Box sx={detailsBox_2_Styles}>
-                                                <Text>18 to 85 years old</Text>
-                                            </Box>
-                                        </Flex>
-                                        <Flex >
-                                            <Box sx={detailsBox_1_Styles}>
-                                                <Text>Travel Style</Text>
-                                            </Box>
-                                            <Box sx={detailsBox_2_Styles}>
-                                                <Text>Beach, Group, Fully Guided</Text>
-                                            </Box>
-                                        </Flex>
-                                        <Flex >
-                                            <Box sx={detailsBox_1_Styles}>
-                                                <Text pb={'8px'}>Operated in</Text>
-                                            </Box>
-                                            <Box sx={detailsBox_2_Styles} >
-                                                <Text pb={'8px'}>English</Text>
-                                            </Box>
-                                        </Flex>
-                                    </Box>
-                                </Box>
-
-                                {/*---- Right Box ----*/}
-                                <Box sx={card_Right_Box} >
-                                    <Flex justifyContent={'space-between'}>
-                                        <Box w='48%'>
-                                            <Flex alignItems={"center"} direction={{ base: 'row', md: "column", lg: "column" }} justifyContent={'space-between'}>
-                                                <Box>
-                                                    <Text sx={tour_Length_Text} >Tour Length</Text>
-                                                    <Text sx={tour_Days_Text} >15 Days</Text>
-                                                </Box>
-                                                <Box ml={{ base: "15px", md: "6px", lg: '6px' }}>
-                                                    <Text sx={price_Day_Text} >Price per day</Text>
-                                                    <Text sx={price_Text} >₹ 11,596</Text>
-                                                </Box>
-                                            </Flex>
-                                        </Box>
-                                        <Box w='42%'>
-                                            <Text sx={from_Text}>From</Text>
-                                            <Text sx={act_Price_Text} >₹ 150,742</Text>
-                                        </Box>
-                                    </Flex>
-                                    <Center>
-                                        <Button sx={view_Tour_Button} colorScheme= 'none' >View Tour</Button>
-                                    </Center>
-                                </Box>
-                            </Flex>
-
-                            <Flex sx={flex_Card_Styles}>
-                                {/*---- Left Box ----*/}
-                                <Box w={{ base: '100%', md: '28%', lg: '28%' }}>
-                                    <Image sx={main_Img_Styles} src="https://cdn.tourradar.com/s3/tour/232x170/136848_6470107ddcba9.jpg" alt="mainImg" />
-                                </Box>
-
-                                {/*---- Mid Box ----*/}
-                                <Box sx={card_Mid_Box_Styles}>
-                                    <Box borderBottom={"1px solid #DCDCDC"} pb={'15px'}>
-                                        <Text sx={card_Mid_Box_Text_I} >Explore</Text>
-                                        <Text sx={card_Mid_Box_Text_II} >Thai Experience</Text>
-                                        <Text sx={card_Mid_Box_Text_III} >417 reiviews</Text>
-                                    </Box>
-                                    <Box py={'6px'} >
-                                        <Flex >
-                                            <Box sx={detailsBox_1_Styles} >
-                                                <Text >Destinations</Text>
-                                            </Box>
-                                            <Box sx={detailsBox_2_Styles}>
-                                                <Text>Bangkok, Khao Sok National Park, Ko Pha Ngan, Ko Phi Phi, Phuket</Text>
-                                            </Box>
-                                        </Flex>
-                                        <Flex >
-                                            <Box sx={detailsBox_1_Styles}>
-                                                <Text>Age Range</Text>
-                                            </Box>
-                                            <Box sx={detailsBox_2_Styles}>
-                                                <Text>18 to 85 years old</Text>
-                                            </Box>
-                                        </Flex>
-                                        <Flex >
-                                            <Box sx={detailsBox_1_Styles}>
-                                                <Text>Travel Style</Text>
-                                            </Box>
-                                            <Box sx={detailsBox_2_Styles}>
-                                                <Text>Beach, Group, Fully Guided</Text>
-                                            </Box>
-                                        </Flex>
-                                        <Flex >
-                                            <Box sx={detailsBox_1_Styles}>
-                                                <Text pb={'8px'}>Operated in</Text>
-                                            </Box>
-                                            <Box sx={detailsBox_2_Styles} >
-                                                <Text pb={'8px'}>English</Text>
-                                            </Box>
-                                        </Flex>
-                                    </Box>
-                                </Box>
-
-                                {/*---- Right Box ----*/}
-                                <Box sx={card_Right_Box} >
-                                    <Flex justifyContent={'space-between'}>
-                                        <Box w='48%'>
-                                            <Flex alignItems={"center"} direction={{ base: 'row', md: "column", lg: "column" }} justifyContent={'space-between'}>
-                                                <Box>
-                                                    <Text sx={tour_Length_Text} >Tour Length</Text>
-                                                    <Text sx={tour_Days_Text} >15 Days</Text>
-                                                </Box>
-                                                <Box ml={{ base: "15px", md: "6px", lg: '6px' }}>
-                                                    <Text sx={price_Day_Text} >Price per day</Text>
-                                                    <Text sx={price_Text} >₹ 11,596</Text>
-                                                </Box>
-                                            </Flex>
-                                        </Box>
-                                        <Box w='42%'>
-                                            <Text sx={from_Text}>From</Text>
-                                            <Text sx={act_Price_Text} >₹ 150,742</Text>
-                                        </Box>
-                                    </Flex>
-                                    <Center>
-                                        <Button sx={view_Tour_Button} colorScheme= 'none' >View Tour</Button>
-                                    </Center>
-                                </Box>
-                            </Flex>
-
+                                )
+                            })}
 
                         </Box>
                     </Box>
