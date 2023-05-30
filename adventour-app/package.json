@@ -19,10 +19,10 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.8.0",
-<<<<<<< HEAD
-=======
+
+
     "react-multi-carousel": "^2.8.4",
->>>>>>> 0378b7b9c35496489f69c1492adf0c54dc222e1b
+
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.11.2",
     "react-scripts": "5.0.1",
