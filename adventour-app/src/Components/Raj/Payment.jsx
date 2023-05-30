@@ -167,7 +167,7 @@ function Payment() {
 
           </Card>
           <Card bg='gray.100' width={'94%'} ml='50px' mt='50px'>
-            <Heading size='sm' mt='20px' ml='-72%' fontSize={'17px'}>Terms & Conditions</Heading>
+            <Heading size='sm' mt='20px' ml='25px' fontSize={'17px'}>Terms & Conditions</Heading>
             <Text fontSize={'14px'} ml='30px' mt='30px'  mr='20px'>TourRadar is an authorised Agent of Swastik India Journeys.
               Please familiarise yourself with the Swastik India Journeys<span style={{color:"blue"}}> payment, cancellation
               and refund policies</span>and TourRadar's <span style={{color:"blue"}}>Terms & Conditions.</span>
