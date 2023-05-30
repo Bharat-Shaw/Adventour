@@ -5,6 +5,7 @@ import Tourdetail from '../Components/Bharat/Tourdetail'
 import Signup from '../Components/Mahima/Signup'
 import Payment from '../Components/Raj/Payment'
 import Tourlist from '../Components/Vivek/Tourlist'
+import Login from '../Components/Mahima/Login'
 
 function AllRoutes() {
   return (
@@ -14,6 +15,7 @@ function AllRoutes() {
       <Route path='/signup' element={<Signup/>}/>
       <Route path='/payment' element={<Payment/>}/>
       <Route path='/tourlist' element={<Tourlist/>}/>
+      <Route path='/login' element={<Login/>}/>
     </Routes>
   )
 }
