@@ -16,7 +16,7 @@ function Payment() {
     <Box bg={theme ? "#191b1d": "gray.100"}>
       <Flex >
         <Box w='60%'   >
-          <Heading size='lg' mt='20px' color={theme ? "white": "black"}>Taj Mahal and Wildlife with Royal Stay at Castles</Heading>
+          <Heading size='lg' mt='20px'ml='45px' color={theme ? "white": "black"}>Taj Mahal and Wildlife with Royal Stay at Castles</Heading>
           <Card maxW={"100%"} ml={"50px"} mt={'50px'} boxShadow='2xl' borderRadius={'10px'}>
 
             <CardHeader>
@@ -37,7 +37,7 @@ function Payment() {
                 </Box>
                 <Box ml="30px" mr={"20px"}>
                   <Flex><Box mt="10px" mr='10px' color="blue"> <CiCircleCheck size={"25px"} /></Box> <Text pt='2'>You will only be charged once your spaces are confirmed.</Text></Flex>&nbsp;
-                  <Flex><Box mt="10px" mr='10px' color="blue"><FiUsers size={"20px"} /></Box><Heading size={"xm"} mt='8px' width={'180px'} ml='-20px'> 10+ spaces left</Heading> <Text pt='2' ml='-40px'> and yours is reserved for the next 10 minutes</Text></Flex>&nbsp;
+                  <Flex><Box mt="10px" mr='10px' color="blue"><FiUsers size={"20px"} /></Box><Heading size={"xm"} mt='8px' width={'180px'} > 10+ spaces left</Heading> <Text pt='2' ml='-40px'> and yours is reserved for the next 10 minutes</Text></Flex>&nbsp;
                   <Flex><Box Box mt="10px" mr='13px' color="blue">< SlTag size={"20px"} /> </Box> <Text pt='2' pb='8'>Revenge Travel Sale. See details</Text></Flex>&nbsp;
                 </Box>
 
@@ -51,21 +51,22 @@ function Payment() {
 
           <Card maxW={"100%"} ml={"50px"} mt={'50px'} boxShadow='2xl' borderRadius={'10px'}>
             <CardHeader>
-              <Flex ><Box width='30px' bg="black" color='white' borderRadius={'8px'} p='1' ml='10px'>1</Box><Heading size='md' ml="30px" mt='5px'>How many are travelling?</Heading></Flex>
+              <Flex ><Box width='30px' bg="black" color='white' borderRadius={'8px'} p='1' ml='10px' pl={'2'}>1</Box><Heading size='md' ml="30px" mt='5px'>How many are travelling?</Heading></Flex>
             </CardHeader>
             <Flex >
               <Heading size='sm' ml="40px">Travellers</Heading>
               <Spacer />
               <Box mb='20px'>
                 <IconButton
-                  colorScheme='blue'
+                 
+                 
                   aria-label='Search database'
                   icon={<MinusIcon />}
                   style={{ borderRadius: '50%' }}
                 />&nbsp;&nbsp;&nbsp;&nbsp;
                 <Text style={{ display: "inline-block" }}>2</Text>&nbsp;&nbsp;&nbsp;&nbsp;
                 <IconButton
-                  colorScheme='blue'
+                 
                   aria-label='Search database'
                   icon={<AddIcon />}
                   style={{ borderRadius: '50%' }}
@@ -78,13 +79,13 @@ function Payment() {
           <Card boxShadow='2xl' maxW={'100%'} ml={'50px'} mt='50px' borderRadius={'10px'}>
 
 
-            <Flex mt={'20px'} ml="20px"><Box width='30px' height={'35px'} bg="black" color='white' borderRadius={'8px'} p='1' ml='10px'>2</Box>&nbsp;&nbsp;&nbsp;&nbsp;<Heading size={'md'} mb='20px' mt='5px'>Add traveller details</Heading></Flex>
+            <Flex mt={'20px'} ml="20px"><Box width='30px' height={'35px'} bg="black" color='white' borderRadius={'8px'} p='1' ml='10px' pl={'2'}>2</Box>&nbsp;&nbsp;&nbsp;&nbsp;<Heading size={'md'} mb='20px' mt='5px'>Add traveller details</Heading></Flex>
             <Flex bg={'lightblue'} borderRadius={'10px'} p='3' mb='20px' width={'95%'} ml="25px">
               <Heading size='sm' mt='2px'>Please note:</Heading>
               <Text ml='4px'> Traveller details should match information on passport</Text></Flex>
 
-            <Heading size='xm' ml='-80%'>Lead Traveller</Heading>
-            <Text mb='20px' ml='-37%'>This traveller will serve as the contact person for the booking.</Text>&nbsp;
+            <Heading size='xm' ml='25px'>Lead Traveller</Heading>
+            <Text mb='20px' ml='25px'>This traveller will serve as the contact person for the booking.</Text>&nbsp;
             <FormControl>
               <Stack spacing={8} width={"48%"} ml='4%'>
                 <Input placeholder='First Name*' size='lg' isRequired />
@@ -115,7 +116,7 @@ function Payment() {
 
           <Card maxW={"100%"} ml={"50px"} mt={'50px'} boxShadow='2xl' borderRadius={'10px'}>
             <CardHeader>
-              <Flex ><Box width='30px' bg="black" color='white' borderRadius={'8px'} p='1' ml='10px'>3</Box><Heading size='md' ml="30px" mt='5px'>TourRadar Savings</Heading></Flex>
+              <Flex ><Box width='30px' bg="black" color='white' borderRadius={'8px'} p='1' ml='10px' pl='2'>3</Box><Heading size='md' ml="30px" mt='5px'>TourRadar Savings</Heading></Flex>
             </CardHeader>
             <Flex ml='-5px'>
               <Text ml="40px" color='blue' fontSize={'16px'}>Redeem Promo Code</Text>
@@ -125,11 +126,11 @@ function Payment() {
 
 
           <Card boxShadow='2xl' maxW={'100%'} ml={'50px'} mt='50px' borderRadius={'10px'}>
-            <Flex mt={'20px'} ml="20px"><Box width='30px' height={'35px'} bg="black" color='white' borderRadius={'8px'} p='1' ml='10px'>4</Box>&nbsp;&nbsp;&nbsp;&nbsp;<Heading size={'md'} mb='20px' mt='5px'>Add payment details</Heading></Flex>
-            <Flex bg={'lightblue'} borderRadius={'10px'} p='3' mb='20px' width={'95%'} ml="25px">
-              <Text ml='4px'>This is a secure and SSL encrypted payment. Your credit card details are safe.</Text></Flex>
+            <Flex mt={'20px'} ml="20px"><Box width='30px' height={'35px'} bg="black" color='white' borderRadius={'8px'} p='1' ml='10px' pl='2'>4</Box>&nbsp;&nbsp;&nbsp;&nbsp;<Heading size={'md'} mb='20px' mt='5px'>Add payment details</Heading></Flex>
+            <Flex bg={'lightblue'} borderRadius={'10px'} p='3' mb='20px' width={'90%'} ml="30px">
+              <Text ml='5px'>This is a secure and SSL encrypted payment. Your credit card details are safe.</Text></Flex>
 
-            <Text mb='20px' ml='-66%'> Select your payment method:</Text>&nbsp;
+            <Text mb='20px' ml='30px'> Select your payment method:</Text>&nbsp;
             <Card ml='30px' mr='30px' _hover={{ boxShadow: "0 0 10px black" }}>
               <Flex>
               <RadioGroup onChange={setValue} value={value}>
@@ -158,7 +159,7 @@ function Payment() {
 
             <Flex mt='20px' ><Checkbox defaultChecked ml='30px'>Checkbox</Checkbox>
 
-            <Text mt='25px' width={'80%'} pl={'-20px'}>I accept TourRadar's <span style={{color:"blue"}}>Terms & Conditions</span>  and <span style={{color:"blue"}}> Privacy Policy;</span> and 
+            <Text mt='25px'  ml='30px' >I accept TourRadar's <span style={{color:"blue"}}>Terms & Conditions</span>  and <span style={{color:"blue"}}> Privacy Policy;</span> and 
               Swasthik India Journey's <span style={{color:"blue"}}> payment,cancellation
                 and refund conditions</span> </Text>
             </Flex>
@@ -167,7 +168,7 @@ function Payment() {
           </Card>
           <Card bg='gray.100' width={'94%'} ml='50px' mt='50px'>
             <Heading size='sm' mt='20px' ml='-72%' fontSize={'17px'}>Terms & Conditions</Heading>
-            <Text fontSize={'14px'} ml='30px' mt='30px' width='90%'  mr='20px'>TourRadar is an authorised Agent of Swastik India Journeys.
+            <Text fontSize={'14px'} ml='30px' mt='30px'  mr='20px'>TourRadar is an authorised Agent of Swastik India Journeys.
               Please familiarise yourself with the Swastik India Journeys<span style={{color:"blue"}}> payment, cancellation
               and refund policies</span>and TourRadar's <span style={{color:"blue"}}>Terms & Conditions.</span>
               TourRadar will charge you in the stated currency and we do not charge any booking fees.
@@ -192,56 +193,56 @@ function Payment() {
         <Box w='35%' ml='30px' mt='8%'>
           <Card>
             <CardHeader>
-              <Heading size='md' ml='-80%'>My Trip</Heading>
+              <Heading size='md' ml='0px'>My Trip</Heading>
             </CardHeader>
 
             <CardBody>
               <Stack spacing='4'>
                 <Box>
-                  <Heading size='sm' ml='-35px' >
+                  <Heading size='sm'  >
                     Taj Mahal and Wildlife with Royal Stay at Castles
                   </Heading>
-                  <Text pt='2' fontSize='sm' ml='-80%'>
+                  <Text pt='2' fontSize='sm' >
                     11 days
                   </Text>
                 </Box>
                 <Box >
-                  <Heading size='sm' ml='-200px' >
+                  <Heading size='sm'  >
                     Starts in New Delhi, India
                   </Heading>
-                  <Text pt='2' fontSize='sm' ml='-55%'>
+                  <Text pt='2' fontSize='sm'>
                     Wednesday, 31 May 2023
                   </Text>
                 </Box>
                 <Box>
-                  <Heading size='sm' ml='-210px' >
+                  <Heading size='sm'  >
                     Ends in New Delhi, India
                   </Heading>
-                  <Text pt='2' fontSize='sm' ml='-58%'>
+                  <Text pt='2' fontSize='sm' >
                     Saturday, 10 Jun 2023
                   </Text>
                 </Box>
                 <Box>
-                  <Heading size='sm' ml='-320px'>
+                  <Heading size='sm' >
                     Tour Type
                   </Heading>
-                  <Text pt='2' fontSize='sm' ml='-80%'>
+                  <Text pt='2' fontSize='sm' >
                     Group
                   </Text>
                 </Box>
                 <Box>
-                  <Heading size='sm' ml='-300px' >
+                  <Heading size='sm'  >
                     Operated in
                   </Heading>
-                  <Text pt='2' fontSize='sm' ml='-78%'>
+                  <Text pt='2' fontSize='sm'>
                     English
                   </Text>
                 </Box>
                 <Box>
-                  <Heading size='sm' ml='-270px' >
+                  <Heading size='sm'  >
                     What's included
                   </Heading>
-                  <Text pt='2' fontSize='sm' ml='-31%'>
+                  <Text pt='2' fontSize='sm' >
                     Accommodation, Guide, Meals, Transport
                   </Text>
                 </Box>
@@ -249,7 +250,7 @@ function Payment() {
             </CardBody>
           </Card>
           <Card mt='30px' position='sticky' top={'20px'} >
-            <Heading size='md' ml='-55%' mt='20px'>Price Breakdown</Heading>
+            <Heading size='md' ml='22px' mt='20px'>Price Breakdown</Heading>
             <HStack mt='20px' mr='20px'> <Text fontSize='20px' ml='25px' >Price</Text>
               <Spacer />
               <Text  >₹450</Text>

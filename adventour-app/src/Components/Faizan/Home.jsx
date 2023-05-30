@@ -13,8 +13,7 @@ import iconFour from './Images/iconFour.png'
 import modelTwo from './Images/modelTwo.png'
 import Footer from './Footer'
 import ReviewCarousel from './ReviewCarousel'
-import Carousel from 'react-multi-carousel';
-import 'react-multi-carousel/lib/styles.css';
+
 
 function Home() {
   const [val, setval] = useState(0);

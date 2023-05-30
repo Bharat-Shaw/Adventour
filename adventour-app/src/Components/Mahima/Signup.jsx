@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState, useReducer } from 'react'
-import GoogleButton from 'react-google-button'
+
 import { Box, Heading, Center, FormControl, Stack, Input, Checkbox, Button, Text, HStack } from '@chakra-ui/react'
 import { useNavigate } from 'react-router-dom'
 import { FcGoogle} from 'react-icons/fc';
