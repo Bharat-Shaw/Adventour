@@ -78,7 +78,7 @@ function Payment() {
                   <Text>Change date</Text>
                 </Box>
                 <Box border={'1px solid gray'} w={{ base: "100%", md: "65%", lg: '65%' }} p={'20px'} borderRadius={{ base: '0 0 15px 15px', md: '0 15px 15px 0', lg: '0 15px 15px 0' }}>
-                  <Flex py={'5px'}><AiFillCheckCircle size={'35px'} /><Text pt={'5px'} px={'10px'}>Only ₹{storedata?.price_per_day.toLocaleString("en-US")} upfront per person The remaining amount will be due on July 1st, 2023</Text></Flex>
+                  <Flex py={'5px'}><AiFillCheckCircle size={'35px'} /><Text pt={'5px'} px={'10px'}>Only ₹{(storedata?.price_per_day)?.toLocaleString("en-US")} upfront per person The remaining amount will be due on July 1st, 2023</Text></Flex>
                   <Flex py={'5px'}><FaUserFriends size={'25px'} /><Text px={'10px'}>6 spaces left and yours is reserved for the next 10 minutes</Text></Flex>
                   <Flex py={'5px'}><BsLightningChargeFill size={'22px'} /><Text px={'10px'}>Instant Book: Your spaces will be instantly secured.</Text></Flex>
                   <Flex py={'5px'}><AiFillTag size={'22px'} /><Text px={'10px'}>Special deal. See details</Text></Flex>
@@ -281,7 +281,7 @@ function Payment() {
                 <Link to={'/'}><Button w={'100%'} colorScheme='none' bg={'#008cc9'} py={'30px'} mt={'30px'}>Book Spaces</Button></Link>
                 <Box w={'50%'} m={'auto'} textAlign={'center'} mt={'20px'}>
                   <Text fontSize={'13px'} fontWeight={'700'}>
-                    No booking fees! <span style={{ fontWeight: "500" }}>You will be charged</span> ₹{storedata?.act_price.toLocaleString("en-US")} <span style={{ fontWeight: "500" }}>now.
+                    No booking fees! <span style={{ fontWeight: "500" }}>You will be charged</span> ₹{(storedata?.act_price)?.toLocaleString("en-US")} <span style={{ fontWeight: "500" }}>now.
                       The remaining balance is due on</span> 1 Jul, 2023.
                   </Text>
                 </Box>
@@ -346,28 +346,28 @@ function Pricediv({ theme, storedata, traveller }) {
     <Flex justifyContent={'space-between'}>
       <Box pb={'14px'}>
         <Text>Base price</Text>
-        <Text fontSize={'14px'}>{traveller} Traveller x ₹{(storedata?.str_price).toLocaleString("en-US")}</Text>
+        <Text fontSize={'14px'}>{traveller} Traveller x ₹{(storedata?.str_price)?.toLocaleString("en-US")}</Text>
       </Box>
-      <Text>₹ {(traveller *storedata?.str_price).toLocaleString("en-US")}</Text>
+      <Text>₹ {(traveller *storedata?.str_price)?.toLocaleString("en-US")}</Text>
     </Flex>
     <Flex justifyContent={'space-between'} pb={'15px'} borderBottom={'1px solid silver'}>
       <Text>Discount</Text>
-      <Text>- ₹ {(traveller * storedata?.save_price).toLocaleString("en-US")}</Text>
+      <Text>- ₹ {(traveller * storedata?.save_price)?.toLocaleString("en-US")}</Text>
     </Flex>
     <Flex justifyContent={'space-between'} pt={'20px'}>
       <Text fontWeight={'700'}>Total due</Text>
-      <Text fontSize={'20px'} fontWeight={'700'}>₹ {(traveller *storedata?.act_price).toLocaleString("en-US")}</Text>
+      <Text fontSize={'20px'} fontWeight={'700'}>₹ {(traveller *storedata?.act_price)?.toLocaleString("en-US")}</Text>
     </Flex>
     <Flex lineHeight={'45px'} direction={'column'} mt={'10px'} p={'5px'} bg={theme ? 'gray.800' : 'gray.100'} borderRadius={'10px'}>
       <Flex>
         <Text fontWeight={'700'}>Due today</Text>
         <Spacer />
-        <Text fontWeight={'700'}>₹ {(traveller *storedata?.price_per_day).toLocaleString("en-US")}</Text>
+        <Text fontWeight={'700'}>₹ {(traveller *storedata?.price_per_day)?.toLocaleString("en-US")}</Text>
       </Flex>
       <Flex>
         <Text>Due on 1 Jul, 2023</Text>
         <Spacer />
-        <Text>₹ {(traveller *storedata?.act_price).toLocaleString("en-US")}</Text>
+        <Text>₹ {(traveller *storedata?.act_price)?.toLocaleString("en-US")}</Text>
       </Flex>
     </Flex>
   </Box>

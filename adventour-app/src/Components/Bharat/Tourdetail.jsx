@@ -94,7 +94,7 @@ function Tourdetail() {
               <Tag mr={'10px'} color={theme ? 'whiteAlpha.900' : 'blackAlpha.800'} bg='#3DC6EF' mb={'15px'}>Fully Guided</Tag>
             </Box>
             <Box>
-              
+
               <SimpleGrid templateColumns='repeat(2, 1fr)' gap={1}>
                 <Text><strong>Tour Operator:</strong><br />Inkayni Peru Tours</Text>
                 <Text><strong>Max group size:</strong><br />{storedata?.group_size}</Text>
@@ -165,9 +165,9 @@ function Tourdetail() {
           <div className={styles.posi}>
             <Flex bg={theme ? '#191b1d' : 'white'} direction={'column'} w={{ base: '100%', md: '110%', lg: '350px' }} boxShadow={'md'} border={'1px solid silver'} p={'20px'} mt={{ base: '40px', md: '10px' }} ml={{ base: '0px', md: '0px', lg: '40px' }} borderRadius={'20px'}>
               <Flex w={{ base: '100%', md: '100%', lg: '300px' }}>
-                <Text><s>From ₹{(storedata?.str_price).toLocaleString("en-US")}</s> </Text><Spacer /> <Tag colorScheme='red' color={'red'}>-{storedata?.off}%</Tag>
+                <Text><s>From ₹{(storedata?.str_price)?.toLocaleString("en-US")}</s> </Text><Spacer /> <Tag colorScheme='red' color={'red'}>-{storedata?.off}%</Tag>
               </Flex>
-              <Text w={{ base: '100%', md: '100%', lg: '300px' }} textAlign={'left'} fontSize='4xl' fontWeight={'700'}>₹{(storedata?.act_price).toLocaleString("en-US")}</Text>
+              <Text w={{ base: '100%', md: '100%', lg: '300px' }} textAlign={'left'} fontSize='4xl' fontWeight={'700'}>₹{(storedata?.act_price)?.toLocaleString("en-US")}</Text>
               <Flex mb={'20px'} w={{ base: '100%', md: '100%', lg: '300px' }} alignItems={'center'} pt={'10px'} pb={'10px'}>
                 <Link to={`/payment/${location}/${id}`}><Button h={'45px'} w={{ base: '85%', md: '85%', lg: '230px' }} colorScheme='none' fontWeight={'700'} bg={theme ? "#3DC6EF" : "#008cc9"} color={theme ? 'white' : 'blackAlpha.700'} borderRadius={'40px'}>Check Availability</Button></Link>
                 <Spacer />
