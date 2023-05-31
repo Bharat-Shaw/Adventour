@@ -1,9 +1,11 @@
 import { Box, Flex, SimpleGrid, Text, useDisclosure } from '@chakra-ui/react'
 import React from 'react'
 import { Collapse } from '@chakra-ui/react'
+import { useSelector } from 'react-redux';
 
-function ExpandComp({ theme }) {
+function ExpandComp() {
   const { isOpen, onToggle } = useDisclosure()
+  const theme=useSelector(state=>state.theme);
   return (
     <Box textAlign={'left'} mt={'60px'} pb={'40px'}>
 
