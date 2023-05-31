@@ -3,7 +3,7 @@ const initialState={
     isLoading:false,
     data:[],
     detail:{},
-    theme:false,
+    theme:true,
     limit:10
 }
 

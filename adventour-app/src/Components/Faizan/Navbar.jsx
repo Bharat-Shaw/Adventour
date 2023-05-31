@@ -21,7 +21,7 @@ function Navbar(props) {
             <Flex p='1.2rem 0' align='center'>
                 <Flex>
                     <Image src={logo} w='7%' />
-                    <Heading fontSize="1.2rem" ml='1rem' color={theme ? 'white' : 'blackAlpha.800'}>Advantour.</Heading>
+                    <Heading fontSize="1.2rem" ml='1rem' color={theme ? 'white' : 'blackAlpha.800'}>Adventour.</Heading>
                 </Flex>
 
                 <Box display={{ base: 'none', md: 'none', lg: 'block' }}>

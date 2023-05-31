@@ -1,7 +1,7 @@
 import {
     Accordion, AccordionButton, AccordionIcon, AccordionItem,
     AccordionPanel, Box, Button, Center, Checkbox, 
-    Flex, Image, RangeSlider, RangeSliderFilledTrack,
+    Flex, HStack, Image, RangeSlider, RangeSliderFilledTrack,
     RangeSliderThumb, RangeSliderTrack, Select,
     Text, VStack
 } from '@chakra-ui/react'
@@ -492,7 +492,7 @@ function TourlistBody() {
                         
             </Box >
             <Center><Button isDisabled={data.length===20} color={theme ? "white" : "black"} colorScheme='none' onClick={()=>{dispatch({type:'LIMIT'})}} bg={theme ? "#008cc9" : "#3DC6EF"}>Load More</Button></Center> 
-            <Center> <ExpandComp theme={!theme}/></Center>
+            
            
         </Box >
     )
