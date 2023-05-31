@@ -12,7 +12,8 @@ import {Link} from 'react-router-dom'
 import { useSelector } from 'react-redux';
 
 function Payment() {
-  const [theme, settheme] = useState(true);
+  
+  const theme=useSelector(state=>state.theme);
   const storedata=useSelector(state=>state.detail)
   const [start, setstart] = useState('');
   const [end, setend] = useState('');
@@ -36,7 +37,7 @@ function Payment() {
 
   return (
     <Box minH={'100vh'} bg={theme ? '#101214' : 'gray.100'} color={theme ? 'white' : 'blackAlpha.800'}>
-      <Toggle settheme={settheme} theme={theme} />
+      <Toggle />
       {/* navbar-box */}
       <Box bg={theme ? '#191b1d' : 'white'} py={'15px'}>
         <HStack w={{ base: "95%", md: "95%", lg: '76%' }} m={'auto'} >

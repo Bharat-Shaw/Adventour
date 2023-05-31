@@ -27,7 +27,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 
 function Tourdetail() {
-  const [theme, settheme] = useState(true);
+  const theme=useSelector(state=>state.theme);
   const { isOpen, onOpen, onClose } = useDisclosure()
   const toast = useToast()
   const [val, setval] = useState(-10);
@@ -70,7 +70,7 @@ function Tourdetail() {
       {/* <Box>
           <Image w={'300px'} src={image}/>
         </Box> */}
-      <Toggle settheme={settheme} theme={theme} />
+      <Toggle  />
       <NavBar/>
 
       <Box m={'auto'} pt={'100px'} w={{ base: '90%', md: '76%', lg: '76%' }} color={theme ? 'white' : 'blackAlpha.800'}>

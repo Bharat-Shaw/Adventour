@@ -20,11 +20,11 @@ import {
   faPersonHiking, faShip, faBicycle, faUtensils, faFilm, faCompass,
   faEnvelope, faPhone, faEarthAmericas
 } from '@fortawesome/free-solid-svg-icons'
+import { useSelector } from 'react-redux';
 
 
-function NavBar({ setTheme, theme }) {
-  // const [theme, setTheme] = useState(false);
-  // console.log(theme);
+function NavBar() {
+  const theme=useSelector(state=>!state.theme);
 
   return (
     <Box w={"100%"} position={'fixed'} zIndex={'1'} bg={theme ? "white" : "#191b1d"}>
@@ -261,21 +261,6 @@ function NavBar({ setTheme, theme }) {
 
         </Flex>
       </Box >
-      <Box>
-        <IconButton
-          aria-label="toggle theme"
-          rounded="full"
-          size="md"
-          position="fixed"
-          bottom={4}
-          left={4}
-          zIndex={'4'}
-          onClick={() => { setTheme(!theme); }} icon={theme ? <FaMoon /> : <FaSun /> }
-          bg={theme ? "black" : "white"}
-          color={theme ? "white" : "black"}
-          colorScheme='none'
-        />
-      </Box>
     </Box >
 
   )

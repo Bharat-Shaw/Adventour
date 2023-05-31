@@ -10,7 +10,7 @@ import {useDispatch, useSelector} from 'react-redux'
 
 function Tourlist() {
 
-  const [theme, setTheme] = useState(false);
+  const theme=useSelector(state=>state.theme);
   const {location}=useParams();
   const limit=useSelector((state)=>state.limit);
   const dispatch=useDispatch()
@@ -24,8 +24,8 @@ function Tourlist() {
 
   return (
     <Box bg={theme ? "gray.100" : "#101214"} color={theme ? "black" : "white"}>
-      <NavBar setTheme={setTheme} theme={theme} />
-      <TourlistBody setTheme={setTheme} theme={theme} />
+      <NavBar  />
+      <TourlistBody  />
       <Footer />
     </Box>
 

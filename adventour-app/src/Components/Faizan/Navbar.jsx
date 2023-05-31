@@ -10,17 +10,12 @@ import {
     DrawerCloseButton,
 } from '@chakra-ui/react'
 import { HamburgerIcon } from '@chakra-ui/icons';
+import { useSelector } from 'react-redux';
 
 function Navbar(props) {
     const { isOpen, onOpen, onClose } = useDisclosure()
     
-    // const activeLink = {
-    //     color: "white",
-    // }
-
-    // const normalLink = {
-    //     color: "darkgray",
-    // }
+    const theme=useSelector(state=>state.theme);
     return (
         <Box p={{base:'0 1.5rem',md:'0 3rem',lg:'0 4.5rem'}} color='darkgray' bg='#101214' justify='space-between'>
             <Flex borderBottom='1px solid #696969' p='1.2rem 0' align='center'>
