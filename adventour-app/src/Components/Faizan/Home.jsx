@@ -14,10 +14,17 @@ import modelTwo from './Images/modelTwo.png'
 import Footer from './Footer'
 import ReviewCarousel from './ReviewCarousel'
 import Navbar from './Navbar'
+import { useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
 
 function Home() {
   const [val, setval] = useState(0);
-  const [theme, setTheme] = useState(true);
+  const [location, setlocation] = useState('Place');
+  const [date, setdate] = useState('');
+  // const [theme, setTheme] = useState(true);
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const theme = useSelector(state => state.theme);
 
   const carouselData = [
     {
@@ -62,6 +69,15 @@ function Home() {
     },
   ]
 
+  const listfunc = () => {
+    if (location === 'Place' || date === ' ') {
+      alert('Please select loaction and date')
+      return;
+    }
+    dispatch({ type: 'LIMITRESET' })
+    navigate(`/tourlist/${location}`)
+  }
+
   return (
     <>
       <Navbar />
@@ -73,9 +89,10 @@ function Home() {
             <Flex>
               <Heading fontSize='3.6rem' fontWeight='600'>
                 Let's Enjoy Your Life, Explore Beautiful
-                <HStack>             <Text color={theme ? "#3DC6EF" : "#008cc9"}>
-                  Places.
-                </Text>
+                <HStack>
+                  <Text color={theme ? "#3DC6EF" : "#008cc9"}>
+                    Places.
+                  </Text>
                   <Image boxSize='3rem' src='https://em-content.zobj.net/thumbs/160/apple/81/rocket_1f680.png' />
                 </HStack>
               </Heading>
@@ -91,17 +108,16 @@ function Home() {
                   <IconButton icon={<SlLocationPin />} bg={theme ? 'rgb(36,45,54)' : 'gray.600'} size='xs' color='#3DC6EF' borderRadius='50%' fontSize='0.8rem' />
                   <Text color={theme ? 'darkgray' : 'blackAlpha.900'} fontWeight='500'>Location</Text>
                 </Flex>
-
+                {/* this one */}
                 <Menu _hover={{ bg: "#191b1d" }}>
-                  <MenuButton ml='1rem' variant='ghost' as={Button} colorScheme='none' rightIcon={<ChevronDownIcon />} _hover={theme ? { bg: "#191b1d" } : { bg: "white" }}>
-                    Bali, INA
+                  <MenuButton ml='1rem' variant='ghost' as={Button} colorScheme='none' rightIcon={<ChevronDownIcon />} _hover={theme ? { bg: "#191b1d" } : { bg: "whiteAlpha.100" }}>
+                    {location}
                   </MenuButton>
                   <MenuList bg={theme ? '#191b1d' : 'white'} border='none' _hover={theme ? { bg: "#191b1d" } : { bg: "white" }}>
-                    <MenuItem bg={theme ? '#191b1d' : 'white'} >New York, USA</MenuItem>
-                    <MenuItem bg={theme ? '#191b1d' : 'white'} >Dubai, UAE</MenuItem>
-                    <MenuItem bg={theme ? '#191b1d' : 'white'} >London, UK</MenuItem>
-                    <MenuItem bg={theme ? '#191b1d' : 'white'} >Tokyo, Japan</MenuItem>
-                    <MenuItem bg={theme ? '#191b1d' : 'white'} >Moscow, Russia</MenuItem>
+                    <MenuItem bg={theme ? '#191b1d' : 'white'} onClick={() => { setlocation('Asia') }}>Asia</MenuItem>
+                    <MenuItem bg={theme ? '#191b1d' : 'white'} onClick={() => { setlocation('Europe') }}>Europe</MenuItem>
+                    <MenuItem bg={theme ? '#191b1d' : 'white'} onClick={() => { setlocation('Latin_America') }}>Latin America</MenuItem>
+                    <MenuItem bg={theme ? '#191b1d' : 'white'} onClick={() => { setlocation('Africa') }}>Africa</MenuItem>
                   </MenuList>
                 </Menu>
               </Box>
@@ -123,12 +139,13 @@ function Home() {
                   variant='unstyled'
                   w={{ base: '7rem', md: '9rem', lg: '11rem' }}
                   placeholder="Date and Time"
-                  type="datetime-local"
+                  type="date"
+                  onChange={(e) => { setdate(e.target.value) }}
                 />
               </Box>
 
               <Flex align='center' mt={{ base: '1rem', md: '0' }}>
-                <IconButton bg={theme ? "#3DC6EF" : "#008cc9"} w={{ base: '100%', md: '80%', lg: '80%' }} size='lg' color={theme ? 'black' : 'white'} colorScheme='none' borderRadius='0.8rem' icon={<FiSearch />} />
+                <IconButton onClick={listfunc} bg={theme ? "#3DC6EF" : "#008cc9"} w={{ base: '100%', md: '80%', lg: '80%' }} size='lg' color={theme ? 'black' : 'white'} colorScheme='none' borderRadius='0.8rem' icon={<FiSearch />} />
               </Flex>
             </Flex>
           </Box>
@@ -221,7 +238,7 @@ function Home() {
                     />
                   </AspectRatio>
                   <Stack mt='6' spacing='3'>
-                    <Heading color={theme ? 'white' : 'black'} fontWeight='500' size='md'>Bali Bucket List Boutique 10 Day Tour</Heading>
+                    <Heading color={theme ? 'white' : 'black'} fontWeight='500' size='md'>Bali Bucket List Boutique 10 Day Tour Package</Heading>
                     <Text color='gray'>
                       Bali, Indonesia
                     </Text>
@@ -479,7 +496,6 @@ function Home() {
 
       </Box>
 
-      <Switch onChange={() => { setTheme(!theme) }} />
     </>
 
   )

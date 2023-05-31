@@ -2,14 +2,13 @@ import {
   Box, Flex, Text, Input, Image, InputGroup,
   InputLeftElement, Popover, PopoverTrigger,
   Button, PopoverContent, PopoverHeader,
-  PopoverBody, HStack, IconButton, useDisclosure,
+  PopoverBody, HStack, useDisclosure,
   Drawer, DrawerOverlay, DrawerContent, DrawerCloseButton,
   DrawerHeader, DrawerBody, Divider
 } from '@chakra-ui/react'
 import Logo from './Logos/LogoPic.png'
 import { SearchIcon } from '@chakra-ui/icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { FaMoon, FaSun } from "react-icons/fa";
 import { CgProfile } from "react-icons/cg";
 import { FaUserCircle } from "react-icons/fa";
 
@@ -20,21 +19,22 @@ import {
   faPersonHiking, faShip, faBicycle, faUtensils, faFilm, faCompass,
   faEnvelope, faPhone, faEarthAmericas
 } from '@fortawesome/free-solid-svg-icons'
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 
-function NavBar({ setTheme, theme }) {
-  // const [theme, setTheme] = useState(false);
-  // console.log(theme);
+function NavBar() {
+  const theme=useSelector(state=>!state.theme);
 
   return (
     <Box w={"100%"} position={'fixed'} zIndex={'1'} bg={theme ? "white" : "#191b1d"}>
       <Box w={{ base: '95%', md: '95%', lg: '76%' }} py={"3"} m="auto" bg={theme ? "white" : "#191b1d"} color={theme ? "blackAlpha.800" : "white"}>
         <Flex alignItems={"center"} justifyContent={"space-between"}>
           <Box alignItems={"center"} w={{ base: '25%', md: '25%', lg: '20%' }}>
-            <Flex alignItems={"center"}>
+            <Link to={'/'}><Flex alignItems={"center"}>
               <Image src={Logo} alt='logo' w={"70px"} px={"8px"} />
               <Text fontSize={"1.2rem"} fontWeight={"800"} display={{ base: 'none', md: 'flex', lg: 'flex' }}>Adventour.</Text>
-            </Flex>
+            </Flex></Link>
           </Box>
           <Box w={{ base: '50%', md: '50%', lg: '35%' }} px={"10px"} >
             <InputGroup>
@@ -265,21 +265,6 @@ function NavBar({ setTheme, theme }) {
 
         </Flex>
       </Box >
-      <Box>
-        <IconButton
-          aria-label="toggle theme"
-          rounded="full"
-          size="md"
-          position="fixed"
-          bottom={4}
-          left={4}
-          zIndex={'4'}
-          onClick={() => { setTheme(!theme); }} icon={theme ? <FaMoon /> : <FaSun />}
-          bg={theme ? "black" : "white"}
-          color={theme ? "white" : "black"}
-          colorScheme='none'
-        />
-      </Box>
     </Box >
 
   )

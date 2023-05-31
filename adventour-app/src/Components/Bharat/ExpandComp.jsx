@@ -1,14 +1,16 @@
 import { Box, Flex, SimpleGrid, Text, useDisclosure } from '@chakra-ui/react'
 import React from 'react'
 import { Collapse } from '@chakra-ui/react'
+import { useSelector } from 'react-redux';
 
-function ExpandComp({ theme }) {
+function ExpandComp() {
   const { isOpen, onToggle } = useDisclosure()
+  const theme=useSelector(state=>state.theme);
   return (
     <Box textAlign={'left'} mt={'60px'} pb={'40px'}>
 
       <Flex gap={'5'} direction={{base:'column', md: 'column', lg:'row'}} >
-        <Box w={{ base: '90%', md: '76%', lg: '550px' }} bg={theme ? 'gray.800' : 'white'} boxShadow={'lg'} borderRadius={'20px'} shadow='md'>
+        <Box w={{ base: '90%', md: '76%', lg: '550px' }} bg={theme ? '#191b1d' : 'white'} boxShadow={'lg'} borderRadius={'20px'} shadow='md'>
           <Box fontWeight={'600'} px={'30px'} py={'20px'} w={'100%'} onClick={onToggle}>Top Destinations</Box>
           <Collapse in={isOpen} animateOpacity>
             <Box p='0px 40px 20px 40px' minH={'400px'}>
@@ -59,7 +61,7 @@ function ExpandComp({ theme }) {
             </Box>
           </Collapse>
         </Box>
-        <Box w={{ base: '90%', md: '76%', lg: '300px' }} bg={theme ? 'gray.800' : 'white'} boxShadow={'lg'} borderRadius={'20px'} shadow='md'>
+        <Box w={{ base: '90%', md: '76%', lg: '300px' }} bg={theme ? '#191b1d' : 'white'} boxShadow={'lg'} borderRadius={'20px'} shadow='md'>
           <Box fontWeight={'600'} px={'30px'} py={'20px'} w={'100%'} onClick={onToggle}>Top Operators</Box>
           <Collapse in={isOpen} animateOpacity>
             <Box p='0px 40px 20px 40px' minH={'400px'}>
@@ -74,7 +76,7 @@ function ExpandComp({ theme }) {
             </Box>
           </Collapse>
         </Box>
-        <Box w={{ base: '90%', md: '76%', lg: '300px' }} bg={theme ? 'gray.800' : 'white'} boxShadow={'lg'} borderRadius={'20px'} shadow='md'>
+        <Box w={{ base: '90%', md: '76%', lg: '300px' }} bg={theme ? '#191b1d' : 'white'} boxShadow={'lg'} borderRadius={'20px'} shadow='md'>
           <Box fontWeight={'600'} px={'30px'} py={'20px'} w={'100%'} onClick={onToggle}>Top Adventure Styles</Box>
           <Collapse in={isOpen} animateOpacity>
             <Box p='0px 40px 20px 40px' minH={'400px'}  >
