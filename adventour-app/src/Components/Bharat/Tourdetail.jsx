@@ -76,6 +76,7 @@ function Tourdetail() {
 
       <Box m={'auto'} pt={'100px'} w={{ base: '90%', md: '76%', lg: '76%' }} color={theme ? 'white' : 'blackAlpha.800'}>
 
+
         <Flex flexDirection={{ base: 'column', md: 'column', lg: 'row' }} >
           {/* <AspectRatio ratio={16/9}> */}
           <Image src={image} boxShadow={'md'} mb={{ base: '30px' }} borderRadius={'20px'} width={{ base: '100%', md: '100%', lg: '60%' }} h={{ base: '100%', md: '100%', lg: '40%' }}/>
