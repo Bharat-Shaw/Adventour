@@ -6,6 +6,7 @@ import Footer from '../Faizan/Footer'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
 import {useDispatch, useSelector} from 'react-redux'
+import ExpandComp from '../Bharat/ExpandComp'
 
 function Tourlist() {
 
@@ -25,6 +26,8 @@ function Tourlist() {
     <Box bg={theme ? "#101214" : "gray.100"} color={theme ? "white" : "black"}>
       <NavBar  />
       <TourlistBody  />
+      <Box m={'auto'}><ExpandComp /></Box>
+      
       <Footer />
     </Box>
 

@@ -152,10 +152,6 @@ function Tourdetail() {
             <IconButton borderRadius={'50%'} h={'40px'} position={'absolute'} top={'42%'} right={'0%'} zIndex={'2'} onClick={() => { setval(val - 300) }} colorScheme='none' bg={'blackAlpha.700'} isDisabled={val < -800}
               icon={<AiOutlineCaretRight size={'20px'} />} />
             <div style={{ height: '100%', display: 'flex', translate: `${val}px 0px`, transition: '1s' }}>
-              {/* <Image borderRadius={'30px'} p={'10px'} w={'60%'} height='100%' src='https://cdn.tourradar.com/s3/cities/520x406/1938_9aa151.jpg' />
-              <Image borderRadius={'30px'} p={'10px'} w={'60%'} src='https://cdn.tourradar.com/s3/cities/520x406/1932_2d86cd.jpg' />
-              <Image borderRadius={'30px'} p={'10px'} w={'60%'} src='https://cdn.tourradar.com/s3/cities/520x406/5161_159c81.jpg' />
-              <Image borderRadius={'30px'} p={'10px'} src='https://cdn.tourradar.com/s3/cities/520x406/5937_5647fc.jpg' /> */}
               {storedata?.places_see_img?.map((el)=>{
                 return <Image borderRadius={'30px'} p={'10px'} w={'60%'} height='100%' src={el} />
               })}
@@ -288,11 +284,12 @@ function Tourdetail() {
           </SimpleGrid>
         </Flex>
 
-        <ExpandComp theme={theme} />
+        
 
         
       </Box>
-      <Footer theme={theme}/>
+      <ExpandComp />
+      <Footer />
     </Box>
   )
 }

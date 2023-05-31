@@ -48,7 +48,7 @@ function Payment() {
           <Spacer />
 
           <Text display={{ base: "none", md: "block", lg: "block" }} pr={'10px'}>+1 844 311 8331</Text>
-          <HStack _hover={{ bg: !theme ? 'gray.200' : 'gray.800' }} display={{ base: "none", md: "flex", lg: "flex" }} borderRadius={'20px'} py={'10px'} px={'18px'}>
+          <HStack _hover={{ bg: !theme ? 'gray.200' : 'gray.800' }} bg={theme ? 'gray.800' : 'gray.200'} display={{ base: "none", md: "flex", lg: "flex" }} borderRadius={'20px'} py={'10px'} px={'18px'}>
             <TfiHeadphoneAlt />
             <Box color={theme ? 'white' : 'blackAlpha.800'} colorScheme='none'>Book as Travel Agent</Box>
           </HStack>
@@ -61,8 +61,8 @@ function Payment() {
         <Flex py={'30px'}>
           <Text fontSize={{ base: "20px", md: '33px', lg: '33px' }} fontWeight={'600'}>{storedata?.title}</Text>
           <Spacer />
-          <Button colorScheme='none' bg={theme ? '#191b1d' : 'white'} color={theme ? 'white' : 'blackAlpha.800'} mr={'10px'} borderRadius={'20px'}>Help</Button>
-          <Button colorScheme='none' bg={theme ? '#191b1d' : 'white'} color={theme ? 'white' : 'blackAlpha.800'} borderRadius={'20px'}>Share Tour</Button>
+          <Button colorScheme='none' bg={theme ? '#191b1d' : 'white'} color={theme ? 'white' : 'blackAlpha.800'} mr={'10px'} borderRadius={'20px'} display={{base:'none', md:'block', lg: 'block'}}>Help</Button>
+          <Button colorScheme='none' bg={theme ? '#191b1d' : 'white'} color={theme ? 'white' : 'blackAlpha.800'} borderRadius={'20px'} display={{base:'none', md:'block', lg: 'block'}}>Share Tour</Button>
         </Flex>
 
         {/* Main content-start */}

@@ -84,7 +84,7 @@ function Home() {
       <Box p='3rem 0' color={theme ? 'white' : 'black'} bg={theme ? '#101214' : 'gray.100'} textAlign='left' >
         <Flex p={{ base: '0 1.5rem', md: '0 3rem', lg: '0 4.5rem' }} flexDirection={{ base: 'column', md: 'column', lg: 'row' }}>
           <Box w={{ base: '90%', md: '80%', lg: '50%' }}>
-            <Text fontWeight='500' color={theme ? "#3DC6EF" : "#008cc9"}>All you need is Advantour.</Text>
+            <Text fontWeight='500' color={theme ? "#3DC6EF" : "#008cc9"}>All you need is Adventour.</Text>
 
             <Flex>
               <Heading fontSize='3.6rem' fontWeight='600'>
@@ -481,7 +481,7 @@ function Home() {
           <Flex align='center' justify='space-between' mt='5rem' flexWrap='wrap'>
             <Box >
               <Text p={{ base: '1rem 0', md: 'none', lg: 'none' }} fontWeight='500' color={theme ? "#3DC6EF" : "#008cc9"}>Stay Connected</Text>
-              <Heading>Get Started with Advantour!</Heading>
+              <Heading>Get Started with Adventour!</Heading>
             </Box>
 
             <Box p={{ base: '1rem 0', md: 'none', lg: 'none' }}>
