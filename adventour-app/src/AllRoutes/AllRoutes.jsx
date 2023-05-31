@@ -11,10 +11,10 @@ function AllRoutes() {
   return (
     <Routes>
       <Route path='/' element={<Home/>}/>
-      <Route path='/tourdetail' element={<Tourdetail/>}/>
+      <Route path='/tourdetail/:location/:id' element={<Tourdetail/>}/>
       <Route path='/signup' element={<Signup/>}/>
-      <Route path='/payment' element={<Payment/>}/>
-      <Route path='/tourlist' element={<Tourlist/>}/>
+      <Route path='/payment/:location/:id' element={<Payment/>}/>
+      <Route path='/tourlist/:location' element={<Tourlist/>}/>
       <Route path='/login' element={<Login/>}/>
     </Routes>
   )

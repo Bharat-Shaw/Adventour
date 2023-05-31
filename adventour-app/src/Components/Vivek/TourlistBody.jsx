@@ -6,24 +6,24 @@ import {
     RangeSliderThumb, RangeSliderTrack, Select,
     Text, VStack, useDisclosure
 } from '@chakra-ui/react'
-import React, { useEffect, useState } from 'react'
-import axios from 'axios';
+import React, { useEffect } from 'react'
 import { RiFilter3Line } from "react-icons/ri";
 import { GiStarsStack } from "react-icons/gi";
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
+import ExpandComp from '../Bharat/ExpandComp';
+import { useDispatch, useSelector } from 'react-redux';
 
 function TourlistBody({ setTheme, theme }) {
+    const data=useSelector((state)=>state.data);
+    const {location}=useParams();
+    const dispatch=useDispatch();
+    console.log(data[0]?.region)
 
-    const [data, setData] = useState([]);
-
-    useEffect(() => {
-        axios.get(`https://weak-rose-seahorse-tutu.cyclic.app/api/Asia`)
-            .then((res) => {
-                setData(res.data);
-            })
-    }, [])
-
-    console.log(data);
+    useEffect(()=>{
+        window.scrollTo({
+            top: 0, 
+          });
+    },[])
 
     const mainBoxStyles = {
         w: { base: '92%', md: '92%', lg: '76%' },
@@ -92,14 +92,14 @@ function TourlistBody({ setTheme, theme }) {
         justifyContent: 'space-between',
         // boxShadow: '2xl',
         bg: theme ? "white" : "#191b1d",
-        borderRadius: '10px',
+        borderRadius: '20px',
         display: { base: 'block', md: 'flex', lg: 'flex' }
     }
 
     const main_Img_Styles = {
         w: '100%',
         h: '100%',
-        borderRadius: { base: '10px 10px 0 0', md: '10px 0 0 10px', lg: '10px 0 0 10px' }
+        borderRadius: { base: '20px 20px 0 0', md: '20px 0 0 20px', lg: '20px 0 0 20px' }
     }
 
     const card_Mid_Box_Styles = {
@@ -186,12 +186,12 @@ function TourlistBody({ setTheme, theme }) {
 
                 {/*------ Path------ */}
                 <Text sx={pathStyles}>
-                    Home / Europe / Deals
+                    Home / {data[0]?.region} / Deals
                 </Text>
 
                 {/*------Heading------*/}
                 <Text sx={headingStyles}>
-                    Europe Deals and Discounts
+                    {data[0]?.region} Deals and Discounts
                 </Text>
 
                 {/*----------Details and Sorting------------*/}
@@ -379,7 +379,7 @@ function TourlistBody({ setTheme, theme }) {
                     <Box w={{ base: '100%', md: '100%', lg: '75%' }}>
                         <Flex sx={rightTopBoxStyles}>
                             <GiStarsStack size={'35px'} color='orange' />&nbsp;&nbsp;
-                            Asia Special Offers
+                            {data[0]?.region} Special Offers
                         </Flex>
 
                         {/*-------- Card Div -------*/}
@@ -390,7 +390,7 @@ function TourlistBody({ setTheme, theme }) {
                                     <Flex sx={flex_Card_Styles} key={ele.id}>
                                         {/*---- Left Box ----*/}
                                         <Box w={{ base: '100%', md: '28%', lg: '28%' }} key={ele.id+1}>
-                                            <Link to='/'>
+                                            <Link to={`/tourdetail/${location}/${ele.id}`}>
                                                 <Image sx={main_Img_Styles} src={ele.main_image} alt="mainImg" />
                                             </Link>
                                         </Box>
@@ -399,7 +399,7 @@ function TourlistBody({ setTheme, theme }) {
                                         <Box sx={card_Mid_Box_Styles} key={ele.id+2}>
                                             <Box borderBottom={"1px solid #DCDCDC"} pb={'15px'}>
                                                 <Text sx={card_Mid_Box_Text_I} >{ele.category}</Text>
-                                                <Link to='/'>
+                                                <Link to={`/tourdetail/${location}/${ele.id}`}>
                                                     <Text sx={card_Mid_Box_Text_II} >{ele.title}</Text>
                                                 </Link>
                                                 <Text sx={card_Mid_Box_Text_III} >{ele.reviews} reiviews</Text>
@@ -477,7 +477,7 @@ function TourlistBody({ setTheme, theme }) {
                                                 </Flex>
                                             </Flex>
                                             <Center>
-                                                <Link to='/'>
+                                                <Link to={`/tourdetail/${location}/${ele.id}`}>
                                                     <Button sx={view_Tour_Button} colorScheme='none' >View Tour</Button>
                                                 </Link>
                                             </Center>
@@ -489,7 +489,11 @@ function TourlistBody({ setTheme, theme }) {
                         </Box>
                     </Box>
                 </Flex>
+                        
             </Box >
+            <Center><Button isDisabled={data.length===20} color={theme ? "white" : "black"} colorScheme='none' onClick={()=>{dispatch({type:'LIMIT'})}} bg={theme ? "#008cc9" : "#3DC6EF"}>Load More</Button></Center> 
+            <Center> <ExpandComp theme={!theme}/></Center>
+           
         </Box >
     )
 }

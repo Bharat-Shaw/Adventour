@@ -1,6 +1,5 @@
 import React from 'react'
 import { useState, useReducer } from 'react'
-import GoogleButton from 'react-google-button'
 import { Box, Heading, Center, FormControl, Stack, Input, Checkbox, Button, Text, HStack } from '@chakra-ui/react'
 import { useNavigate } from 'react-router-dom'
 import { FcGoogle} from 'react-icons/fc';
@@ -47,39 +46,8 @@ function Signup() {
     dispatch(action);
   }
   return (
-    // <Box bg='#101214' h='100vh'>
-    //   <Center>
-    // <Box borderRadius='20px' bg='gray.800' mt='15vh' >
-
-    //   <Box mt='30' mb='25' color='white' ><Heading><Center>Sign up</Center></Heading></Box>
-
-
-    //     <Box width='50vh' m='auto'>
-    //       <Stack spacing={3}>
-    //         <Input placeholder='Full Name' />
-    //         <Input placeholder='Enter your email' size='md'/>
-    //         <Input placeholder='Enter password' size='md'/>
-    //         <Input placeholder='Confirm password' size='md'/>
-    //       </Stack>
-    //     </Box>
-
-    //     <Checkbox colorScheme='blue' color='white' mt='8vh'>Send me special deals to my inbox</Checkbox>
-    //     <Box color='white'>By loggingin, you accept out Terms of use,</Box>
-    //     <Box> and Privacy & Cookies Statement.</Box>
-    //     <Box><Button bg='#409cd1' color='white' width='50vh' mt='30'> Sign up</Button></Box>
-
-
-
-
-    // </Box>
-    // </Center>
-    // </Box>
-
-    //  --- New
-
-
     <>
-    <Box  p='30px 0' bg= {theme ? '#101214' : 'gray.100' } >
+    <Box minH={'100vh'} p='30px 0' bg= {theme ? '#101214' : 'gray.100' } >
       <Center>
         <Box borderRadius='20px'  bg= {theme ? '#191b1d' : 'white' } my='20px' p='30px' color={theme ? 'white' : 'black'}>
 

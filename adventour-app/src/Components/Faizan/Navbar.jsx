@@ -1,12 +1,10 @@
 import React from 'react';
-import { Box, Image, Heading, Flex, Spacer, Button, Text, useDisclosure, Icon } from '@chakra-ui/react'
+import { Box, Image, Heading, Flex, Button, Text, useDisclosure, Icon } from '@chakra-ui/react'
 import { NavLink } from 'react-router-dom'
 import logo from './Images/logo.png'
 import {
     Drawer,
     DrawerBody,
-    DrawerFooter,
-    DrawerHeader,
     DrawerOverlay,
     DrawerContent,
     DrawerCloseButton,
@@ -16,13 +14,13 @@ import { HamburgerIcon } from '@chakra-ui/icons';
 function Navbar(props) {
     const { isOpen, onOpen, onClose } = useDisclosure()
     
-    const activeLink = {
-        color: "white",
-    }
+    // const activeLink = {
+    //     color: "white",
+    // }
 
-    const normalLink = {
-        color: "darkgray",
-    }
+    // const normalLink = {
+    //     color: "darkgray",
+    // }
     return (
         <Box p={{base:'0 1.5rem',md:'0 3rem',lg:'0 4.5rem'}} color='darkgray' bg='#101214' justify='space-between'>
             <Flex borderBottom='1px solid #696969' p='1.2rem 0' align='center'>
