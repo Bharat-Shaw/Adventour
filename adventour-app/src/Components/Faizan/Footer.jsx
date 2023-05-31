@@ -12,7 +12,7 @@ function Footer({theme}) {
                         <Image src={logo} w='2rem' />
                         <Heading fontSize="1rem" ml='0.7rem'>Advantour.</Heading>
                     </Flex>
-                    <Text p='2rem 0' color={theme ? 'darkgray':'gray'}>
+                    <Text p='2rem 0' color={theme ? 'gray.500':'gray'}>
                         Pellentesque etiam blandit in tincidunt at donec. Eget ipsum dignissim placerat nisi, adipiscing mauris non purus parturient.
                     </Text>
                 </Box>
@@ -20,10 +20,10 @@ function Footer({theme}) {
                 <Flex w={{base:'90%', md:'80%', lg:'50%'}} p='0 2rem' justify='space-between' flexWrap='wrap'>
                     <Box lineHeight='2.2rem' p={{base:'1rem 0', md:'0',lg:'0'}}>
                         <Heading mb='1.2rem' fontSize="1.2rem" fontWeight='600'>Sitemap</Heading>
-                        <Text color={theme ? 'darkgray':'gray'}>Services</Text>
-                        <Text color={theme ? 'darkgray':'gray'}>About Us</Text>
-                        <Text color={theme ? 'darkgray':'gray'}>Booking</Text>
-                        <Text color={theme ? 'darkgray':'gray'}>Cancellation</Text>
+                        <Text color={theme ? 'gray.500':'gray'}>Services</Text>
+                        <Text color={theme ? 'gray.500':'gray'}>About Us</Text>
+                        <Text color={theme ? 'gray.500':'gray'}>Booking</Text>
+                        <Text color={theme ? 'gray.500':'gray'}>Cancellation</Text>
                     </Box>
 
                     <Box lineHeight='2.2rem' p={{base:'1rem 0', md:'0',lg:'0'}}>

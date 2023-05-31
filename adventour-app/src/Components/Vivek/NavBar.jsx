@@ -52,6 +52,7 @@ function NavBar({ setTheme, theme }) {
                 </PopoverTrigger>
                 <PopoverContent mt={"10px"} w={"100%"} py={"10px"} boxShadow='lg' bg={theme ? "white" : "#191b1d"} border={'none'}>
                   <PopoverHeader border={"none"} textAlign={"left"} fontSize={"20px"} fontWeight={"700"} pl={"25px"}>Destination</PopoverHeader>
+                  <Divider pb={'5px'} />
                   <PopoverBody >
                     <HStack>
                       <Box mr={"30px"} pl={"20px"}>
@@ -117,7 +118,8 @@ function NavBar({ setTheme, theme }) {
                 </PopoverTrigger>
                 <PopoverContent w={"60%"} py={"10px"} bg={theme ? "white" : "#191b1d"} m={"auto"} mt={"10px"} border={'none'}>
                   <PopoverHeader border={"none"} textAlign={"left"} fontSize={"20px"} fontWeight={"700"} pl={"35px"}>Destination</PopoverHeader>
-                  <PopoverBody >
+                  <Divider pb={'5px'} />
+                  <PopoverBody pt={'20px'}>
                     <Flex justifyContent={"space-between"}>
                       <Box ml={"25px"} w={"30%"} bg={theme ? "gray.100" : "gray.800"} p={"10px"} borderRadius={"20px"} color={theme ? "black" : "white"}>
                         <Text textAlign={"left"} fontSize={"20px"} fontWeight={"700"} paddingBottom={"20px"}>Adventure Styles</Text>
@@ -172,50 +174,52 @@ function NavBar({ setTheme, theme }) {
                 <Button colorScheme='none' borderRadius={"50px"} fontSize={"17px"} color={theme ? "black" : "white"}>Contact</Button>
               </PopoverTrigger>
               <PopoverContent mt={"10px"} w={"100%"} p={"10px"} boxShadow='lg' bg={theme ? "white" : "#191b1d"} border={'none'}>
-                <PopoverHeader border={"none"} textAlign={"left"} fontSize={"20px"} fontWeight={"700"}>Contect Us</PopoverHeader>
-                <PopoverBody w={"350px"}>
+                <PopoverHeader border={"none"} fontSize={"20px"} fontWeight={"700"}>Contect Us</PopoverHeader>
+                <Divider pb={'5px'} />
+                <PopoverBody w={"280px"}>
                   <Box>
-                    <Text textAlign={"left"} py={"5px"}><FontAwesomeIcon icon={faEnvelope} /> Email:</Text>
-                    <Text textAlign={"left"} py={"3px"}>www.adventour.gmail.com</Text>
-                    <Text textAlign={"left"} py={"5px"}><FontAwesomeIcon icon={faPhone} /> Phone No:</Text>
-                    <Text textAlign={"left"} py={"3px"}>+91 9997124529</Text>
-                    <Text textAlign={"left"} py={"5px"}><FontAwesomeIcon icon={faEarthAmericas} /> Website:</Text>
-                    <Text textAlign={"left"} py={"3px"}>www.adventour.com</Text>
+                    <Text py={"8px"}><FontAwesomeIcon icon={faEnvelope} />&nbsp;&nbsp; www.adventour.gmail.com</Text>
+                    {/* <Text textAlign={"left"} py={"3px"}>www.adventour.gmail.com</Text> */}
+                    <Text py={"8px"}><FontAwesomeIcon icon={faPhone} />&nbsp;&nbsp; +91 9997124529</Text>
+                    {/* <Text textAlign={"left"} py={"3px"}>+91 9997124529</Text> */}
+                    <Text py={"8px"}><FontAwesomeIcon icon={faEarthAmericas} />&nbsp;&nbsp; www.adventour.com</Text>
+                    {/* <Text textAlign={"left"} py={"3px"}>www.adventour.com</Text> */}
                   </Box>
                 </PopoverBody>
               </PopoverContent>
             </Popover>
             <Box>
-              <HStack >
+              <HStack display={'none'}>
                 {/*-------- After login Popover --------*/}
                 <Popover trigger={"hover"} >
                   <PopoverTrigger>
                     <Box colorScheme='none' borderRadius={"50%"} fontSize={"20px"} fontWeight={"700"} border={"2px solid #3DC6EF"} color={"#3DC6EF"} px={'9px'} ml={'20px'}>V</Box>
                   </PopoverTrigger>
                   <PopoverContent mt={"10px"} w={"100%"} p={"10px"} boxShadow='lg' bg={theme ? "white" : "#191b1d"} border={'none'}>
-                    <PopoverHeader border={"none"} textAlign={"left"} fontSize={"25px"} fontWeight={"700"} ml={"5px"}>Hi, User</PopoverHeader>
-                    <PopoverBody w={"300px"}>
+                    <PopoverHeader border={"none"} textAlign={"left"} fontSize={"22px"} fontWeight={"700"} ml={"5px"}>Hi, User</PopoverHeader>
+                    <Divider pb={'5px'} />
+                    <PopoverBody w={"250px"}>
                       <Flex flexDirection={"column"} alignItems={"start"} ml={"-10px"}>
                         <Button colorScheme='none' my={"5px"} color={theme ? "black" : "white"}>
-                          <FontAwesomeIcon icon={faCircleUser} fontSize={"22px"} />&nbsp;&nbsp; My Account
+                          <FontAwesomeIcon icon={faCircleUser} fontSize={"20px"} />&nbsp;&nbsp; My Account
                         </Button>
                         <Button colorScheme='none' my={"5px"} color={theme ? "black" : "white"}>
-                          <FontAwesomeIcon icon={faEnvelopeOpen} fontSize={"22px"} />&nbsp;&nbsp; Inbox
+                          <FontAwesomeIcon icon={faEnvelopeOpen} fontSize={"20px"} />&nbsp;&nbsp; Inbox
                         </Button>
                         <Button colorScheme='none' my={"5px"} color={theme ? "black" : "white"}>
-                          <FontAwesomeIcon icon={faTicket} fontSize={"22px"} />&nbsp;&nbsp; Tour
+                          <FontAwesomeIcon icon={faTicket} fontSize={"20px"} />&nbsp;&nbsp; Tour
                         </Button>
                         <Button colorScheme='none' my={"5px"} color={theme ? "black" : "white"}>
-                          <FontAwesomeIcon icon={faStar} fontSize={"22px"} />&nbsp;&nbsp; My Reviews
+                          <FontAwesomeIcon icon={faStar} fontSize={"20px"} />&nbsp;&nbsp; My Reviews
                         </Button>
                         <Button colorScheme='none' my={"5px"} color={theme ? "black" : "white"}>
-                          <FontAwesomeIcon icon={faHeart} fontSize={"22px"} />&nbsp;&nbsp; Saved Tours
+                          <FontAwesomeIcon icon={faHeart} fontSize={"20px"} />&nbsp;&nbsp; Saved Tours
                         </Button>
                         <Button colorScheme='none' my={"5px"} color={theme ? "black" : "white"}>
-                          <FontAwesomeIcon icon={faSliders} fontSize={"22px"} />&nbsp;&nbsp; Account Settings
+                          <FontAwesomeIcon icon={faSliders} fontSize={"20px"} />&nbsp;&nbsp; Account Settings
                         </Button>
                         <Button colorScheme='none' my={"5px"} color={theme ? "black" : "white"}>
-                          <FontAwesomeIcon icon={faArrowRightFromBracket} fontSize={"22px"} />&nbsp;&nbsp; Logout
+                          <FontAwesomeIcon icon={faArrowRightFromBracket} fontSize={"20px"} />&nbsp;&nbsp; Logout
                         </Button>
                       </Flex>
                     </PopoverBody>
@@ -224,7 +228,7 @@ function NavBar({ setTheme, theme }) {
               </HStack>
 
               {/*-------- Before login Popover --------*/}
-              <HStack display={'none'}>
+              <HStack >
                 <Popover trigger={"hover"} >
                   <PopoverTrigger>
                     <Button colorScheme='none' borderRadius={"50%"} color={"#3DC6EF"} px={"-10px"} ml={'20px'}><FaUserCircle size={'25px'} /></Button>
@@ -253,7 +257,7 @@ function NavBar({ setTheme, theme }) {
               <HemBurgerMenuLogedIn theme={theme} />
             </Box>
           </Box>
-          <Box>
+          <Box >
             <Box display={{ base: 'flex', md: 'flex', lg: 'none' }}>
               <HemBurgerMenuLogedOut theme={theme} />
             </Box>
@@ -270,7 +274,7 @@ function NavBar({ setTheme, theme }) {
           bottom={4}
           left={4}
           zIndex={'4'}
-          onClick={() => { setTheme(!theme); }} icon={theme ? <FaMoon /> : <FaSun /> }
+          onClick={() => { setTheme(!theme); }} icon={theme ? <FaMoon /> : <FaSun />}
           bg={theme ? "black" : "white"}
           color={theme ? "white" : "black"}
           colorScheme='none'
@@ -376,20 +380,20 @@ function HemBurgerMenuLogedOut({ theme }) {
         <DrawerOverlay />
         <DrawerContent bg={theme ? "white" : "#191b1d"}>
           <DrawerCloseButton color={theme ? "black" : "white"} />
-          <DrawerHeader borderBottom={"1px solid #DCDCDC"} textAlign={"left"} fontSize={"22px"} fontWeight={"700"} ml={"5px"} >
+          <DrawerHeader borderBottom={"1px solid #DCDCDC"} textAlign={"left"} fontSize={"20px"} fontWeight={"700"} ml={"5px"} >
             <Flex alignItems={"center"} color={theme ? "black" : "white"}>
-              <CgProfile size={"30px"} color={theme ? "black" : "white"} />&nbsp;
+              <CgProfile size={"25px"} color={theme ? "black" : "white"} />&nbsp;
               My Account
             </Flex>
           </DrawerHeader>
           <DrawerBody color={theme ? "black" : "white"}>
-            <Text textAlign={"center"} fontSize={"25px"} fontWeight={"700"} mt={'25px'}>Welcome</Text>
-            <Text textAlign={"center"} fontSize={"18px"} fontWeight={"700"} mt={'15px'} px={'10px'}> Please Login or Sign from here </Text>
-            <Flex flexDirection={"column"} alignItems={"start"} py={"20px"}>
-              <Button colorScheme='none' fontSize={'22px'} fontWeight={'700'} py={'27px'} w={'80%'} m={'auto'} mt={'35px'} color={theme ? "white" : "black"} bg={theme ? "#008cc9" : "#3DC6EF"}>
+            <Text textAlign={"center"} fontSize={"20px"} fontWeight={"700"} mt={'22px'}>Welcome</Text>
+            <Text textAlign={"center"} fontSize={"15px"} fontWeight={"700"} mt={'15px'} px={'10px'}> Please Login or Signup <br/>from here </Text>
+            <Flex flexDirection={"column"} alignItems={"start"} py={"15px"}>
+              <Button colorScheme='none' fontSize={'20px'} fontWeight={'700'} py={'24px'} w={'70%'} m={'auto'} mt={'35px'} color={theme ? "white" : "black"} bg={theme ? "#008cc9" : "#3DC6EF"}>
                 Log In
               </Button>
-              <Button colorScheme='none' fontSize={'22px'} fontWeight={'700'} py={'27px'} w={'80%'} m={'auto'} my={'35px'} color={theme ? "white" : "black"} bg={theme ? "#008cc9" : "#3DC6EF"}>
+              <Button colorScheme='none' fontSize={'20px'} fontWeight={'700'} py={'24px'} w={'70%'} m={'auto'} my={'35px'} color={theme ? "white" : "black"} bg={theme ? "#008cc9" : "#3DC6EF"}>
                 Sign Up
               </Button>
 
