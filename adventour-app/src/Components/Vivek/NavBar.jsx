@@ -21,6 +21,7 @@ import {
   faEnvelope, faPhone, faEarthAmericas
 } from '@fortawesome/free-solid-svg-icons'
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 
 function NavBar() {
@@ -31,10 +32,10 @@ function NavBar() {
       <Box w={{ base: '95%', md: '95%', lg: '76%' }} py={"3"} m="auto" bg={theme ? "white" : "#191b1d"} color={theme ? "blackAlpha.800" : "white"}>
         <Flex alignItems={"center"} justifyContent={"space-between"}>
           <Box alignItems={"center"} w={{ base: '25%', md: '25%', lg: '20%' }}>
-            <Flex alignItems={"center"}>
+            <Link to={'/'}><Flex alignItems={"center"}>
               <Image src={Logo} alt='logo' w={"70px"} px={"8px"} />
               <Text fontSize={"1.2rem"} fontWeight={"800"} display={{ base: 'none', md: 'flex', lg: 'flex' }}>Adventour.</Text>
-            </Flex>
+            </Flex></Link>
           </Box>
           <Box w={{ base: '50%', md: '50%', lg: '35%' }} px={"10px"} >
             <InputGroup>

@@ -27,8 +27,13 @@ import { useDispatch, useSelector } from 'react-redux';
 
 
 function Tourdetail() {
+  const dispatch=useDispatch()
+  const ref = useRef(null)
+  const {location}=useParams()
+  const {id}=useParams()
   const theme=useSelector(state=>state.theme);
-  const { isOpen, onOpen, onClose } = useDisclosure()
+  const storedata=useSelector(state=>state.detail)
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const toast = useToast()
   const [val, setval] = useState(-10);
   const imgarr = ['https://cdn.tourradar.com/s3/tour/1500x800/14263_5df8b6cf672a0.jpg',
@@ -36,12 +41,7 @@ function Tourdetail() {
     'https://cdn.tourradar.com/s3/review/1500x800/14263_5df8b793b7481.jpg',
     'https://cdn.tourradar.com/s3/tour/1500x800/14263_4a0e0afd.jpg'];
   const [image, setimage] = useState(imgarr[0])
-  const ref = useRef(null)
-  const {id}=useParams()
-  const {location}=useParams()
-  const dispatch=useDispatch()
-  const storedata=useSelector(state=>state.detail)
-  console.log(storedata)
+  const [wish, setwish]=useState(false)
 
   useEffect(() => {
     axios.get(`https://weak-rose-seahorse-tutu.cyclic.app/api/${location}/${id}`)
@@ -166,7 +166,24 @@ function Tourdetail() {
               <Flex mb={'20px'} w={{ base: '100%', md: '100%', lg: '300px' }} alignItems={'center'} pt={'10px'} pb={'10px'}>
                 <Link to={`/payment/${location}/${id}`}><Button h={'45px'} w={{ base: '85%', md: '85%', lg: '230px' }} colorScheme='none' fontWeight={'700'} bg={theme ? "#3DC6EF" : "#008cc9"} color={theme ? 'white' : 'blackAlpha.700'} borderRadius={'40px'}>Check Availability</Button></Link>
                 <Spacer />
-                <IconButton rounded="full" size="md" boxShadow={'md'} h={'45px'} w={'45px'} shadow='md' colorScheme='none' bg={'white'} color={'blackAlpha.700'} icon={<AiOutlineHeart size={'30px'} />} />
+                <IconButton onClick={()=>{
+                  if(!wish){
+                    toast({
+                      title: 'Added to WishList.',
+                      status: 'success',
+                      duration: 3000,
+                      isClosable: true,
+                    })
+                  }else {
+                    toast({
+                      title: 'Removed from Wishlist',
+                      status: 'info',
+                      duration: 3000,
+                      isClosable: true,
+                    })
+                  }
+                  setwish(!wish)
+                }} rounded="full" size="md" boxShadow={'md'} h={'45px'} w={'45px'} shadow='md' colorScheme='none' bg={wish?'red.200':'white'} color={'blackAlpha.700'} icon={<AiOutlineHeart size={'30px'} />} />
               </Flex>
               <Flex mb={'20px'}><AiOutlineFieldTime size={'25px'} /><Text lineHeight={'20px'} w={{ base: '100%', md: '100%', lg: '85%' }} pl={'10px'} textAlign={'left'}>Pay over time with smaller, interest-free instalments. <Link> Learn More</Link></Text></Flex>
               <Flex color={!theme ? 'blackAlpha.800' : 'whiteAlpha.900'}><MdOutlineVerified size={'25px'} /><Text lineHeight={'20px'} w={{ base: '100%', md: '100%', lg: '85%' }} pl={'10px'} textAlign={'left'}>Book once and share the cost with split payments.<Link> Learn More</Link></Text></Flex>
