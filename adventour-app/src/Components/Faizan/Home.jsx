@@ -221,7 +221,7 @@ function Home() {
                     />
                   </AspectRatio>
                   <Stack mt='6' spacing='3'>
-                    <Heading color={theme ? 'white' : 'black'}  fontWeight='500' size='md'>Bali Bucket List Boutique 10 Day Tour</Heading>
+                    <Heading color={theme ? 'white' : 'black'}  fontWeight='500' size='md'>Bali Bucket List Boutique 10 Day Tour Package</Heading>
                     <Text color='gray'>
                       Bali, Indonesia
                     </Text>
