@@ -13,10 +13,11 @@ import { Link, useParams } from 'react-router-dom'
 import ExpandComp from '../Bharat/ExpandComp';
 import { useDispatch, useSelector } from 'react-redux';
 
-function TourlistBody({ setTheme, theme }) {
+function TourlistBody() {
     const data=useSelector((state)=>state.data);
     const {location}=useParams();
     const dispatch=useDispatch();
+    const theme=useSelector(state=>state.theme);
     console.log(data[0]?.region)
 
     useEffect(()=>{
@@ -492,7 +493,7 @@ function TourlistBody({ setTheme, theme }) {
                         
             </Box >
             <Center><Button isDisabled={data.length===20} color={theme ? "white" : "black"} colorScheme='none' onClick={()=>{dispatch({type:'LIMIT'})}} bg={theme ? "#008cc9" : "#3DC6EF"}>Load More</Button></Center> 
-            <Center> <ExpandComp theme={!theme}/></Center>
+            <Center> <ExpandComp theme={theme}/></Center>
            
         </Box >
     )

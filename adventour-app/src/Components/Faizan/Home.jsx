@@ -15,15 +15,19 @@ import Footer from './Footer'
 import ReviewCarousel from './ReviewCarousel'
 import Navbar from './Navbar'
 import { useNavigate } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 function Home() {
   const [val, setval] = useState(0);
   const [location, setlocation] = useState('Place');
   const [date, setdate] = useState(' ');
-  const [theme, setTheme] = useState(true);
+  // const [theme, setTheme] = useState(true);
   const navigate=useNavigate()
   const dispatch=useDispatch()
+  const theme=useSelector(state=>state.theme);
+
+  console.log(theme)
+
   const carouselData = [
     {
       id: "1",
@@ -494,7 +498,6 @@ function Home() {
 
       </Box>
 
-      <Switch onChange={() => { setTheme(!theme) }} />
     </>
 
   )

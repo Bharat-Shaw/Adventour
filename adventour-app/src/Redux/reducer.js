@@ -17,6 +17,8 @@ const reducer=(state=initialState, action)=>{
             return {...state, detail:action.payload}
         case 'LIMITRESET':
             return {...state, limit:10}
+        case 'THEME':
+            return {...state, theme:!state.theme}
         default:
             return state;
     }

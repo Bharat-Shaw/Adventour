@@ -4,6 +4,7 @@ import { Box, Heading, Center, FormControl, Stack, Input, Checkbox, Button, Text
 import { useNavigate } from 'react-router-dom'
 import { FcGoogle} from 'react-icons/fc';
 import { Switch } from '@chakra-ui/react'
+import { useSelector } from 'react-redux';
 
 const initialState = {
   name: '',
@@ -25,7 +26,7 @@ function validateState(state) {
 
 function Signup() {
 
-  const[theme, setTheme] = useState(true);
+  const theme=useSelector(state=>state.theme);
 
   const [state, dispatch] = useReducer(reducer, initialState);
   const navigate = useNavigate();
@@ -101,7 +102,7 @@ function Signup() {
         </Box>
       </Center>
     </Box>
-    <Switch size='sm' onChange={()=>setTheme(!theme)}/>
+   
     </>
 
 
