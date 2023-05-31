@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { Box, useColorMode, IconButton, Heading, FormControl, Flex, FormLabel, Input, Button, Switch, Center, Stack } from "@chakra-ui/react";
+import { Box, Heading, FormControl, FormLabel, Input, Button, Switch, Center, Stack } from "@chakra-ui/react";
 
 
 function Login() {
     const [colorMode, setColorMode] = useState(true);
     return (
         <>
-            <Box p='30px 0' h='600px' bg={colorMode ? '#101214' : 'gray.100'}>
+            <Box p='30px 0' minH={'100vh'} bg={colorMode ? '#101214' : 'gray.100'}>
 
                 <Center>
                     <Box borderRadius='20px' my='20px' p='30px' width='350px'  bg={colorMode ? '#191b1d' : 'white'} color={colorMode ? 'white' : 'black'}>

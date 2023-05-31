@@ -7,9 +7,9 @@ import Navbar from './Components/Faizan/Navbar';
 function App() {
   return (
     <div className="App">
-      {/* <Tempnav/> */}
-      <Navbar />
-      <AllRoutes />
+      <Tempnav/>
+      {/* <Navbar /> */}
+      <AllRoutes/>
     </div>
   );
 }
