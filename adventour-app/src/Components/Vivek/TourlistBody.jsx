@@ -28,7 +28,7 @@ function TourlistBody() {
 
     const mainBoxStyles = {
         w: { base: '92%', md: '92%', lg: '76%' },
-        bg: theme ? "gray.100" : "#101214",
+        bg: theme ? "#101214":"gray.100",
         py: '3px',
         m: 'auto',
         pt: '20px'
@@ -43,7 +43,7 @@ function TourlistBody() {
     }
 
     const pathStyles = {
-        color: theme ? "blackAlpha.700" : "whiteAlpha.700",
+        color: theme ?  "whiteAlpha.700" : "blackAlpha.700" ,
         fontSize: "14px",
         fontWeight: "600"
     }
@@ -61,8 +61,8 @@ function TourlistBody() {
         p: "14px 24px",
         borderRadius: "5px",
         // bg: '#3DC6EF',
-        color: theme ? "white" : "black",
-        bg: theme ? "#008cc9" : "#3DC6EF",
+        color: theme ?  "black": "white" ,
+        bg: theme ?  "#3DC6EF":"#008cc9" ,
         alignItems: "center",
     }
 
@@ -84,15 +84,14 @@ function TourlistBody() {
     const detailsBox_2_Styles = {
         w: '70%',
         fontSize: '13px',
-        color: theme ? "blackAlpha.700" : "whiteAlpha.700",
+        color: theme ? "whiteAlpha.700":"blackAlpha.700" ,
         py: '1px'
     }
 
     const flex_Card_Styles = {
         mb: '35px',
         justifyContent: 'space-between',
-        // boxShadow: '2xl',
-        bg: theme ? "white" : "#191b1d",
+        bg: theme ? "#191b1d":"white" ,
         borderRadius: '20px',
         display: { base: 'block', md: 'flex', lg: 'flex' }
     }
@@ -110,7 +109,7 @@ function TourlistBody() {
     }
 
     const card_Mid_Box_Text_I = {
-        color: theme ? "#008cc9" : "#3DC6EF",
+        color: theme ? "#3DC6EF":"#008cc9" ,
         fontSize: { base: '12.5px', md: "14px", lg: '15.5px' },
         fontWeight: { base: '500', md: '700', lg: '700' }
     }
@@ -122,7 +121,7 @@ function TourlistBody() {
 
     const card_Mid_Box_Text_III = {
         fontSize: { base: "12px", md: "13px", lg: '13px' },
-        color: theme ? "#008cc9" : "#3DC6EF"
+        color: theme ? "#3DC6EF":"#008cc9"
     }
 
     const card_Right_Box = {
@@ -135,7 +134,7 @@ function TourlistBody() {
 
     const tour_Length_Text = {
         fontSize: { base: "12px", md: "12px", lg: '13px' },
-        color: theme ? "blackAlpha.700" : "whiteAlpha.700"
+        color: theme ? "whiteAlpha.700" : "blackAlpha.700"
     }
 
     const tour_Days_Text = {
@@ -147,7 +146,7 @@ function TourlistBody() {
     const price_Day_Text = {
         fontSize: '13px',
         mt: { base: '0', md: '5px', lg: '5px' },
-        color: theme ? "blackAlpha.700" : "whiteAlpha.700"
+        color: theme ? "whiteAlpha.700" : "blackAlpha.700"
     }
 
     const price_Text = {
@@ -159,7 +158,7 @@ function TourlistBody() {
     const from_Text = {
         fontSize: { base: '14px', md: '15px', lg: '15px' },
         fontWeight: '700',
-        color: theme ? "blackAlpha.700" : "whiteAlpha.700"
+        color: theme ? "whiteAlpha.700" : "blackAlpha.700"
     }
 
     const act_Price_Text = {
@@ -169,12 +168,12 @@ function TourlistBody() {
     }
 
     const view_Tour_Button = {
-        bg: theme ? "#008cc9" : "#3DC6EF",
+        bg: theme ? "#3DC6EF" : "#008cc9" ,
         w: { base: '100%', md: '100%', lg: '100%' },
         mt: '20px',
         fontWeight: '700',
         mb: { base: '10px' },
-        color: theme ? "white" : "black"
+        color: theme ? "black" : "white"
     }
 
 
@@ -207,18 +206,18 @@ function TourlistBody() {
                         </Flex>
                         <Box mt={'25px'}>
                             <Select bg={theme ? "white" : "#191b1d"} size='lg' border={'none'}>
-                                <option value='PMPF' style={{ background: theme ? "white" : "#191b1d", fontSize: "15px" }}>Popularity: Most popular first</option>
-                                <option value='TP-LF' style={{ background: theme ? "white" : "#191b1d", fontSize: "15px" }}>Total Price: Lowest first</option>
-                                <option value='TP-HF' style={{ background: theme ? "white" : "#191b1d", fontSize: "15px" }}>Total Price: Higest first</option>
-                                <option value='P/D-LF' style={{ background: theme ? "white" : "#191b1d", fontSize: "15px" }}>Price/Day: Lowest first</option>
-                                <option value='P/D-HF' style={{ background: theme ? "white" : "#191b1d", fontSize: "15px" }}>Price/Day: Higest first</option>
-                                <option value='D-SF' style={{ background: theme ? "white" : "#191b1d", fontSize: "15px" }}>Duration: Sortest first</option>
-                                <option value='D-LF' style={{ background: theme ? "white" : "#191b1d", fontSize: "15px" }}>Duration: Longest first</option>
-                                <option value='R-MR' style={{ background: theme ? "white" : "#191b1d", fontSize: "15px" }}>Reviews: Most reviewed</option>
-                                <option value='BG-HS' style={{ background: theme ? "white" : "#191b1d", fontSize: "15px" }}>Biggest Deals: Higest savings</option>
+                                <option value='PMPF' style={{ background: theme ? "#191b1d" : "white", fontSize: "15px" }}>Popularity: Most popular first</option>
+                                <option value='TP-LF' style={{ background: theme ? "#191b1d"  : "white", fontSize: "15px" }}>Total Price: Lowest first</option>
+                                <option value='TP-HF' style={{ background: theme ? "#191b1d"  : "white", fontSize: "15px" }}>Total Price: Higest first</option>
+                                <option value='P/D-LF' style={{ background: theme ? "#191b1d"  : "white", fontSize: "15px" }}>Price/Day: Lowest first</option>
+                                <option value='P/D-HF' style={{ background: theme ?"#191b1d"  : "white", fontSize: "15px" }}>Price/Day: Higest first</option>
+                                <option value='D-SF' style={{ background: theme ? "#191b1d"  : "white", fontSize: "15px" }}>Duration: Sortest first</option>
+                                <option value='D-LF' style={{ background: theme ? "#191b1d"  : "white", fontSize: "15px" }}>Duration: Longest first</option>
+                                <option value='R-MR' style={{ background: theme ?"#191b1d"  : "white", fontSize: "15px" }}>Reviews: Most reviewed</option>
+                                <option value='BG-HS' style={{ background: theme ? "#191b1d"  : "white", fontSize: "15px" }}>Biggest Deals: Higest savings</option>
                             </Select>
                         </Box>
-                        <Box mt={'25px'} borderRadius={'10px'} bg={theme ? "white" : "#191b1d"}>
+                        <Box mt={'25px'} borderRadius={'10px'} bg={theme ? "#191b1d" : "white"}>
                             <Accordion allowMultiple>
                                 <AccordionItem border={'none'} py={'10px'}>
                                     <h2>
@@ -230,7 +229,7 @@ function TourlistBody() {
                                         </AccordionButton>
                                     </h2>
                                     <AccordionPanel pb={4} >
-                                        <VStack alignItems={"start"} color={theme ? "blackAlpha.700" : "white"}>
+                                        <VStack alignItems={"start"} color={theme ? "white" : "blackAlpha.700"}>
                                             <Checkbox size='lg'>India</Checkbox>
                                             <Checkbox size='lg'>Thailand</Checkbox>
                                             <Checkbox size='lg'>Vietnam</Checkbox>
@@ -274,7 +273,7 @@ function TourlistBody() {
                                         </AccordionButton>
                                     </h2>
                                     <AccordionPanel pb={4}>
-                                        <VStack alignItems={"start"} color={theme ? "blackAlpha.700" : "white"}>
+                                        <VStack alignItems={"start"} color={theme ? "white" :  "blackAlpha.700"}>
                                             <Checkbox size='lg'>June 2023</Checkbox>
                                             <Checkbox size='lg'>July 2023</Checkbox>
                                             <Checkbox size='lg'>Augest 2023</Checkbox>
@@ -298,7 +297,7 @@ function TourlistBody() {
                                         </AccordionButton>
                                     </h2>
                                     <AccordionPanel pb={4}>
-                                        <VStack alignItems={"start"} color={theme ? "blackAlpha.700" : "white"}>
+                                        <VStack alignItems={"start"} color={theme ? "white" : "blackAlpha.700"}>
                                             <Checkbox size='lg'>Private</Checkbox>
                                             <Checkbox size='lg'>Group</Checkbox>
                                             <Checkbox size='lg'>Independent</Checkbox>
@@ -354,7 +353,7 @@ function TourlistBody() {
                                         </AccordionButton>
                                     </h2>
                                     <AccordionPanel pb={4}>
-                                        <VStack alignItems={"start"} color={theme ? "blackAlpha.700" : "white"}>
+                                        <VStack alignItems={"start"} color={!theme ? "blackAlpha.700" : "white"}>
                                             <Checkbox size='lg'>10 people</Checkbox>
                                             <Checkbox size='lg'>20 people</Checkbox>
                                             <Checkbox size='lg'>30 people</Checkbox>
@@ -371,7 +370,7 @@ function TourlistBody() {
                     {/*----- Small & Mid Screen Sorting Div -----*/}
 
                     <Box display={{ base: 'flex', md: 'flex', lg: 'none' }}>
-                        <SmallScreenDrawer theme={theme} />
+                        <SmallScreenDrawer theme={!theme} />
                     </Box>
 
 
@@ -493,7 +492,7 @@ function TourlistBody() {
                         
             </Box >
             <Center><Button isDisabled={data.length===20} color={theme ? "white" : "black"} colorScheme='none' onClick={()=>{dispatch({type:'LIMIT'})}} bg={theme ? "#008cc9" : "#3DC6EF"}>Load More</Button></Center> 
-            <Center> <ExpandComp theme={theme}/></Center>
+            <Center> <ExpandComp theme={!theme}/></Center>
            
         </Box >
     )
