@@ -1,10 +1,9 @@
 import {
     Accordion, AccordionButton, AccordionIcon, AccordionItem,
-    AccordionPanel, Box, Button, Center, Checkbox, Drawer,
-    DrawerBody, DrawerCloseButton, DrawerContent, DrawerHeader,
-    DrawerOverlay, Flex, Image, RangeSlider, RangeSliderFilledTrack,
+    AccordionPanel, Box, Button, Center, Checkbox, 
+    Flex, Image, RangeSlider, RangeSliderFilledTrack,
     RangeSliderThumb, RangeSliderTrack, Select,
-    Text, VStack, useDisclosure
+    Text, VStack
 } from '@chakra-ui/react'
 import React, { useEffect } from 'react'
 import { RiFilter3Line } from "react-icons/ri";
@@ -12,6 +11,7 @@ import { GiStarsStack } from "react-icons/gi";
 import { Link, useParams } from 'react-router-dom'
 import ExpandComp from '../Bharat/ExpandComp';
 import { useDispatch, useSelector } from 'react-redux';
+import SmallScreenSortingDrawer from './SmallScreenSortingDrawer';
 
 function TourlistBody() {
     const data=useSelector((state)=>state.data);
@@ -205,16 +205,16 @@ function TourlistBody() {
                             Sort & filter
                         </Flex>
                         <Box mt={'25px'}>
-                            <Select bg={theme ? "white" : "#191b1d"} size='lg' border={'none'}>
+                            <Select bg={theme ? "#191b1d" : "white"} size='lg' border={'none'}>
                                 <option value='PMPF' style={{ background: theme ? "#191b1d" : "white", fontSize: "15px" }}>Popularity: Most popular first</option>
-                                <option value='TP-LF' style={{ background: theme ? "#191b1d"  : "white", fontSize: "15px" }}>Total Price: Lowest first</option>
-                                <option value='TP-HF' style={{ background: theme ? "#191b1d"  : "white", fontSize: "15px" }}>Total Price: Higest first</option>
-                                <option value='P/D-LF' style={{ background: theme ? "#191b1d"  : "white", fontSize: "15px" }}>Price/Day: Lowest first</option>
-                                <option value='P/D-HF' style={{ background: theme ?"#191b1d"  : "white", fontSize: "15px" }}>Price/Day: Higest first</option>
-                                <option value='D-SF' style={{ background: theme ? "#191b1d"  : "white", fontSize: "15px" }}>Duration: Sortest first</option>
-                                <option value='D-LF' style={{ background: theme ? "#191b1d"  : "white", fontSize: "15px" }}>Duration: Longest first</option>
-                                <option value='R-MR' style={{ background: theme ?"#191b1d"  : "white", fontSize: "15px" }}>Reviews: Most reviewed</option>
-                                <option value='BG-HS' style={{ background: theme ? "#191b1d"  : "white", fontSize: "15px" }}>Biggest Deals: Higest savings</option>
+                                <option value='TP-LF' style={{ background: theme ? "#191b1d" : "white", fontSize: "15px" }}>Total Price: Lowest first</option>
+                                <option value='TP-HF' style={{ background: theme ? "#191b1d" : "white", fontSize: "15px" }}>Total Price: Higest first</option>
+                                <option value='P/D-LF' style={{ background: theme ? "#191b1d" : "white", fontSize: "15px" }}>Price/Day: Lowest first</option>
+                                <option value='P/D-HF' style={{ background: theme ?"#191b1d" : "white", fontSize: "15px" }}>Price/Day: Higest first</option>
+                                <option value='D-SF' style={{ background: theme ? "#191b1d" : "white", fontSize: "15px" }}>Duration: Sortest first</option>
+                                <option value='D-LF' style={{ background: theme ? "#191b1d" : "white", fontSize: "15px" }}>Duration: Longest first</option>
+                                <option value='R-MR' style={{ background: theme ?"#191b1d" : "white", fontSize: "15px" }}>Reviews: Most reviewed</option>
+                                <option value='BG-HS' style={{ background: theme ? "#191b1d" : "white", fontSize: "15px" }}>Biggest Deals: Higest savings</option>
                             </Select>
                         </Box>
                         <Box mt={'25px'} borderRadius={'10px'} bg={theme ? "#191b1d" : "white"}>
@@ -370,7 +370,7 @@ function TourlistBody() {
                     {/*----- Small & Mid Screen Sorting Div -----*/}
 
                     <Box display={{ base: 'flex', md: 'flex', lg: 'none' }}>
-                        <SmallScreenDrawer theme={!theme} />
+                        <SmallScreenSortingDrawer theme={!theme} />
                     </Box>
 
 
@@ -396,7 +396,7 @@ function TourlistBody() {
                                         </Box>
 
                                         {/*---- Mid Box ----*/}
-                                        <Box sx={card_Mid_Box_Styles} key={ele.id+2}>
+                                        <Box sx={card_Mid_Box_Styles} key={ele.id + 2}>
                                             <Box borderBottom={"1px solid #DCDCDC"} pb={'15px'}>
                                                 <Text sx={card_Mid_Box_Text_I} >{ele.category}</Text>
                                                 <Link to={`/tourdetail/${location}/${ele.id}`}>
@@ -451,7 +451,7 @@ function TourlistBody() {
                                         </Box>
 
                                         {/*---- Right Box ----*/}
-                                        <Box sx={card_Right_Box} key={ele.id+3}>
+                                        <Box sx={card_Right_Box} key={ele.id + 3}>
                                             <Flex justifyContent={'space-between'}>
                                                 <Box w='45%'>
                                                     <Flex alignItems={"center"} direction={{ base: 'row', md: "column", lg: "column" }} justifyContent={'space-between'}>
@@ -500,199 +500,4 @@ function TourlistBody() {
 
 export default TourlistBody
 
-function SmallScreenDrawer({ theme }) {
-    const { isOpen, onOpen, onClose } = useDisclosure()
 
-    return (
-        <>
-            <Button colorScheme='none' onClick={onOpen} color={theme ? "white" : "black"} bg={theme ? "#008cc9" : "#3DC6EF"} fontSize='20px' fontWeight='600' p="25px 30px">
-                <RiFilter3Line size={'25px'} />&nbsp;
-                Sort & filter
-            </Button>
-            <Drawer
-                isOpen={isOpen}
-                placement='left'
-                onClose={onClose}
-                size={{ base: 'xs', md: 'sm', lg: 'sm' }}
-            >
-                <DrawerOverlay />
-                <DrawerContent bg={theme ? "white" : "#191b1d"} color={theme ? "black" : "white"}>
-                    <DrawerCloseButton />
-                    <DrawerHeader>
-                        <Flex alignItems={'center'}>
-                            <RiFilter3Line size={'25px'} />&nbsp;
-                            Sort & filter
-                        </Flex>
-                    </DrawerHeader>
-
-                    <DrawerBody>
-                        <Box>
-                            <Box mt={'25px'}>
-                                <Select bg={theme ? "white" : "#191b1d"} size='lg'>
-                                    <option value='PMPF' style={{ background: theme ? "white" : "#191b1d", fontSize: "15px" }}>Popularity: Most popular first</option>
-                                    <option value='TP-LF' style={{ background: theme ? "white" : "#191b1d", fontSize: "15px" }}>Total Price: Lowest first</option>
-                                    <option value='TP-HF' style={{ background: theme ? "white" : "#191b1d", fontSize: "15px" }}>Total Price: Higest first</option>
-                                    <option value='P/D-LF' style={{ background: theme ? "white" : "#191b1d", fontSize: "15px" }}>Price/Day: Lowest first</option>
-                                    <option value='P/D-HF' style={{ background: theme ? "white" : "#191b1d", fontSize: "15px" }}>Price/Day: Higest first</option>
-                                    <option value='D-SF' style={{ background: theme ? "white" : "#191b1d", fontSize: "15px" }}>Duration: Sortest first</option>
-                                    <option value='D-LF' style={{ background: theme ? "white" : "#191b1d", fontSize: "15px" }}>Duration: Longest first</option>
-                                    <option value='R-MR' style={{ background: theme ? "white" : "#191b1d", fontSize: "15px" }}>Reviews: Most reviewed</option>
-                                    <option value='BG-HS' style={{ background: theme ? "white" : "#191b1d", fontSize: "15px" }}>Biggest Deals: Higest savings</option>
-                                </Select>
-                            </Box>
-                            <Box mt={'25px'} border={'1px solid #DCDCDC'} borderRadius={'10px'}>
-                                <Accordion allowMultiple>
-                                    <AccordionItem border={'none'} py={'10px'}>
-                                        <h2>
-                                            <AccordionButton border={'none'}>
-                                                <Box as="span" flex='1' textAlign='left' >
-                                                    Must-see countries
-                                                </Box>
-                                                <AccordionIcon />
-                                            </AccordionButton>
-                                        </h2>
-                                        <AccordionPanel pb={4} >
-                                            <VStack alignItems={"start"} color={theme ? "blackAlpha.700" : "white"}>
-                                                <Checkbox size='lg'>India</Checkbox>
-                                                <Checkbox size='lg'>Thailand</Checkbox>
-                                                <Checkbox size='lg'>Vietnam</Checkbox>
-                                                <Checkbox size='lg'>Nepal</Checkbox>
-                                                <Checkbox size='lg'>Cambodia</Checkbox>
-                                                <Checkbox size='lg'>Sri Lanka</Checkbox>
-                                                <Checkbox size='lg'>Indonesia</Checkbox>
-                                                <Checkbox size='lg'>Laos</Checkbox>
-                                                <Checkbox size='lg'>Jordan</Checkbox>
-                                                <Checkbox size='lg'>Israel</Checkbox>
-                                            </VStack>
-                                        </AccordionPanel>
-                                    </AccordionItem>
-
-                                    <AccordionItem py={'10px'}>
-                                        <h2>
-                                            <AccordionButton>
-                                                <Box as="span" flex='1' textAlign='left'>
-                                                    Length
-                                                </Box>
-                                                <AccordionIcon />
-                                            </AccordionButton>
-                                        </h2>
-                                        <AccordionPanel pb={4}>
-                                            <RangeSlider defaultValue={[0, 21]} min={0} max={21} step={1}>
-                                                <RangeSliderTrack boxSize={2}>
-                                                    <RangeSliderFilledTrack />
-                                                </RangeSliderTrack>
-                                                <RangeSliderThumb boxSize={6} index={0} />
-                                                <RangeSliderThumb boxSize={6} index={1} />
-                                            </RangeSlider>
-                                        </AccordionPanel>
-                                    </AccordionItem>
-                                    <AccordionItem py={'10px'}>
-                                        <h2>
-                                            <AccordionButton>
-                                                <Box as="span" flex='1' textAlign='left'>
-                                                    Departure date
-                                                </Box>
-                                                <AccordionIcon />
-                                            </AccordionButton>
-                                        </h2>
-                                        <AccordionPanel pb={4}>
-                                            <VStack alignItems={"start"} color={theme ? "blackAlpha.700" : "white"}>
-                                                <Checkbox size='lg'>June 2023</Checkbox>
-                                                <Checkbox size='lg'>July 2023</Checkbox>
-                                                <Checkbox size='lg'>Augest 2023</Checkbox>
-                                                <Checkbox size='lg'>September 2023</Checkbox>
-                                                <Checkbox size='lg'>October 2023</Checkbox>
-                                                <Checkbox size='lg'>November 2023</Checkbox>
-                                                <Checkbox size='lg'>December 2023</Checkbox>
-                                                <Checkbox size='lg'>January 2024</Checkbox>
-                                                <Checkbox size='lg'>February 2024</Checkbox>
-                                                <Checkbox size='lg'>March 2024</Checkbox>
-                                            </VStack>
-                                        </AccordionPanel>
-                                    </AccordionItem>
-                                    <AccordionItem py={'10px'}>
-                                        <h2>
-                                            <AccordionButton>
-                                                <Box as="span" flex='1' textAlign='left'>
-                                                    Adventure Type
-                                                </Box>
-                                                <AccordionIcon />
-                                            </AccordionButton>
-                                        </h2>
-                                        <AccordionPanel pb={4}>
-                                            <VStack alignItems={"start"} color={theme ? "blackAlpha.700" : "white"}>
-                                                <Checkbox size='lg'>Private</Checkbox>
-                                                <Checkbox size='lg'>Group</Checkbox>
-                                                <Checkbox size='lg'>Independent</Checkbox>
-                                                <Checkbox size='lg'>Private Tour Available</Checkbox>
-                                            </VStack>
-                                        </AccordionPanel>
-                                    </AccordionItem>
-                                    <AccordionItem py={'10px'}>
-                                        <h2>
-                                            <AccordionButton>
-                                                <Box as="span" flex='1' textAlign='left'>
-                                                    Age Range
-                                                </Box>
-                                                <AccordionIcon />
-                                            </AccordionButton>
-                                        </h2>
-                                        <AccordionPanel pb={4}>
-                                            <RangeSlider defaultValue={[1, 100]} min={1} max={100} step={5}>
-                                                <RangeSliderTrack boxSize={2}>
-                                                    <RangeSliderFilledTrack />
-                                                </RangeSliderTrack>
-                                                <RangeSliderThumb boxSize={6} index={0} />
-                                                <RangeSliderThumb boxSize={6} index={1} />
-                                            </RangeSlider>
-                                        </AccordionPanel>
-                                    </AccordionItem>
-                                    <AccordionItem py={'10px'}>
-                                        <h2>
-                                            <AccordionButton>
-                                                <Box as="span" flex='1' textAlign='left'>
-                                                    Price
-                                                </Box>
-                                                <AccordionIcon />
-                                            </AccordionButton>
-                                        </h2>
-                                        <AccordionPanel pb={4}>
-                                            <RangeSlider defaultValue={[10000, 500000]} min={10000} max={500000} step={1000}>
-                                                <RangeSliderTrack boxSize={2}>
-                                                    <RangeSliderFilledTrack />
-                                                </RangeSliderTrack>
-                                                <RangeSliderThumb boxSize={6} index={0} />
-                                                <RangeSliderThumb boxSize={6} index={1} />
-                                            </RangeSlider>
-                                        </AccordionPanel>
-                                    </AccordionItem>
-                                    <AccordionItem py={'10px'} borderBottom={'none'}>
-                                        <h2>
-                                            <AccordionButton>
-                                                <Box as="span" flex='1' textAlign='left'>
-                                                    Maximum group size
-                                                </Box>
-                                                <AccordionIcon />
-                                            </AccordionButton>
-                                        </h2>
-                                        <AccordionPanel pb={4}>
-                                            <VStack alignItems={"start"} color={theme ? "blackAlpha.700" : "white"}>
-                                                <Checkbox size='lg'>10 people</Checkbox>
-                                                <Checkbox size='lg'>20 people</Checkbox>
-                                                <Checkbox size='lg'>30 people</Checkbox>
-                                                <Checkbox size='lg'>40 people</Checkbox>
-                                                <Checkbox size='lg'>50 people</Checkbox>
-                                                <Checkbox size='lg'>50+ people</Checkbox>
-                                            </VStack>
-                                        </AccordionPanel>
-                                    </AccordionItem>
-                                </Accordion>
-                            </Box>
-                        </Box>
-                    </DrawerBody>
-
-                </DrawerContent>
-            </Drawer>
-        </>
-    )
-}
