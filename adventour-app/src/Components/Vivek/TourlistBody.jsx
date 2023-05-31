@@ -461,18 +461,18 @@ function TourlistBody() {
                                                         </Box>
                                                         <Box ml={{ base: "15px", md: "6px", lg: '6px' }}>
                                                             <Text sx={price_Day_Text} >Price per day</Text>
-                                                            <Text sx={price_Text} >₹ {ele.price_per_day.toLocaleString("en-US")}</Text>
+                                                            <Text sx={price_Text} >₹ {(ele.price_per_day)?.toLocaleString("en-US")}</Text>
                                                         </Box>
                                                     </Flex>
                                                 </Box>
                                                 <Flex w='45%' direction={{ base: 'row', md: 'column', lg: 'column' }} justifyContent={'space-around'} mt={{ base: '0px', md: '-3px', lg: '-3px' }}>
                                                     <Box>
                                                         <Text sx={from_Text}>From</Text>
-                                                        <Text textDecoration={'line-through'} fontSize={'14px'} color={'gray'} my={"-4px"} fontWeight={'600'}>₹ {ele.str_price.toLocaleString("en-US")}</Text>
-                                                        <Text sx={act_Price_Text} >₹ {ele.act_price.toLocaleString("en-US")}</Text>
+                                                        <Text textDecoration={'line-through'} fontSize={'14px'} color={'gray'} my={"-4px"} fontWeight={'600'}>₹ {(ele.str_price)?.toLocaleString("en-US")}</Text>
+                                                        <Text sx={act_Price_Text} >₹ {(ele.act_price)?.toLocaleString("en-US")}</Text>
                                                     </Box>
                                                     <Box>
-                                                        <Text fontSize={'11px'} color={'gray'}>Save: ₹{ele.save_price.toLocaleString("en-US")}</Text>
+                                                        <Text fontSize={'11px'} color={'gray'}>Save: ₹{(ele.save_price)?.toLocaleString("en-US")}</Text>
                                                     </Box>
                                                 </Flex>
                                             </Flex>
