@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { Box, Button, Flex, HStack, Heading, IconButton, Image, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, SimpleGrid, Spacer, Tag, Text, Textarea, useDisclosure, useToast } from '@chakra-ui/react'
+import { AspectRatio, Box, Button, Flex, HStack, Heading, IconButton, Image, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, SimpleGrid, Spacer, Tag, Text, Textarea, useDisclosure, useToast } from '@chakra-ui/react'
 import { DownloadIcon, QuestionOutlineIcon } from '@chakra-ui/icons'
 import brochure from './ext/brochure.pdf'
 import { AiOutlineHeart, AiOutlineFieldTime } from "react-icons/ai";
@@ -76,7 +76,9 @@ function Tourdetail() {
       <Box m={'auto'} pt={'100px'} w={{ base: '90%', md: '76%', lg: '76%' }} color={theme ? 'white' : 'blackAlpha.800'}>
 
         <Flex flexDirection={{ base: 'column', md: 'column', lg: 'row' }} >
-          <Image src={image} boxShadow={'md'} mb={{ base: '30px' }} borderRadius={'20px'} width={{ base: '100%', md: '100%', lg: '60%' }} />
+          {/* <AspectRatio ratio={16/9}> */}
+          <Image src={image} boxShadow={'md'} mb={{ base: '30px' }} borderRadius={'20px'} width={{ base: '100%', md: '100%', lg: '60%' }} h={{ base: '100%', md: '100%', lg: '40%' }}/>
+          {/* </AspectRatio> */}
           <Box textAlign={'left'} pl={'40px'} w={{ base: '90%', md: '70%', lg: '38%' }}>
             <Heading size='xl' pb={'15px'}>{storedata?.title}</Heading>
             <Text pb={'10px'}><strong> {storedata?.tour_length} days • {storedata?.rating}</strong> ⭐ ({storedata?.reviews})</Text>
