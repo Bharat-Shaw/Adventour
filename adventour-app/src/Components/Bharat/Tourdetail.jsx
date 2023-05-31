@@ -73,6 +73,7 @@ function Tourdetail() {
       <Toggle  />
       <NavBar/>
 
+
       <Box m={'auto'} pt={'100px'} w={{ base: '90%', md: '76%', lg: '76%' }} color={theme ? 'white' : 'blackAlpha.800'}>
 
         <Flex flexDirection={{ base: 'column', md: 'column', lg: 'row' }} >
