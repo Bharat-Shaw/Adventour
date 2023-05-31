@@ -94,6 +94,7 @@ function Tourdetail() {
               <Tag mr={'10px'} color={theme ? 'whiteAlpha.900' : 'blackAlpha.800'} bg='#3DC6EF' mb={'15px'}>Fully Guided</Tag>
             </Box>
             <Box>
+              
               <SimpleGrid templateColumns='repeat(2, 1fr)' gap={1}>
                 <Text><strong>Tour Operator:</strong><br />Inkayni Peru Tours</Text>
                 <Text><strong>Max group size:</strong><br />{storedata?.group_size}</Text>
