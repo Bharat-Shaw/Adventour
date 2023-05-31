@@ -199,12 +199,12 @@ function TourlistBody() {
                 <Flex sx={middleBoxStyles}>
 
                     {/*-----------Left Div (Sorting)-----------*/}
-                    <Box w={"22%"} display={{ base: 'none', md: 'none', lg: 'block' }}>
+                    <Box w={"22%"} display={{ base: 'none', md: 'none', lg: 'block' }} h={'600px'} position={'sticky'} top={'75px'}>
                         <Flex sx={sortHeadingStyles}>
                             <RiFilter3Line size={'25px'} />&nbsp;
                             Sort & filter
                         </Flex>
-                        <Box mt={'25px'}>
+                        <Box mt={'25px'} >
                             <Select bg={theme ? "#191b1d" : "white"} size='lg' border={'none'}>
                                 <option value='PMPF' style={{ background: theme ? "#191b1d" : "white", fontSize: "15px" }}>Popularity: Most popular first</option>
                                 <option value='TP-LF' style={{ background: theme ? "#191b1d" : "white", fontSize: "15px" }}>Total Price: Lowest first</option>
@@ -387,9 +387,9 @@ function TourlistBody() {
                         <Box mt={'25px'} pt={'4px'}>
                             {data.map((ele) => {
                                 return (
-                                    <Flex sx={flex_Card_Styles} key={ele.id}>
+                                    <Flex sx={flex_Card_Styles} minH={"240px"} key={ele.id}>
                                         {/*---- Left Box ----*/}
-                                        <Box w={{ base: '100%', md: '28%', lg: '28%' }} key={ele.id+1}>
+                                        <Box w={{ base: '100%', md: '30%', lg: '30%' }} key={ele.id+1}>
                                             <Link to={`/tourdetail/${location}/${ele.id}`}>
                                                 <Image sx={main_Img_Styles} src={ele.main_image} alt="mainImg" />
                                             </Link>
