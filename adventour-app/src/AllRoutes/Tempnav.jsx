@@ -16,6 +16,7 @@ function Tempnav() {
       <Spacer/>
       <Link to={'/tourlist'}>Tourlist</Link>
       <Spacer/>
+      <Link to={'/login'}>Login</Link>
     </Flex>
   )
 }

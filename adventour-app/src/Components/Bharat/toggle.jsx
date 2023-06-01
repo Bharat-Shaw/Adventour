@@ -1,8 +1,12 @@
 import { IconButton } from '@chakra-ui/react';
 import React from 'react'
 import { FaMoon, FaSun } from "react-icons/fa";
+import { useDispatch, useSelector } from 'react-redux';
 
-function Toggle({settheme, theme}) {
+function Toggle() {
+  const dispatch=useDispatch();
+  const theme=useSelector(state=>state.theme);
+
   return (
     <>
     <IconButton
@@ -13,7 +17,7 @@ function Toggle({settheme, theme}) {
         bottom={4}
         left={4}
         zIndex={'4'}
-        onClick={() => { settheme(!theme); }} icon={theme ? <FaSun /> : <FaMoon />}
+        onClick={() => {dispatch({type:'THEME'}) }} icon={theme ? <FaSun /> : <FaMoon />}
       />
       </>
   )
