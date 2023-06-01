@@ -3,8 +3,9 @@ const initialState={
     isLoading:false,
     data:[],
     detail:{},
-    theme:true,
-    limit:10
+    theme:false,
+    limit:10,
+    currentUser: {}
 }
 
 const reducer=(state=initialState, action)=>{
@@ -19,6 +20,8 @@ const reducer=(state=initialState, action)=>{
             return {...state, limit:10}
         case 'THEME':
             return {...state, theme:!state.theme}
+        case 'CURRENTUSER':
+            return {...state, currentUser: action.payload}
         default:
             return state;
     }
