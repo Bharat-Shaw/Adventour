@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { Box, Heading, FormControl, FormLabel, Input, Button, Switch, Center, Stack, Text, Flex } from "@chakra-ui/react";
+import { Box, Heading, FormControl, FormLabel, Input, Button, Center, Stack, Text, Flex} from "@chakra-ui/react";
 import { useSelector } from "react-redux";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../Firebase/Firebase";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 
 function Login() {
@@ -37,7 +37,7 @@ function Login() {
 
     return (
         <>
-            <Box p='30px 0' minH={'100vh'} bg={theme ? '#101214' : 'gray.100'}>
+            <Box p='70px 0' minH={'100vh'} bg={theme ? '#101214' : 'gray.100'}>
 
                 <Center>
                     <Box borderRadius='20px' my='20px' p='30px' width='350px'  bg={theme ? '#191b1d' : 'white'} color={theme ? 'white' : 'black'}>
@@ -70,12 +70,13 @@ function Login() {
                                 </Box>
 
                                 <Button bg='#4086f3' width='85%' h='50px' 
-                                fontSize='18px' color='white' colorScheme='none' mt='30px'
+                                fontSize='18px' color='white' colorScheme='none' mt='15px'
                                 type="submit" _hover={{bg:'#74d4f0'}}
                                 onClick={handleLogin}
                                 >
                                     Sign In
                                 </Button>
+                                <Text pt={'20px'}>Don't have an account? <Link to={'/signup'} ><Text as={'span'} color="blue.400">click to SignUp</Text></Link></Text>
 
                             </Flex>
                             

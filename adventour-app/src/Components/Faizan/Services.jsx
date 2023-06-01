@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Flex, Text, Heading, VStack, Image } from '@chakra-ui/react'
+import { Box, Flex, Text, Heading, Image } from '@chakra-ui/react'
 import Footer from './Footer';
 import logo from './Images/logo.png'
 import { useSelector } from 'react-redux';
