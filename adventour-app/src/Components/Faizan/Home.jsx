@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Box, Flex, Text, Heading, Image, IconButton, Spacer, Divider, Center, HStack, Stack, Button, Grid, GridItem, AspectRatio, Menu, MenuButton, MenuList, MenuItem, Input, Switch } from '@chakra-ui/react'
 import { Card, CardBody } from '@chakra-ui/react'
 import { SlLocationPin, SlCalender } from 'react-icons/sl'
@@ -16,6 +16,8 @@ import ReviewCarousel from './ReviewCarousel'
 import Navbar from './Navbar'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
+import { onAuthStateChanged } from 'firebase/auth'
+import { auth } from '../Firebase/Firebase'
 
 function Home() {
   const [val, setval] = useState(0);
@@ -25,6 +27,16 @@ function Home() {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const theme = useSelector(state => state.theme);
+
+  useEffect(()=>{
+    const unsub = onAuthStateChanged(auth, (user) => {
+      dispatch({type: 'CURRENTUSER', payload: user})
+    })
+
+    return () => {
+      unsub();
+    }
+  },[])
 
   const carouselData = [
     {
@@ -238,7 +250,7 @@ function Home() {
                     />
                   </AspectRatio>
                   <Stack mt='6' spacing='3'>
-                    <Heading color={theme ? 'white' : 'black'} fontWeight='500' size='md'>Bali Bucket List Boutique 10 Day Tour Package</Heading>
+                    <Heading color={theme ? 'white' : 'black'}  fontWeight='500' size='md'>Bali Bucket List Boutique 10 Day Tour Package</Heading>
                     <Text color='gray'>
                       Bali, Indonesia
                     </Text>
@@ -381,8 +393,8 @@ function Home() {
 
         <Flex p={{ base: '2rem 1.5rem', md: '4rem 3rem', lg: '5rem 4.5rem' }} flexDirection={{ base: 'column', md: 'column', lg: 'row' }}>
 
-          <Flex w={{ base: '110%', md: '80%', lg: '60%' }}>
-            <Flex w={{ base: '90%', md: '80%', lg: '80%' }} align='center'>
+          <Flex w={{ base: '100%', md: '80%', lg: '50%' }} justify='center' >
+            <Flex w={{ base: '90%', md: '80%', lg: '70%' }} >
               <Image src={modelTwo} w='100%' />
             </Flex>
           </Flex>

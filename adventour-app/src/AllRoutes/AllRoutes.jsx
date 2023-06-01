@@ -6,6 +6,8 @@ import Signup from '../Components/Mahima/Signup'
 import Payment from '../Components/Raj/Payment'
 import Tourlist from '../Components/Vivek/Tourlist'
 import Login from '../Components/Mahima/Login'
+import Services from '../Components/Faizan/Services'
+import PrivateRoutes from './PrivateRoutes'
 
 function AllRoutes() {
   return (
@@ -13,9 +15,10 @@ function AllRoutes() {
       <Route path='/' element={<Home/>}/>
       <Route path='/tourdetail/:location/:id' element={<Tourdetail/>}/>
       <Route path='/signup' element={<Signup/>}/>
-      <Route path='/payment/:location/:id' element={<Payment/>}/>
+      <Route path='/payment/:location/:id' element={<PrivateRoutes><Payment/></PrivateRoutes>}/>
       <Route path='/tourlist/:location' element={<Tourlist/>}/>
       <Route path='/login' element={<Login/>}/>
+      <Route path='/services' element={<Services />} />
     </Routes>
   )
 }
