@@ -106,12 +106,12 @@ function Tourdetail() {
         </Flex>
 
         <Box w={{ base: '100%', md: '100%', lg: '60%' }} textAlign={'left'} >
-          <Flex flexDirection={{ base: 'column', md: 'row' }} px={'30px'} bgColor={theme ? '#191b1d' : 'white'} color={'black'} mt={{ base: '30px', md: '20px', lg: '5px' }} borderRadius={'20px'} boxShadow={'md'}>
-            <Text fontWeight={'700'} color={theme ? 'white' : 'blackAlpha.800'} py={'20px'} px={'10px'}>Plan your adventure:</Text>
+          <Flex alignItems={'center'} flexDirection={{ base: 'column', md: 'row' }} px={'30px'} bgColor={theme ? '#191b1d' : 'white'} color={'black'} mt={{ base: '30px', md: '20px', lg: '5px' }} borderRadius={'20px'} boxShadow={'md'}>
+            <Text fontWeight={'700'} color={theme ? 'white' : 'blackAlpha.800'} py={'20px'} px={'10px'} fontSize={'14px'}>Plan your adventure:</Text>
             <Spacer />
-            <HStack cursor={'pointer'} color={'#3DC6EF'} py={'20px'} px={'10px'}><Link href={brochure} download={true}> <DownloadIcon color={'#3DC6EF'} />&nbsp;<strong> Download PDF Brochure</strong></Link></HStack>
+            <HStack cursor={'pointer'} color={'#3DC6EF'} py={'20px'} px={'10px'}><Link href={brochure} download={true}> <DownloadIcon color={'#3DC6EF'} />&nbsp;</Link><Text fontSize={'14px'}> Download PDF Brochure</Text></HStack>
             <Spacer />
-            <HStack onClick={onOpen} cursor={'pointer'} color={'#3DC6EF'} py={'20px'} px={'10px'}><QuestionOutlineIcon color={'#3DC6EF'} />&nbsp;<strong>Ask a Question</strong></HStack>
+            <HStack onClick={onOpen} cursor={'pointer'} color={'#3DC6EF'} py={'20px'} px={'10px'}><Link><QuestionOutlineIcon color={'#3DC6EF'} />&nbsp;</Link><Text fontSize={'14px'}>Ask a Question</Text></HStack>
 
             <Modal isOpen={isOpen} onClose={onClose} isCentered>
               <ModalOverlay />
