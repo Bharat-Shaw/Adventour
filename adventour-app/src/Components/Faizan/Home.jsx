@@ -22,13 +22,11 @@ import { auth } from '../Firebase/Firebase'
 function Home() {
   const [val, setval] = useState(0);
   const [location, setlocation] = useState('Place');
-  const [date, setdate] = useState(' ');
+  const [date, setdate] = useState('');
   // const [theme, setTheme] = useState(true);
-  const navigate=useNavigate()
-  const dispatch=useDispatch()
-  const theme=useSelector(state=>state.theme);
-
-  console.log(theme)
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const theme = useSelector(state => state.theme);
 
   useEffect(()=>{
     const unsub = onAuthStateChanged(auth, (user) => {
@@ -83,12 +81,12 @@ function Home() {
     },
   ]
 
-  const listfunc=()=>{
-    if(location==='Place' || date===' '){
+  const listfunc = () => {
+    if (location === 'Place' || date === ' ') {
       alert('Please select loaction and date')
       return;
     }
-    dispatch({type:'LIMITRESET'})
+    dispatch({ type: 'LIMITRESET' })
     navigate(`/tourlist/${location}`)
   }
 
@@ -98,7 +96,7 @@ function Home() {
       <Box p='3rem 0' color={theme ? 'white' : 'black'} bg={theme ? '#101214' : 'gray.100'} textAlign='left' >
         <Flex p={{ base: '0 1.5rem', md: '0 3rem', lg: '0 4.5rem' }} flexDirection={{ base: 'column', md: 'column', lg: 'row' }}>
           <Box w={{ base: '90%', md: '80%', lg: '50%' }}>
-            <Text fontWeight='500' color={theme ? "#3DC6EF" : "#008cc9"}>All you need is Advantour.</Text>
+            <Text fontWeight='500' color={theme ? "#3DC6EF" : "#008cc9"}>All you need is Adventour.</Text>
 
             <Flex>
               <Heading fontSize='3.6rem' fontWeight='600'>
@@ -122,16 +120,16 @@ function Home() {
                   <IconButton icon={<SlLocationPin />} bg={theme ? 'rgb(36,45,54)' : 'gray.600'} size='xs' color='#3DC6EF' borderRadius='50%' fontSize='0.8rem' />
                   <Text color={theme ? 'darkgray' : 'blackAlpha.900'} fontWeight='500'>Location</Text>
                 </Flex>
-{/* this one */}
+                {/* this one */}
                 <Menu _hover={{ bg: "#191b1d" }}>
                   <MenuButton ml='1rem' variant='ghost' as={Button} colorScheme='none' rightIcon={<ChevronDownIcon />} _hover={theme ? { bg: "#191b1d" } : { bg: "whiteAlpha.100" }}>
                     {location}
                   </MenuButton>
                   <MenuList bg={theme ? '#191b1d' : 'white'} border='none' _hover={theme ? { bg: "#191b1d" } : { bg: "white" }}>
-                    <MenuItem bg={theme ? '#191b1d' : 'white'} onClick={()=>{setlocation('Asia')}}>Asia</MenuItem>
-                    <MenuItem bg={theme ? '#191b1d' : 'white'} onClick={()=>{setlocation('Europe')}}>Europe</MenuItem>
-                    <MenuItem bg={theme ? '#191b1d' : 'white'} onClick={()=>{setlocation('Latin_America')}}>Latin America</MenuItem>
-                    <MenuItem bg={theme ? '#191b1d' : 'white'} onClick={()=>{setlocation('Africa')}}>Africa</MenuItem>
+                    <MenuItem bg={theme ? '#191b1d' : 'white'} onClick={() => { setlocation('Asia') }}>Asia</MenuItem>
+                    <MenuItem bg={theme ? '#191b1d' : 'white'} onClick={() => { setlocation('Europe') }}>Europe</MenuItem>
+                    <MenuItem bg={theme ? '#191b1d' : 'white'} onClick={() => { setlocation('Latin_America') }}>Latin America</MenuItem>
+                    <MenuItem bg={theme ? '#191b1d' : 'white'} onClick={() => { setlocation('Africa') }}>Africa</MenuItem>
                   </MenuList>
                 </Menu>
               </Box>
@@ -154,7 +152,7 @@ function Home() {
                   w={{ base: '7rem', md: '9rem', lg: '11rem' }}
                   placeholder="Date and Time"
                   type="date"
-                  onChange={(e)=>{setdate(e.target.value)}}
+                  onChange={(e) => { setdate(e.target.value) }}
                 />
               </Box>
 
@@ -495,7 +493,7 @@ function Home() {
           <Flex align='center' justify='space-between' mt='5rem' flexWrap='wrap'>
             <Box >
               <Text p={{ base: '1rem 0', md: 'none', lg: 'none' }} fontWeight='500' color={theme ? "#3DC6EF" : "#008cc9"}>Stay Connected</Text>
-              <Heading>Get Started with Advantour!</Heading>
+              <Heading>Get Started with Adventour!</Heading>
             </Box>
 
             <Box p={{ base: '1rem 0', md: 'none', lg: 'none' }}>

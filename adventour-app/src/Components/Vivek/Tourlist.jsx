@@ -2,11 +2,11 @@ import React, { useEffect } from 'react'
 import NavBar from './NavBar'
 import TourlistBody from './TourlistBody'
 import { Box } from '@chakra-ui/react'
-import { useState } from 'react'
 import Footer from '../Faizan/Footer'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
 import {useDispatch, useSelector} from 'react-redux'
+import ExpandComp from '../Bharat/ExpandComp'
 
 function Tourlist() {
 
@@ -23,9 +23,11 @@ function Tourlist() {
   }, [limit])
 
   return (
-    <Box bg={theme ? "gray.100" : "#101214"} color={theme ? "black" : "white"}>
+    <Box bg={theme ? "#101214" : "gray.100"} color={theme ? "white" : "black"}>
       <NavBar  />
       <TourlistBody  />
+      <Box m={'auto'}><ExpandComp /></Box>
+      
       <Footer />
     </Box>
 

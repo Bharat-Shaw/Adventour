@@ -7,7 +7,7 @@ function ExpandComp() {
   const { isOpen, onToggle } = useDisclosure()
   const theme=useSelector(state=>state.theme);
   return (
-    <Box textAlign={'left'} mt={'60px'} pb={'40px'}>
+    <Box color={!theme ? 'blackAlpha.800' : 'whiteAlpha.900'} textAlign={'left'} mt={'60px'} pb={'40px'} mx={'auto'} w={{ base: '90%', md: '76%', lg: '76%' }}>
 
       <Flex gap={'5'} direction={{base:'column', md: 'column', lg:'row'}} >
         <Box w={{ base: '90%', md: '76%', lg: '550px' }} bg={theme ? '#191b1d' : 'white'} boxShadow={'lg'} borderRadius={'20px'} shadow='md'>
