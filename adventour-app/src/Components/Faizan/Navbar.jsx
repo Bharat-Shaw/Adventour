@@ -41,14 +41,14 @@ function Navbar(props) {
                                 return { color: isActive ? '#008cc9' : '' }
                             }}
                         ><Text fontWeight='600'>Services</Text></NavLink>
-                        <NavLink to={'/signup'}
+                        <NavLink to={'#'}
                             style={({ isActive }) => {
-                                return { color: isActive ? '#008cc9' : '' }
+                                return { color: isActive ? '' : '' }
                             }}
                         ><Text fontWeight='600'>Categorie</Text></NavLink>
-                        <NavLink to={'/payment'}
+                        <NavLink to={'#'}
                             style={({ isActive }) => {
-                                return { color: isActive ? '#008cc9' : '' }
+                                return { color: isActive ? '' : '' }
                             }}
                         ><Text fontWeight='600' minW='5rem'>About Us</Text></NavLink>
 
@@ -106,14 +106,14 @@ function Navbar(props) {
                                         return { color: isActive ? '#008cc9' : '' }
                                     }}
                                 ><Text fontWeight='600'>Services</Text></NavLink>
-                                <NavLink to={'/signup'}
+                                <NavLink to={'#'}
                                     style={({ isActive }) => {
-                                        return { color: isActive ? '#008cc9' : '' }
+                                        return { color: isActive ? '' : '' }
                                     }}
                                 ><Text fontWeight='600'>Categorie</Text></NavLink>
-                                <NavLink to={'/payment'}
+                                <NavLink to={'#'}
                                     style={({ isActive }) => {
-                                        return { color: isActive ? '#008cc9' : '' }
+                                        return { color: isActive ? '' : '' }
                                     }}
                                 ><Text fontWeight='600' minW='5rem'>About Us</Text></NavLink>
 
