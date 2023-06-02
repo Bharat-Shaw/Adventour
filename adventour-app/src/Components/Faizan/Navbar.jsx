@@ -53,14 +53,14 @@ function Navbar(props) {
                         ><Text fontWeight='600' minW='5rem'>About Us</Text></NavLink>
 
                         {
-                            currentUser ? <> 
+                            currentUser ? <>
                                 <Popover>
                                     <PopoverTrigger>
                                         <Button minW='6rem' colorScheme='none' bg={theme ? 'gray.800' : 'gray.200'} color='#008cc9' fontSize='1.2rem' fontWeight='700' borderRadius='0.8rem' p='0.5rem 0.5rem'>{currentUser.displayName}</Button>
                                     </PopoverTrigger>
                                     <PopoverContent w='6rem' border='none' borderRadius='1rem' bg={theme ? '#191b1d' : 'gray.200'} >
                                         <PopoverBody p='0'>
-                                            <Text _hover={theme ? { bg: "#40494c" } : { bg: "gray.300" }} p='0.5rem 1rem' borderRadius='0.8rem' textAlign='center' fontWeight='500' cursor='pointer' onClick={()=>{signOut(auth)}}>Log Out</Text>
+                                            <Text _hover={theme ? { bg: "#40494c" } : { bg: "gray.300" }} p='0.5rem 1rem' borderRadius='0.8rem' textAlign='center' fontWeight='500' cursor='pointer' onClick={() => { signOut(auth) }}>Log Out</Text>
                                         </PopoverBody>
                                     </PopoverContent>
                                 </Popover>
@@ -92,34 +92,60 @@ function Navbar(props) {
                     onClose={onClose}
                 >
                     <DrawerOverlay />
-                    <DrawerContent color='darkgray' bg='#101214'>
+                    <DrawerContent color={theme ? 'darkgray' : 'blackAlpha.800'} bg={theme ? '#101214' : 'white'}>
                         <DrawerCloseButton />
                         <DrawerBody>
                             <Flex gap={10} align='left' pt='3rem' pl='2rem' flexDirection='column'>
                                 <NavLink to={'/'}
                                     style={({ isActive }) => {
-                                        return { color: isActive ? 'white' : '' }
+                                        return { color: isActive ? '#008cc9' : '' }
                                     }}
                                 ><Text fontWeight='600'>Discover</Text></NavLink>
-                                <NavLink to={'/tourdetail'}
+                                <NavLink to={'/services'}
                                     style={({ isActive }) => {
-                                        return { color: isActive ? 'white' : '' }
+                                        return { color: isActive ? '#008cc9' : '' }
                                     }}
                                 ><Text fontWeight='600'>Services</Text></NavLink>
                                 <NavLink to={'/signup'}
                                     style={({ isActive }) => {
-                                        return { color: isActive ? 'white' : '' }
+                                        return { color: isActive ? '#008cc9' : '' }
                                     }}
                                 ><Text fontWeight='600'>Categorie</Text></NavLink>
                                 <NavLink to={'/payment'}
                                     style={({ isActive }) => {
-                                        return { color: isActive ? 'white' : '' }
+                                        return { color: isActive ? '#008cc9' : '' }
                                     }}
                                 ><Text fontWeight='600' minW='5rem'>About Us</Text></NavLink>
 
-                                <NavLink to={'/tourlist'}>
-                                    <Button bg='#3DC6EF' _hover={{ bg: '#74d4f0' }} color='black' borderRadius='0.8rem' p='0 2rem'><Text fontWeight='600'>Get Started</Text></Button>
-                                </NavLink>
+                                {
+                                    currentUser ? <>
+                                        <Popover>
+                                            <PopoverTrigger>
+                                                <Button minW='6rem' colorScheme='none' bg={theme ? 'gray.800' : 'gray.200'} color='#008cc9' fontSize='1.2rem' fontWeight='700' borderRadius='0.8rem' p='0.5rem 0.5rem'>{currentUser.displayName}</Button>
+                                            </PopoverTrigger>
+                                            <PopoverContent w='6rem' border='none' borderRadius='1rem' bg={theme ? '#191b1d' : 'gray.200'} >
+                                                <PopoverBody p='0'>
+                                                    <Text _hover={theme ? { bg: "#40494c" } : { bg: "gray.300" }} p='0.5rem 1rem' borderRadius='0.8rem' textAlign='center' fontWeight='500' cursor='pointer' onClick={() => { signOut(auth) }}>Log Out</Text>
+                                                </PopoverBody>
+                                            </PopoverContent>
+                                        </Popover>
+                                    </>
+                                        :
+                                        (
+                                            <Popover>
+                                                <PopoverTrigger>
+                                                    <Button minW='8rem' bg={theme ? '#3DC6EF':'#008cc9'} _hover={{ bg: '#74d4f0' }} color='black' borderRadius='0.8rem' p='0.5rem 0rem'>Get Started</Button>
+                                                </PopoverTrigger>
+                                                <PopoverContent w='10rem' border='none' borderRadius='1rem' bg={theme ? '#40494c' : 'gray.200'} >
+                                                    <PopoverBody p='0'>
+                                                        <NavLink to='/login'><Text _hover={theme ? { bg: "gray.200" }:{ bg: "#40494c" }} p='0.5rem 1rem' borderRadius='0.8rem 0.8rem 0 0' fontWeight='500' cursor='pointer'>Login</Text></NavLink>
+                                                        <NavLink to='/signup'><Text _hover={theme ? { bg: "gray.200" }:{ bg: "#40494c" }} p='0.5rem 1rem' borderRadius='0 0 0.8rem 0.8rem' fontWeight='500' cursor='pointer'>Sign Up</Text></NavLink>
+                                                    </PopoverBody>
+                                                </PopoverContent>
+                                            </Popover>
+                                        )
+                                }
+
                             </Flex>
                         </DrawerBody>
                     </DrawerContent>

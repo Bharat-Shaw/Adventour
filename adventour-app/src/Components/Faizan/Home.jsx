@@ -96,7 +96,7 @@ function Home() {
       <Box p='3rem 0' color={theme ? 'white' : 'black'} bg={theme ? '#101214' : 'gray.100'} textAlign='left' >
         <Flex p={{ base: '0 1.5rem', md: '0 3rem', lg: '0 4.5rem' }} flexDirection={{ base: 'column', md: 'column', lg: 'row' }}>
           <Box w={{ base: '90%', md: '80%', lg: '50%' }}>
-            <Text fontWeight='500' color={theme ? "#3DC6EF" : "#008cc9"}>All you need is Adventour.</Text>
+            <Text fontWeight='500' color={theme ? '#3DC6EF':'#008cc9'}>All you need is Adventour.</Text>
 
             <Flex>
               <Heading fontSize='3.6rem' fontWeight='600'>
@@ -150,7 +150,7 @@ function Home() {
                   htmlSize={4}
                   variant='unstyled'
                   w={{ base: '7rem', md: '9rem', lg: '11rem' }}
-                  placeholder="Date and Time"
+                  placeholder=" Select Date and Time"
                   type="date"
                   onChange={(e) => { setdate(e.target.value) }}
                 />
