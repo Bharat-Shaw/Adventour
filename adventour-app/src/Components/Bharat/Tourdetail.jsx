@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { AspectRatio, Box, Button, Flex, HStack, Heading, IconButton, Image, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, SimpleGrid, Spacer, Tag, Text, Textarea, useDisclosure, useToast } from '@chakra-ui/react'
+import { Box, Button, Flex, HStack, Heading, IconButton, Image, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, SimpleGrid, Spacer, Tag, Text, Textarea, useDisclosure, useToast } from '@chakra-ui/react'
 import { DownloadIcon, QuestionOutlineIcon } from '@chakra-ui/icons'
 import brochure from './ext/brochure.pdf'
 import { AiOutlineHeart, AiOutlineFieldTime } from "react-icons/ai";

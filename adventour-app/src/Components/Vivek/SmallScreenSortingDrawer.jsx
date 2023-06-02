@@ -1,4 +1,8 @@
-import { Accordion, AccordionButton, AccordionIcon, AccordionItem, AccordionPanel, Box, Button, Checkbox, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerHeader, DrawerOverlay, Flex, RangeSlider, RangeSliderFilledTrack, RangeSliderThumb, RangeSliderTrack, Select, VStack, useDisclosure } from '@chakra-ui/react'
+import {
+    Accordion, AccordionButton, AccordionIcon, AccordionItem, AccordionPanel, Box, Button, Checkbox,
+    Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerHeader, DrawerOverlay, Flex,
+    RangeSlider, RangeSliderFilledTrack, RangeSliderThumb, RangeSliderTrack, Select, VStack, useDisclosure
+} from '@chakra-ui/react'
 import React from 'react'
 import { RiFilter3Line } from 'react-icons/ri'
 

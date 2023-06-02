@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Image, Heading, Flex, Button, Text, useDisclosure, Icon, Menu, MenuButton, MenuList, MenuItem, Popover, PopoverTrigger, PopoverContent, PopoverArrow, PopoverCloseButton, PopoverHeader, PopoverBody } from '@chakra-ui/react'
+import { Box, Image, Heading, Flex, Button, Text, useDisclosure, Icon, Popover, PopoverTrigger, PopoverContent, PopoverBody } from '@chakra-ui/react'
 import { NavLink } from 'react-router-dom'
 import logo from './Images/logo.png'
 import {

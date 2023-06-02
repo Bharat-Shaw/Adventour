@@ -1,30 +1,44 @@
 import {
-  Box, Flex, Text, Input, Image, InputGroup,
-  InputLeftElement, Popover, PopoverTrigger,
-  Button, PopoverContent, PopoverHeader,
-  PopoverBody, HStack, useDisclosure,
-  Drawer, DrawerOverlay, DrawerContent, DrawerCloseButton,
-  DrawerHeader, DrawerBody, Divider
+  Box, Flex, Text, Input, Image, InputGroup, InputLeftElement, Popover, PopoverTrigger,
+  Button, PopoverContent, PopoverHeader,PopoverBody, HStack, useDisclosure, Drawer, 
+  DrawerOverlay, DrawerContent, DrawerCloseButton, DrawerHeader, DrawerBody, Divider
 } from '@chakra-ui/react'
 import Logo from './Logos/LogoPic.png'
 import { SearchIcon } from '@chakra-ui/icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { CgProfile } from "react-icons/cg";
 import { FaUserCircle } from "react-icons/fa";
-
 import {
-  faMessage, faPercent, faCamera, faLocationDot, faBars,
-  faArrowRightFromBracket, faSliders, faStar, faHeart, faTicket,
-  faEnvelopeOpen, faCircleUser, faFontAwesome, faWandMagicSparkles,
-  faPersonHiking, faShip, faBicycle, faUtensils, faFilm, faCompass,
-  faEnvelope, faPhone, faEarthAmericas
+  faMessage, faPercent, faCamera, faLocationDot, faBars, faArrowRightFromBracket, faSliders,
+  faStar, faHeart, faTicket, faEnvelopeOpen, faCircleUser, faFontAwesome, faWandMagicSparkles,
+  faPersonHiking, faShip, faBicycle, faUtensils, faFilm, faCompass,faEnvelope, faPhone, faEarthAmericas
 } from '@fortawesome/free-solid-svg-icons'
-import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link,useNavigate } from 'react-router-dom';
+import { onAuthStateChanged } from 'firebase/auth'
+import { auth } from '../Firebase/Firebase'
+import { signOut } from 'firebase/auth';
+import { useEffect } from 'react';
 
 
 function NavBar() {
-  const theme=useSelector(state=>!state.theme);
+  const theme = useSelector(state => !state.theme);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const { currentUser } = useSelector(state => state);
+  const name = currentUser?.displayName;
+  console.log(name)
+
+  useEffect(() => {
+    const unsub = onAuthStateChanged(auth, (user) => {
+      dispatch({ type: 'CURRENTUSER', payload: user })
+    })
+
+    return () => {
+      unsub();
+    }
+  }, [])
 
   return (
     <Box w={"100%"} position={'fixed'} zIndex={'1'} bg={theme ? "white" : "#191b1d"}>
@@ -189,14 +203,14 @@ function NavBar() {
               </PopoverContent>
             </Popover>
             <Box>
-              <HStack display={'none'}>
+              <HStack display={currentUser? "block" : "none"}>
                 {/*-------- After login Popover --------*/}
                 <Popover trigger={"hover"} >
                   <PopoverTrigger>
-                    <Box colorScheme='none' borderRadius={"50%"} fontSize={"20px"} fontWeight={"700"} border={"2px solid #3DC6EF"} color={"#3DC6EF"} px={'9px'} ml={'20px'}>V</Box>
+                    <Box colorScheme='none' borderRadius={"50%"} fontSize={"20px"} fontWeight={"700"} border={"2px solid #3DC6EF"} color={"#3DC6EF"} px={'9px'} ml={'20px'}>{name?.charAt(0)}</Box>
                   </PopoverTrigger>
                   <PopoverContent mt={"10px"} w={"100%"} p={"10px"} boxShadow='lg' bg={theme ? "white" : "#191b1d"} border={'none'}>
-                    <PopoverHeader border={"none"} textAlign={"left"} fontSize={"22px"} fontWeight={"700"} ml={"5px"}>Hi, User</PopoverHeader>
+                    <PopoverHeader border={"none"} textAlign={"left"} fontSize={"22px"} fontWeight={"700"} ml={"5px"}>Hi, {name}</PopoverHeader>
                     <Divider pb={'5px'} />
                     <PopoverBody w={"250px"}>
                       <Flex flexDirection={"column"} alignItems={"start"} ml={"-10px"}>
@@ -218,7 +232,7 @@ function NavBar() {
                         <Button colorScheme='none' my={"5px"} color={theme ? "black" : "white"}>
                           <FontAwesomeIcon icon={faSliders} fontSize={"20px"} />&nbsp;&nbsp; Account Settings
                         </Button>
-                        <Button colorScheme='none' my={"5px"} color={theme ? "black" : "white"}>
+                        <Button colorScheme='none' my={"5px"} color={theme ? "black" : "white"} onClick={()=>{signOut(auth)}}>
                           <FontAwesomeIcon icon={faArrowRightFromBracket} fontSize={"20px"} />&nbsp;&nbsp; Logout
                         </Button>
                       </Flex>
@@ -228,20 +242,20 @@ function NavBar() {
               </HStack>
 
               {/*-------- Before login Popover --------*/}
-              <HStack >
+              <HStack display={currentUser? "none" : "block"}>
                 <Popover trigger={"hover"} >
                   <PopoverTrigger>
-                    <Button colorScheme='none' borderRadius={"50%"} color={"#3DC6EF"} px={"-10px"} ml={'20px'}><FaUserCircle size={'25px'} /></Button>
+                    <Button colorScheme='none' fontWeight={'700'} color={"#3DC6EF"} fontSize={"17px"} px={"-10px"} ml={'20px'}>Login</Button>
                   </PopoverTrigger>
                   <PopoverContent mt={"10px"} w={"100%"} boxShadow='lg' bg={theme ? "white" : "#191b1d"} border={'none'}>
-                    <PopoverHeader border={"none"} textAlign={"center"} fontSize={"20px"} py={'15px'} fontWeight={"700"} >My Account</PopoverHeader>
+                    <PopoverHeader border={"none"} textAlign={"center"} fontSize={"18px"} py={'15px'} fontWeight={"700"} >My Account</PopoverHeader>
                     <Divider color={'gray'} />
-                    <PopoverBody w={"250px"}>
+                    <PopoverBody w={"180px"}>
                       <Flex flexDirection={"column"} alignItems={"start"} >
-                        <Button colorScheme='none' fontSize={'17px'} fontWeight={'700'} py={'22px'} w={'65%'} m={'auto'} mt={'20px'} color={theme ? "white" : "black"} bg={theme ? "#008cc9" : "#3DC6EF"}>
+                        <Button onClick={() => {navigate('/login')}} colorScheme='none' fontSize={'16px'} fontWeight={'700'} py={'20px'} w={'60%'} m={'auto'} mt={'15px'} color={theme ? "white" : "black"} bg={theme ? "#008cc9" : "#3DC6EF"}>
                           Log In
                         </Button>
-                        <Button colorScheme='none' fontSize={'17px'} fontWeight={'700'} py={'22px'} w={'65%'} m={'auto'} my={'20px'} color={theme ? "white" : "black"} bg={theme ? "#008cc9" : "#3DC6EF"}>
+                        <Button onClick={() => {navigate('/signup')}} colorScheme='none' fontSize={'16px'} fontWeight={'700'} py={'20px'} w={'60%'} m={'auto'} my={'15px'} color={theme ? "white" : "black"} bg={theme ? "#008cc9" : "#3DC6EF"}>
                           Sign Up
                         </Button>
                       </Flex>
@@ -252,14 +266,14 @@ function NavBar() {
               </HStack>
             </Box>
           </Flex>
-          <Box display={'none'}>
+          <Box display={currentUser? "block" : "none"}>
             <Box display={{ base: 'flex', md: 'flex', lg: 'none' }}>
-              <HemBurgerMenuLogedIn theme={theme} />
+              <HemBurgerMenuLogedIn theme={theme} name={name}/>
             </Box>
           </Box>
-          <Box >
+          <Box display={currentUser? "none" : "block"}>
             <Box display={{ base: 'flex', md: 'flex', lg: 'none' }}>
-              <HemBurgerMenuLogedOut theme={theme} />
+              <HemBurgerMenuLogedOut theme={theme} navigate={navigate}/>
             </Box>
           </Box>
 
@@ -270,11 +284,16 @@ function NavBar() {
   )
 }
 
-function HemBurgerMenuLogedIn({ theme }) {
+function HemBurgerMenuLogedIn({ theme, name }) {
   const { isOpen, onOpen, onClose } = useDisclosure()
 
   const handleClick = () => {
     onOpen()
+  }
+
+  const handleSignout = () => {
+    signOut(auth)
+    onClose()
   }
 
 
@@ -296,7 +315,7 @@ function HemBurgerMenuLogedIn({ theme }) {
           <DrawerHeader borderBottom={"1px solid #DCDCDC"} textAlign={"left"} fontSize={"25px"} fontWeight={"700"} ml={"5px"} >
             <Flex alignItems={"center"} color={theme ? "black" : "white"}>
               <CgProfile size={"30px"} color={theme ? "black" : "white"} />&nbsp;
-              Hi, User
+              Hi, {name}
             </Flex>
           </DrawerHeader>
           <DrawerBody>
@@ -319,7 +338,7 @@ function HemBurgerMenuLogedIn({ theme }) {
               <Button colorScheme='none' my={"5px"} color={theme ? "black" : "white"}>
                 <FontAwesomeIcon icon={faSliders} fontSize={"22px"} />&nbsp;&nbsp; Account Settings
               </Button>
-              <Button colorScheme='none' my={"5px"} color={theme ? "black" : "white"}>
+              <Button colorScheme='none' my={"5px"} color={theme ? "black" : "white"} onClick={()=> handleSignout()}>
                 <FontAwesomeIcon icon={faArrowRightFromBracket} fontSize={"22px"} />&nbsp;&nbsp; Logout
               </Button>
             </Flex>
@@ -344,7 +363,7 @@ function HemBurgerMenuLogedIn({ theme }) {
   )
 };
 
-function HemBurgerMenuLogedOut({ theme }) {
+function HemBurgerMenuLogedOut({ theme, navigate }) {
   const { isOpen, onOpen, onClose } = useDisclosure()
 
   const handleClick = () => {
@@ -373,12 +392,12 @@ function HemBurgerMenuLogedOut({ theme }) {
           </DrawerHeader>
           <DrawerBody color={theme ? "black" : "white"}>
             <Text textAlign={"center"} fontSize={"20px"} fontWeight={"700"} mt={'22px'}>Welcome</Text>
-            <Text textAlign={"center"} fontSize={"15px"} fontWeight={"700"} mt={'15px'} px={'10px'}> Please Login or Signup <br/>from here </Text>
+            <Text textAlign={"center"} fontSize={"15px"} fontWeight={"700"} mt={'15px'} px={'10px'}> Please Login or Signup <br />from here </Text>
             <Flex flexDirection={"column"} alignItems={"start"} py={"15px"}>
-              <Button colorScheme='none' fontSize={'20px'} fontWeight={'700'} py={'24px'} w={'70%'} m={'auto'} mt={'35px'} color={theme ? "white" : "black"} bg={theme ? "#008cc9" : "#3DC6EF"}>
+              <Button onClick={() => {navigate('/login')}} colorScheme='none' fontSize={'20px'} fontWeight={'700'} py={'24px'} w={'70%'} m={'auto'} mt={'35px'} color={theme ? "white" : "black"} bg={theme ? "#008cc9" : "#3DC6EF"}>
                 Log In
               </Button>
-              <Button colorScheme='none' fontSize={'20px'} fontWeight={'700'} py={'24px'} w={'70%'} m={'auto'} my={'35px'} color={theme ? "white" : "black"} bg={theme ? "#008cc9" : "#3DC6EF"}>
+              <Button onClick={() => {navigate('/signup')}} colorScheme='none' fontSize={'20px'} fontWeight={'700'} py={'24px'} w={'70%'} m={'auto'} my={'35px'} color={theme ? "white" : "black"} bg={theme ? "#008cc9" : "#3DC6EF"}>
                 Sign Up
               </Button>
 
