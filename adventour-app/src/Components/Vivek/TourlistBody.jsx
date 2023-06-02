@@ -1,15 +1,12 @@
 import {
-    Accordion, AccordionButton, AccordionIcon, AccordionItem,
-    AccordionPanel, Box, Button, Center, Checkbox, 
-    Flex, HStack, Image, RangeSlider, RangeSliderFilledTrack,
-    RangeSliderThumb, RangeSliderTrack, Select,
-    Text, VStack
+    Accordion, AccordionButton, AccordionIcon, AccordionItem, AccordionPanel, Box,
+    Button, Center, Checkbox, Flex, Image, RangeSlider, RangeSliderFilledTrack,
+    RangeSliderThumb, RangeSliderTrack, Select, Text, VStack
 } from '@chakra-ui/react'
 import React, { useEffect } from 'react'
 import { RiFilter3Line } from "react-icons/ri";
 import { GiStarsStack } from "react-icons/gi";
-import { Link, useParams } from 'react-router-dom'
-import ExpandComp from '../Bharat/ExpandComp';
+import { Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import SmallScreenSortingDrawer from './SmallScreenSortingDrawer';
 

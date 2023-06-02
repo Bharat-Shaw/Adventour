@@ -1,23 +1,17 @@
 import {
-  Box, Flex, Text, Input, Image, InputGroup,
-  InputLeftElement, Popover, PopoverTrigger,
-  Button, PopoverContent, PopoverHeader,
-  PopoverBody, HStack, useDisclosure,
-  Drawer, DrawerOverlay, DrawerContent, DrawerCloseButton,
-  DrawerHeader, DrawerBody, Divider
+  Box, Flex, Text, Input, Image, InputGroup, InputLeftElement, Popover, PopoverTrigger,
+  Button, PopoverContent, PopoverHeader,PopoverBody, HStack, useDisclosure, Drawer, 
+  DrawerOverlay, DrawerContent, DrawerCloseButton, DrawerHeader, DrawerBody, Divider
 } from '@chakra-ui/react'
 import Logo from './Logos/LogoPic.png'
 import { SearchIcon } from '@chakra-ui/icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { CgProfile } from "react-icons/cg";
 import { FaUserCircle } from "react-icons/fa";
-
 import {
-  faMessage, faPercent, faCamera, faLocationDot, faBars,
-  faArrowRightFromBracket, faSliders, faStar, faHeart, faTicket,
-  faEnvelopeOpen, faCircleUser, faFontAwesome, faWandMagicSparkles,
-  faPersonHiking, faShip, faBicycle, faUtensils, faFilm, faCompass,
-  faEnvelope, faPhone, faEarthAmericas
+  faMessage, faPercent, faCamera, faLocationDot, faBars, faArrowRightFromBracket, faSliders,
+  faStar, faHeart, faTicket, faEnvelopeOpen, faCircleUser, faFontAwesome, faWandMagicSparkles,
+  faPersonHiking, faShip, faBicycle, faUtensils, faFilm, faCompass,faEnvelope, faPhone, faEarthAmericas
 } from '@fortawesome/free-solid-svg-icons'
 import { useDispatch, useSelector } from 'react-redux';
 import { Link,useNavigate } from 'react-router-dom';
@@ -251,17 +245,17 @@ function NavBar() {
               <HStack display={currentUser? "none" : "block"}>
                 <Popover trigger={"hover"} >
                   <PopoverTrigger>
-                    <Button colorScheme='none' borderRadius={"50%"} color={"#3DC6EF"} px={"-10px"} ml={'20px'}><FaUserCircle size={'25px'} /></Button>
+                    <Button colorScheme='none' fontWeight={'700'} color={"#3DC6EF"} fontSize={"17px"} px={"-10px"} ml={'20px'}>Login</Button>
                   </PopoverTrigger>
                   <PopoverContent mt={"10px"} w={"100%"} boxShadow='lg' bg={theme ? "white" : "#191b1d"} border={'none'}>
-                    <PopoverHeader border={"none"} textAlign={"center"} fontSize={"20px"} py={'15px'} fontWeight={"700"} >My Account</PopoverHeader>
+                    <PopoverHeader border={"none"} textAlign={"center"} fontSize={"18px"} py={'15px'} fontWeight={"700"} >My Account</PopoverHeader>
                     <Divider color={'gray'} />
-                    <PopoverBody w={"250px"}>
+                    <PopoverBody w={"180px"}>
                       <Flex flexDirection={"column"} alignItems={"start"} >
-                        <Button onClick={() => {navigate('/login')}} colorScheme='none' fontSize={'17px'} fontWeight={'700'} py={'22px'} w={'65%'} m={'auto'} mt={'20px'} color={theme ? "white" : "black"} bg={theme ? "#008cc9" : "#3DC6EF"}>
+                        <Button onClick={() => {navigate('/login')}} colorScheme='none' fontSize={'16px'} fontWeight={'700'} py={'20px'} w={'60%'} m={'auto'} mt={'15px'} color={theme ? "white" : "black"} bg={theme ? "#008cc9" : "#3DC6EF"}>
                           Log In
                         </Button>
-                        <Button onClick={() => {navigate('/signup')}} colorScheme='none' fontSize={'17px'} fontWeight={'700'} py={'22px'} w={'65%'} m={'auto'} my={'20px'} color={theme ? "white" : "black"} bg={theme ? "#008cc9" : "#3DC6EF"}>
+                        <Button onClick={() => {navigate('/signup')}} colorScheme='none' fontSize={'16px'} fontWeight={'700'} py={'20px'} w={'60%'} m={'auto'} my={'15px'} color={theme ? "white" : "black"} bg={theme ? "#008cc9" : "#3DC6EF"}>
                           Sign Up
                         </Button>
                       </Flex>
