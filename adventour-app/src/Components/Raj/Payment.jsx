@@ -48,7 +48,7 @@ function Payment() {
           <Spacer />
 
           <Text display={{ base: "none", md: "block", lg: "block" }} pr={'10px'}>+1 844 311 8331</Text>
-          <HStack _hover={{ bg: !theme ? 'gray.200' : 'gray.800' }} bg={theme ? 'gray.800' : 'gray.200'} display={{ base: "none", md: "flex", lg: "flex" }} borderRadius={'20px'} py={'10px'} px={'18px'}>
+          <HStack _hover={{ bg: !theme ? 'gray.300' : 'gray.700' }} bg={theme ? 'gray.800' : 'gray.200'} display={{ base: "none", md: "flex", lg: "flex" }} borderRadius={'20px'} py={'10px'} px={'18px'}>
             <TfiHeadphoneAlt />
             <Box color={theme ? 'white' : 'blackAlpha.800'} colorScheme='none'>Book as Travel Agent</Box>
           </HStack>
@@ -159,7 +159,7 @@ function Payment() {
                   </Box>
                   <Box position={'relative'}>
                     <label style={{ position: 'absolute', top: '-9px', marginLeft: "15px", fontSize: "14px", fontWeight: "700", backgroundColor: theme ? '#191b1d' : 'white', zIndex: "4", width: "58px", paddingLeft: "6px" }}>Month</label>
-                    <Select isRequired size={'lg'} w={'145px'} border={'1px solid silver'} placeholder=' '>
+                    <Select isRequired size={'lg'} w={{base:'100px', md:'145px', lg:'145px'}} border={'1px solid silver'} placeholder=' '>
                       <option value='option1'>1</option>
                       <option value='option2'>2</option>
                       <option value='option3'>3</option>
@@ -278,7 +278,7 @@ function Payment() {
                     </Text>
                   </Flex>
                 </Box>
-                <Link to={'/'}><Button w={'100%'} colorScheme='none' bg={'#008cc9'} py={'30px'} mt={'30px'}>Book Spaces</Button></Link>
+                <Link to={'/payment-successful'}><Button w={'100%'} colorScheme='none' bg={'#008cc9'} py={'30px'} mt={'30px'}>Book Spaces</Button></Link>
                 <Box w={'50%'} m={'auto'} textAlign={'center'} mt={'20px'}>
                   <Text fontSize={'13px'} fontWeight={'700'}>
                     No booking fees! <span style={{ fontWeight: "500" }}>You will be charged</span> ₹{(storedata?.act_price)?.toLocaleString("en-US")} <span style={{ fontWeight: "500" }}>now.
