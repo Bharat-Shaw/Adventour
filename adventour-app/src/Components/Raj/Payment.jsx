@@ -1,5 +1,5 @@
 
-import { Box, Button, Checkbox, Flex, FormControl, HStack, IconButton, Image, Input, Radio, RadioGroup, Select, Spacer, Text, VStack } from '@chakra-ui/react'
+import { Box, Button, Checkbox, Flex, FormControl, HStack, IconButton, Image, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, PinInput, PinInputField, Radio, RadioGroup, Select, Spacer, Text, VStack, useDisclosure, useToast } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
 import { AiFillCheckCircle, AiFillTag } from 'react-icons/ai';
 import { BsFill1SquareFill, BsFill2SquareFill, BsFill3SquareFill, BsFill4SquareFill, BsFillInfoCircleFill, BsLightningChargeFill } from 'react-icons/bs';
@@ -8,30 +8,39 @@ import { GrFormAdd, GrFormSubtract, GrRadialSelected } from 'react-icons/gr';
 import Toggle from '../Bharat/toggle';
 import { TfiHeadphoneAlt } from 'react-icons/tfi';
 import Logo from '../Vivek/Logos/LogoPic.png';
-import {Link} from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux';
 
 function Payment() {
-  
-  const theme=useSelector(state=>state.theme);
-  const storedata=useSelector(state=>state.detail)
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  const theme = useSelector(state => state.theme);
+  const storedata = useSelector(state => state.detail)
   const [start, setstart] = useState('');
   const [end, setend] = useState('');
-  const len=storedata?.destinations?.length
+  const len = storedata?.destinations?.length
   const [traveller, settraveller] = useState(1);
+  const toast = useToast()
+  const [pin, setpin] = useState({
+    first: '',
+    sec: '',
+    third: '',
+    fourth: ''
+  })
+  const navigate = useNavigate()
+  const [chk, setchk]=useState(false)
 
-  useEffect(()=>{
-    storedata?.destinations?.filter((el, i)=>{
-      if(i===0){
+  useEffect(() => {
+    storedata?.destinations?.filter((el, i) => {
+      if (i === 0) {
         setstart(el)
       }
-      if(i===len-1){
+      if (i === len - 1) {
         setend(el)
       }
       return el;
     })
-  },[])
-  
+  }, [])
+
   console.log(storedata?.str_price)
 
 
@@ -61,8 +70,8 @@ function Payment() {
         <Flex py={'30px'}>
           <Text fontSize={{ base: "20px", md: '33px', lg: '33px' }} fontWeight={'600'}>{storedata?.title}</Text>
           <Spacer />
-          <Button colorScheme='none' bg={theme ? '#191b1d' : 'white'} color={theme ? 'white' : 'blackAlpha.800'} mr={'10px'} borderRadius={'20px'} display={{base:'none', md:'block', lg: 'block'}}>Help</Button>
-          <Button colorScheme='none' bg={theme ? '#191b1d' : 'white'} color={theme ? 'white' : 'blackAlpha.800'} borderRadius={'20px'} display={{base:'none', md:'block', lg: 'block'}}>Share Tour</Button>
+          <Button colorScheme='none' bg={theme ? '#191b1d' : 'white'} color={theme ? 'white' : 'blackAlpha.800'} mr={'10px'} borderRadius={'20px'} display={{ base: 'none', md: 'block', lg: 'block' }}>Help</Button>
+          <Button colorScheme='none' bg={theme ? '#191b1d' : 'white'} color={theme ? 'white' : 'blackAlpha.800'} borderRadius={'20px'} display={{ base: 'none', md: 'block', lg: 'block' }}>Share Tour</Button>
         </Flex>
 
         {/* Main content-start */}
@@ -94,9 +103,9 @@ function Payment() {
                 <Text fontWeight={'700'}>{traveller} x Traveller</Text>
                 <Spacer />
                 <HStack>
-                  <IconButton isDisabled={traveller===1} onClick={()=>{settraveller(pre=>pre-1)}} icon={<GrFormSubtract size={'25px'} />} rounded={'full'} boxShadow={'lg'} />
+                  <IconButton isDisabled={traveller === 1} onClick={() => { settraveller(pre => pre - 1) }} icon={<GrFormSubtract size={'25px'} />} rounded={'full'} boxShadow={'lg'} />
                   <Text px={'10px'}>{traveller}</Text>
-                  <IconButton isDisabled={traveller===storedata?.group_size} onClick={()=>{settraveller(pre=>pre+1)}} icon={<GrFormAdd size={'25px'} />} rounded={'full'} boxShadow={'lg'} />
+                  <IconButton isDisabled={traveller === storedata?.group_size} onClick={() => { settraveller(pre => pre + 1) }} icon={<GrFormAdd size={'25px'} />} rounded={'full'} boxShadow={'lg'} />
                 </HStack>
               </HStack>
             </Box>
@@ -126,65 +135,104 @@ function Payment() {
               <FormControl ml={'13px'} >
                 <VStack align={'left'}>
                   <label style={{ marginBottom: '-19px', marginLeft: "15px", fontSize: "14px", fontWeight: "700", backgroundColor: theme ? '#191b1d' : 'white', zIndex: "1", width: "90px", paddingLeft: "6px" }}>First Name*</label>
-                  <Input isRequired w={{ base: "80%", md: "45%", lg: "45%" }} size={'lg'} border={'1px solid silver'} type='text'  />
+                  <Input isRequired w={{ base: "80%", md: "45%", lg: "45%" }} size={'lg'} border={'1px solid silver'} type='text' />
                 </VStack>
                 <VStack align={'left'} my={'20px'}>
                   <label style={{ marginBottom: '-19px', marginLeft: "15px", fontSize: "14px", fontWeight: "700", backgroundColor: theme ? '#191b1d' : 'white', zIndex: "1", width: "85px", paddingLeft: "6px" }}>Last Name*</label>
-                  <Input isRequired w={{ base: "80%", md: "45%", lg: "45%" }} size={'lg'} border={'1px solid silver'} type='text'  />
+                  <Input isRequired w={{ base: "80%", md: "45%", lg: "45%" }} size={'lg'} border={'1px solid silver'} type='text' />
                 </VStack>
                 <VStack align={'left'}>
                   <label style={{ marginBottom: '-19px', marginLeft: "15px", fontSize: "14px", fontWeight: "700", backgroundColor: theme ? '#191b1d' : 'white', zIndex: "1", width: "55px", paddingLeft: "6px" }}>Email*</label>
-                  <Input isRequired w={{ base: "80%", md: "45%", lg: "45%" }} size={'lg'} border={'1px solid silver'} type='email'  />
+                  <Input isRequired w={{ base: "80%", md: "45%", lg: "45%" }} size={'lg'} border={'1px solid silver'} type='email' />
                 </VStack>
                 <VStack align={'left'} my={'20px'}>
                   <label style={{ marginBottom: '-19px', marginLeft: "15px", fontSize: "14px", fontWeight: "700", backgroundColor: theme ? '#191b1d' : 'white', zIndex: "1", width: "115px", paddingLeft: "6px" }}>Phone Number*</label>
-                  <Input isRequired w={{ base: "80%", md: "45%", lg: "45%" }} size={'lg'} border={'1px solid silver'} type='tel' placeholder='e.g. +91 9876543210'  />
+                  <Input isRequired w={{ base: "80%", md: "45%", lg: "45%" }} size={'lg'} border={'1px solid silver'} type='tel' placeholder='e.g. +91 9876543210' />
                 </VStack>
                 <Text fontWeight={'700'} mb={'15px'} fontSize={'16px'}>Date of Birth*</Text>
                 <HStack>
                   <Box position={'relative'}>
                     <label style={{ position: 'absolute', top: '-9px', marginLeft: "15px", fontSize: "14px", fontWeight: "700", backgroundColor: theme ? '#191b1d' : 'white', zIndex: "4", width: "35px", paddingLeft: "6px" }}>Day</label>
-                    <Select isRequired size={'lg'} placeholder=' ' w={'80px'} border={'1px solid silver'}>
-                      <option value='option1'>1</option>
-                      <option value='option2'>2</option>
-                      <option value='option3'>3</option>
-                      <option value='option3'>4</option>
-                      <option value='option3'>5</option>
-                      <option value='option3'>6</option>
-                      <option value='option3'>7</option>
-                      <option value='option3'>8</option>
-                      <option value='option3'>9</option>
-                      <option value='option3'>10</option>
+                    <Select isRequired size={'lg'} w={'80px'} border={'1px solid silver'}>
+                      <option value="" style={{ backgroundColor: theme ? '#191b1d' : 'white' }}> </option>
+                      <option value="01" style={{ backgroundColor: theme ? '#191b1d' : 'white' }}>01</option>
+                      <option value="02" style={{ backgroundColor: theme ? '#191b1d' : 'white' }}>02</option>
+                      <option value="03" style={{ backgroundColor: theme ? '#191b1d' : 'white' }}>03</option>
+                      <option value="04" style={{ backgroundColor: theme ? '#191b1d' : 'white' }}>04</option>
+                      <option value="05" style={{ backgroundColor: theme ? '#191b1d' : 'white' }}>05</option>
+                      <option value="06" style={{ backgroundColor: theme ? '#191b1d' : 'white' }}>06</option>
+                      <option value="07" style={{ backgroundColor: theme ? '#191b1d' : 'white' }}>07</option>
+                      <option value="08" style={{ backgroundColor: theme ? '#191b1d' : 'white' }}>08</option>
+                      <option value="09" style={{ backgroundColor: theme ? '#191b1d' : 'white' }}>09</option>
+                      <option value="10" style={{ backgroundColor: theme ? '#191b1d' : 'white' }}>10</option>
+                      <option value="11" style={{ backgroundColor: theme ? '#191b1d' : 'white' }}>11</option>
+                      <option value="12" style={{ backgroundColor: theme ? '#191b1d' : 'white' }}>12</option>
+                      <option value="13" style={{ backgroundColor: theme ? '#191b1d' : 'white' }}>13</option>
+                      <option value="14" style={{ backgroundColor: theme ? '#191b1d' : 'white' }}>14</option>
+                      <option value="15" style={{ backgroundColor: theme ? '#191b1d' : 'white' }}>15</option>
+                      <option value="16" style={{ backgroundColor: theme ? '#191b1d' : 'white' }}>16</option>
+                      <option value="17" style={{ backgroundColor: theme ? '#191b1d' : 'white' }}>17</option>
+                      <option value="18" style={{ backgroundColor: theme ? '#191b1d' : 'white' }}>18</option>
+                      <option value="19" style={{ backgroundColor: theme ? '#191b1d' : 'white' }}>19</option>
+                      <option value="20" style={{ backgroundColor: theme ? '#191b1d' : 'white' }}>20</option>
+                      <option value="21" style={{ backgroundColor: theme ? '#191b1d' : 'white' }}>21</option>
+                      <option value="22" style={{ backgroundColor: theme ? '#191b1d' : 'white' }}>22</option>
+                      <option value="23" style={{ backgroundColor: theme ? '#191b1d' : 'white' }}>23</option>
+                      <option value="24" style={{ backgroundColor: theme ? '#191b1d' : 'white' }}>24</option>
+                      <option value="25" style={{ backgroundColor: theme ? '#191b1d' : 'white' }}>25</option>
+                      <option value="26" style={{ backgroundColor: theme ? '#191b1d' : 'white' }}>26</option>
+                      <option value="27" style={{ backgroundColor: theme ? '#191b1d' : 'white' }}>27</option>
+                      <option value="28" style={{ backgroundColor: theme ? '#191b1d' : 'white' }}>28</option>
+                      <option value="29" style={{ backgroundColor: theme ? '#191b1d' : 'white' }}>29</option>
+                      <option value="30" style={{ backgroundColor: theme ? '#191b1d' : 'white' }}>30</option>
+                      <option value="31" style={{ backgroundColor: theme ? '#191b1d' : 'white' }}>31</option>
                     </Select>
                   </Box>
                   <Box position={'relative'}>
                     <label style={{ position: 'absolute', top: '-9px', marginLeft: "15px", fontSize: "14px", fontWeight: "700", backgroundColor: theme ? '#191b1d' : 'white', zIndex: "4", width: "58px", paddingLeft: "6px" }}>Month</label>
-                    <Select isRequired size={'lg'} w={{base:'100px', md:'145px', lg:'145px'}} border={'1px solid silver'} placeholder=' '>
-                      <option value='option1'>1</option>
-                      <option value='option2'>2</option>
-                      <option value='option3'>3</option>
-                      <option value='option3'>4</option>
-                      <option value='option3'>5</option>
-                      <option value='option3'>6</option>
-                      <option value='option3'>7</option>
-                      <option value='option3'>8</option>
-                      <option value='option3'>9</option>
-                      <option value='option3'>10</option>
+                    <Select bg={theme ? '#191b1d' : 'white'} isRequired size={'lg'} w={{ base: '100px', md: '145px', lg: '145px' }} border={'1px solid silver'} >
+                      <option value="00" style={{ backgroundColor: theme ? '#191b1d' : 'white' }}> </option>
+                      <option value="01" style={{ backgroundColor: theme ? '#191b1d' : 'white' }}>January</option>
+                      <option value="02" style={{ backgroundColor: theme ? '#191b1d' : 'white' }}>February</option>
+                      <option value="03" style={{ backgroundColor: theme ? '#191b1d' : 'white' }}>March</option>
+                      <option value="04" style={{ backgroundColor: theme ? '#191b1d' : 'white' }}>April</option>
+                      <option value="05" style={{ backgroundColor: theme ? '#191b1d' : 'white' }}>May</option>
+                      <option value="06" style={{ backgroundColor: theme ? '#191b1d' : 'white' }}>June</option>
+                      <option value="07" style={{ backgroundColor: theme ? '#191b1d' : 'white' }}>July</option>
+                      <option value="08" style={{ backgroundColor: theme ? '#191b1d' : 'white' }}>August</option>
+                      <option value="09" style={{ backgroundColor: theme ? '#191b1d' : 'white' }}>September</option>
+                      <option value="10" style={{ backgroundColor: theme ? '#191b1d' : 'white' }}>October</option>
+                      <option value="11" style={{ backgroundColor: theme ? '#191b1d' : 'white' }}>November</option>
+                      <option value="12" style={{ backgroundColor: theme ? '#191b1d' : 'white' }}>December</option>
                     </Select>
                   </Box>
                   <Box position={'relative'}>
                     <label style={{ position: 'absolute', top: '-9px', marginLeft: "15px", fontSize: "14px", fontWeight: "700", backgroundColor: theme ? '#191b1d' : 'white', zIndex: "4", width: "40px", paddingLeft: "6px" }}>Year</label>
-                    <Select isRequired size={'lg'} placeholder=' ' w={'80px'} border={'1px solid silver'}>
-                      <option value='option1'>1</option>
-                      <option value='option2'>2</option>
-                      <option value='option3'>3</option>
-                      <option value='option3'>4</option>
-                      <option value='option3'>5</option>
-                      <option value='option3'>6</option>
-                      <option value='option3'>7</option>
-                      <option value='option3'>8</option>
-                      <option value='option3'>9</option>
-                      <option value='option3'>10</option>
+                    <Select isRequired size={'lg'}  w={'80px'} border={'1px solid silver'}>
+                    <option value="" style={{ backgroundColor: theme ? '#191b1d' : 'white' }}></option>
+                      <option value="1988" style={{ backgroundColor: theme ? '#191b1d' : 'white' }}>1988</option>
+                      <option value="1989" style={{ backgroundColor: theme ? '#191b1d' : 'white' }}>1989</option>
+                      <option value="1990" style={{ backgroundColor: theme ? '#191b1d' : 'white' }}>1990</option>
+                      <option value="1991" style={{ backgroundColor: theme ? '#191b1d' : 'white' }}>1991</option>
+                      <option value="1992" style={{ backgroundColor: theme ? '#191b1d' : 'white' }}>1992</option>
+                      <option value="1993" style={{ backgroundColor: theme ? '#191b1d' : 'white' }}>1993</option>
+                      <option value="1994" style={{ backgroundColor: theme ? '#191b1d' : 'white' }}>1994</option>
+                      <option value="1995" style={{ backgroundColor: theme ? '#191b1d' : 'white' }}>1995</option>
+                      <option value="1996" style={{ backgroundColor: theme ? '#191b1d' : 'white' }}>1996</option>
+                      <option value="1997" style={{ backgroundColor: theme ? '#191b1d' : 'white' }}>1997</option>
+                      <option value="1998" style={{ backgroundColor: theme ? '#191b1d' : 'white' }}>1998</option>
+                      <option value="1999" style={{ backgroundColor: theme ? '#191b1d' : 'white' }}>1999</option>
+                      <option value="2000" style={{ backgroundColor: theme ? '#191b1d' : 'white' }}>2000</option>
+                      <option value="2001" style={{ backgroundColor: theme ? '#191b1d' : 'white' }}>2001</option>
+                      <option value="2002" style={{ backgroundColor: theme ? '#191b1d' : 'white' }}>2002</option>
+                      <option value="2003" style={{ backgroundColor: theme ? '#191b1d' : 'white' }}>2003</option>
+                      <option value="2004" style={{ backgroundColor: theme ? '#191b1d' : 'white' }}>2004</option>
+                      <option value="2005" style={{ backgroundColor: theme ? '#191b1d' : 'white' }}>2005</option>
+                      <option value="2006" style={{ backgroundColor: theme ? '#191b1d' : 'white' }}>2006</option>
+                      <option value="2007" style={{ backgroundColor: theme ? '#191b1d' : 'white' }}>2007</option>
+                      <option value="2008" style={{ backgroundColor: theme ? '#191b1d' : 'white' }}>2008</option>
+                      <option value="2009" style={{ backgroundColor: theme ? '#191b1d' : 'white' }}>2009</option>
+                      <option value="2010" style={{ backgroundColor: theme ? '#191b1d' : 'white' }}>2010</option>
                     </Select>
                   </Box>
                 </HStack>
@@ -197,21 +245,16 @@ function Payment() {
                 </RadioGroup>
                 <Box position={'relative'}>
                   <label style={{ position: 'absolute', top: '-9px', marginLeft: "15px", fontSize: "14px", fontWeight: "700", backgroundColor: theme ? '#191b1d' : 'white', zIndex: "4", width: "90px", paddingLeft: "6px" }}>Nationality*</label>
-                  <Select isRequired w={'45%'} size={'lg'} border={'1px solid silver'} placeholder=' '>
-                    <option value="AF">Afghanistan</option>
-                    <option value="AX">Aland Islands</option>
-                    <option value="AL">Albania</option>
-                    <option value="DZ">Algeria</option>
-                    <option value="AS">American Samoa</option>
-                    <option value="AD">Andorra</option>
-                    <option value="AO">Angola</option>
-                    <option value="AI">Anguilla</option>
-                    <option value="AQ">Antarctica</option>
-                    <option value="AG">Antigua and Barbuda</option>
-                    <option value="AR">Argentina</option>
-                    <option value="AM">Armenia</option>
-                    <option value="AW">Aruba</option>
-                    <option value="AU">Australia</option>
+                  <Select isRequired w={'45%'} size={'lg'} border={'1px solid silver'} >
+                    <option value="" style={{ backgroundColor: theme ? '#191b1d' : 'white' }}></option>
+                    <option value="India" style={{ backgroundColor: theme ? '#191b1d' : 'white' }}>India</option>
+                    <option value="Russia" style={{ backgroundColor: theme ? '#191b1d' : 'white' }}>Russia</option>
+                    <option value="Nepal" style={{ backgroundColor: theme ? '#191b1d' : 'white' }}>Nepal</option>
+                    <option value="Sri_lanka" style={{ backgroundColor: theme ? '#191b1d' : 'white' }}>Sri lanka</option>
+                    <option value="Bhutan" style={{ backgroundColor: theme ? '#191b1d' : 'white' }}>Bhutan</option>
+                    <option value="France" style={{ backgroundColor: theme ? '#191b1d' : 'white' }}>France</option>
+                    <option value="USA" style={{ backgroundColor: theme ? '#191b1d' : 'white' }}>USA</option>
+                    <option value="Germany" style={{ backgroundColor: theme ? '#191b1d' : 'white' }}>Germany</option>
                   </Select>
                 </Box>
               </FormControl>
@@ -272,13 +315,74 @@ function Payment() {
                 </Box>
                 <Box mt={'20px'}>
                   <Flex>
-                    <Checkbox size='md'></Checkbox>
+                    <Checkbox size='md' onChange={()=>{setchk(!chk)}}></Checkbox>
                     <Text pl={'15px'} mt={'45px'} fontSize={{ base: "14px", md: "16px", lg: '16px' }}>I accept Adventour's <span style={{ color: "#008cc9" }}>Terms & Conditions</span>  and <span style={{ color: "#008cc9" }}> Privacy Policy;</span> and
                       Realistic Journey's <span style={{ color: "#008cc9" }}> payment,cancellation and refund conditions,</span> and <span style={{ color: "#008cc9" }}>Credit for Future Tours <br /> Terms & Conditions.</span>
                     </Text>
                   </Flex>
                 </Box>
-                <Link to={'/payment-successful'}><Button w={'100%'} colorScheme='none' bg={'#008cc9'} py={'30px'} mt={'30px'}>Book Spaces</Button></Link>
+                <Button isDisabled={!chk} w={'100%'} onClick={() => {
+                  onOpen();
+                  toast({
+                    description: "Your OTP is 5637",
+                    status: 'success',
+                    position: 'top',
+                    duration: 3000,
+                    isClosable: true,
+                  });
+                }} colorScheme='none' bg={'#008cc9'} py={'30px'} mt={'30px'}>Book Spaces</Button>
+                <Modal isOpen={isOpen} >
+                  <ModalOverlay />
+                  <ModalContent w={'350px'} top={'22%'} py={'30px'}>
+                    <ModalBody >
+                      <VStack>
+                        <Text fontSize={'25px'} fontWeight={'600'}>OTP Verification</Text>
+                        <Text fontSize={'15px'}>Thank You for booking on Adventour.</Text>
+                        <Text fontSize={'15px'} pb={'20px'}>Enter the OTP shared with you.</Text>
+                        <HStack mt={3} mx={3} >
+                          <PinInput>
+                            <PinInputField onChange={(e) => { setpin({ ...pin, first: e.target.value }) }} />
+                            <PinInputField onChange={(e) => { setpin({ ...pin, sec: e.target.value }) }} />
+                            <PinInputField onChange={(e) => { setpin({ ...pin, third: e.target.value }) }} />
+                            <PinInputField onChange={(e) => { setpin({ ...pin, fourth: e.target.value }) }} />
+                          </PinInput>
+                        </HStack>
+                        <HStack>
+                          <Text fontSize={'12px'} pt={'15px'} >Not received OTP, Click here to </Text>
+                          <Text onClick={() => {
+                            toast({
+                              description: "Your OTP is 5637",
+                              status: 'warning',
+                              position: 'top',
+                              duration: 3000,
+                              isClosable: true,
+                            });
+
+                          }} color={'blue.400'} fontWeight={'500'} fontSize={'12px'} pt={'15px'} cursor={'pointer'}>
+                            RESEND
+                          </Text>
+                        </HStack>
+                      </VStack>
+                    </ModalBody>
+                    <Button colorScheme='blue' m={5} onClick={() => {
+                      onClose();
+                      if (pin.first == 5 && pin.sec == 6 && pin.third == 3 && pin.fourth == 7) {
+                        navigate('/payment-successful')
+                      } else {
+                        toast({
+                          description: "Payment failed",
+                          status: 'error',
+                          position: 'top',
+                          duration: 3000,
+                          isClosable: true,
+                        });
+                      }
+                    }}>
+                      Enter OTP
+                    </Button>
+                  </ModalContent>
+                </Modal>
+
                 <Box w={'50%'} m={'auto'} textAlign={'center'} mt={'20px'}>
                   <Text fontSize={'13px'} fontWeight={'700'}>
                     No booking fees! <span style={{ fontWeight: "500" }}>You will be charged</span> ₹{(storedata?.act_price)?.toLocaleString("en-US")} <span style={{ fontWeight: "500" }}>now.
@@ -288,7 +392,7 @@ function Payment() {
               </Box>
             </Box>
             <Box display={{ base: "block", md: "block", lg: "none" }}>
-              <Pricediv theme={theme} storedata={storedata} traveller={traveller}/>
+              <Pricediv theme={theme} storedata={storedata} traveller={traveller} />
             </Box>
             <Box my={'25px'} p={'20px'} borderRadius={'15px'} bg={theme ? '#191b1d' : 'white'} boxShadow={'md'}>
               <Text mt={'15px'} fontWeight={'700'} fontSize={'17px'}>Terms & Conditions</Text>
@@ -329,7 +433,7 @@ function Payment() {
             </Box>
 
 
-            <Pricediv theme={theme} storedata={storedata} traveller={traveller}/>
+            <Pricediv theme={theme} storedata={storedata} traveller={traveller} />
 
 
           </Box>
@@ -348,7 +452,7 @@ function Pricediv({ theme, storedata, traveller }) {
         <Text>Base price</Text>
         <Text fontSize={'14px'}>{traveller} Traveller x ₹{(storedata?.str_price)?.toLocaleString("en-US")}</Text>
       </Box>
-      <Text>₹ {(traveller *storedata?.str_price)?.toLocaleString("en-US")}</Text>
+      <Text>₹ {(traveller * storedata?.str_price)?.toLocaleString("en-US")}</Text>
     </Flex>
     <Flex justifyContent={'space-between'} pb={'15px'} borderBottom={'1px solid silver'}>
       <Text>Discount</Text>
@@ -356,18 +460,18 @@ function Pricediv({ theme, storedata, traveller }) {
     </Flex>
     <Flex justifyContent={'space-between'} pt={'20px'}>
       <Text fontWeight={'700'}>Total due</Text>
-      <Text fontSize={'20px'} fontWeight={'700'}>₹ {(traveller *storedata?.act_price)?.toLocaleString("en-US")}</Text>
+      <Text fontSize={'20px'} fontWeight={'700'}>₹ {(traveller * storedata?.act_price)?.toLocaleString("en-US")}</Text>
     </Flex>
     <Flex lineHeight={'45px'} direction={'column'} mt={'10px'} p={'5px'} bg={theme ? 'gray.800' : 'gray.100'} borderRadius={'10px'}>
       <Flex>
         <Text fontWeight={'700'}>Due today</Text>
         <Spacer />
-        <Text fontWeight={'700'}>₹ {(traveller *storedata?.price_per_day)?.toLocaleString("en-US")}</Text>
+        <Text fontWeight={'700'}>₹ {(traveller * storedata?.price_per_day)?.toLocaleString("en-US")}</Text>
       </Flex>
       <Flex>
         <Text>Due on 1 Jul, 2023</Text>
         <Spacer />
-        <Text>₹ {(traveller *storedata?.act_price)?.toLocaleString("en-US")}</Text>
+        <Text>₹ {(traveller * storedata?.act_price)?.toLocaleString("en-US")}</Text>
       </Flex>
     </Flex>
   </Box>

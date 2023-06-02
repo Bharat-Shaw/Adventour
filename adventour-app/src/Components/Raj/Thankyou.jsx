@@ -1,6 +1,6 @@
 import { Box, Center, Divider, Flex, Image, Text } from '@chakra-ui/react'
 import React, { useEffect, useRef, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import success from './img/success.gif'
 
 function Thankyou() {
@@ -8,20 +8,20 @@ function Thankyou() {
     const [sec, setsec] = useState(5);
     const ref = useRef(null);
 
-    useEffect(()=>{
+    // useEffect(()=>{
 
-       ref.current= setInterval(()=>{
-            setsec(pre=>pre-1);
-        },1000)
+    //    ref.current= setInterval(()=>{
+    //         setsec(pre=>pre-1);
+    //     },1000)
 
-        setTimeout(()=>{
-            navigate('/')
-        },6000)
+    //     setTimeout(()=>{
+    //         navigate('/')
+    //     },6000)
 
-        return ()=>{
-            clearTimeout(ref.current)
-        }
-    },[])
+    //     return ()=>{
+    //         clearTimeout(ref.current)
+    //     }
+    // },[])
 
     return (
         <Flex h={'100vh'} bg={'gray.200'} py={'60px'} 
@@ -36,7 +36,7 @@ function Thankyou() {
                 <Text textAlign={'Center'} fontSize={'40px'} fontWeight={'700'} fontFamily={'unset'} color={'green.500'}>Booking Confirmed !</Text>
                 <Text color={'gray.500'} textAlign={'Center'}>This page will be automatically redirected to
                     <br />
-                    Home page after {sec} sec.</Text>
+                    <Link to={'/'}> <Text as={'span'} color="blue.400">Home page</Text></Link> after {sec} sec.</Text>
             </Box>
             {/* <Box ></Box> */}
             <Image display={{base:'none', md:'inline-block'}} borderLeft={'2px dashed silver'} w={'40%'} src='https://img.freepik.com/premium-vector/young-happy-man-tourist-flat-cartoon-character-traveling-male-people-summer-vacation-trip-isolated-white-background_37895-959.jpg'/>
