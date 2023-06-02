@@ -25,7 +25,7 @@ function Services(props) {
                 </Flex>
             </Box>
 
-            <Flex bg={theme ? '#101214' : 'white'} flexDirection='column' w='60%' m='5rem auto' p='1rem' gap={5} boxShadow='0 0 5px gray'>
+            <Flex bg={theme ? '#101214' : 'white'} flexDirection='column' w={{base:'85%',md:'70%',lg:'60%'}} m='5rem auto' p='1rem' gap={5} boxShadow='0 0 5px gray'>
                 <Heading textAlign='left' fontSize='1.5rem'>Terms of Service</Heading>
                 <Text>Adventour is a hotel search and offers users information about different types of accommodation (such as hotels, holiday homes, etc.), travel areas and services associated with travel.</Text>
 
