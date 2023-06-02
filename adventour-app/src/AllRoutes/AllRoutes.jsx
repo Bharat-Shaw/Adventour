@@ -8,6 +8,7 @@ import Tourlist from '../Components/Vivek/Tourlist'
 import Login from '../Components/Mahima/Login'
 import Services from '../Components/Faizan/Services'
 import PrivateRoutes from './PrivateRoutes'
+import Thankyou from '../Components/Raj/Thankyou'
 
 function AllRoutes() {
   return (
@@ -19,6 +20,7 @@ function AllRoutes() {
       <Route path='/tourlist/:location' element={<Tourlist/>}/>
       <Route path='/login' element={<Login/>}/>
       <Route path='/services' element={<Services />} />
+      <Route path='/payment-successful' element={<Thankyou/>}/>
     </Routes>
   )
 }
