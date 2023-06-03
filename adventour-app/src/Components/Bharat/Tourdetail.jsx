@@ -36,43 +36,32 @@ function Tourdetail() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const toast = useToast()
   const [val, setval] = useState(-10);
-  const imgarr = ['https://cdn.tourradar.com/s3/tour/1500x800/14263_5df8b6cf672a0.jpg',
-    'https://cdn.tourradar.com/s3/tour/1500x800/14263_c52ec9.jpg',
-    'https://cdn.tourradar.com/s3/review/1500x800/14263_5df8b793b7481.jpg',
-    'https://cdn.tourradar.com/s3/tour/1500x800/14263_4a0e0afd.jpg'];
-  const [image, setimage] = useState(imgarr[0])
   const [wish, setwish]=useState(false)
   const [query, setquery]=useState({
     title:'',
     des:''
   })
+  const [image, setimage] = useState('')
+
+
   useEffect(() => {
     axios.get(`https://weak-rose-seahorse-tutu.cyclic.app/api/${location}/${id}`)
-    .then((res)=>{dispatch({type:'DETAIL', payload:res.data})})
-
+    .then((res)=>{dispatch({type:'DETAIL', payload:res.data});
+    res.data.top_crousel_img?.filter((el, i)=>{
+      if(i===0){
+        setimage(el)
+      }
+    })
+  })
     window.scrollTo({
       top: 0, 
     });
-    // timer()
-    // return () => {
-    //   clearTimeout(ref.current)
-    // }
   }, [])
 
-  const timer=()=>{
-    let i = 0;
-    ref.current = setInterval(() => {
-      if (i === imgarr.length) { i = 0; }
-      setimage(imgarr[i])
-      i++;
-    }, 2000)
-  }
+ 
 
   return (
     <Box bgColor={theme ? '#101214' : 'gray.100'} minH={'100vh'}>
-      {/* <Box>
-          <Image w={'300px'} src={image}/>
-        </Box> */}
       <Toggle  />
       <NavBar/>
 
@@ -81,9 +70,7 @@ function Tourdetail() {
 
 
         <Flex flexDirection={{ base: 'column', md: 'column', lg: 'row' }} >
-          {/* <AspectRatio ratio={16/9}> */}
           <Image src={image} boxShadow={'md'} mb={{ base: '30px' }} borderRadius={'20px'} width={{ base: '100%', md: '100%', lg: '60%' }} h={{ base: '100%', md: '100%', lg: '40%' }}/>
-          {/* </AspectRatio> */}
           <Box textAlign={'left'} pl={'40px'} w={{ base: '90%', md: '70%', lg: '38%' }}>
             <Heading size='xl' pb={'15px'}>{storedata?.title}</Heading>
             <Text pb={'10px'}><strong> {storedata?.tour_length} days • {storedata?.rating}</strong> ⭐ ({storedata?.reviews})</Text>
