@@ -3,12 +3,27 @@ import {
     Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerHeader, DrawerOverlay, Flex,
     RangeSlider, RangeSliderFilledTrack, RangeSliderThumb, RangeSliderTrack, Select, VStack, useDisclosure
 } from '@chakra-ui/react'
+import axios from 'axios';
 import React from 'react'
 import { RiFilter3Line } from 'react-icons/ri'
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
-function SmallScreenSortingDrawer({ theme }) {
+function SmallScreenSortingDrawer() {
     const { isOpen, onOpen, onClose } = useDisclosure()
+    const { location } = useParams();
+    const dispatch = useDispatch();
+    const limit=useSelector((state)=>state.limit);
+    const theme = useSelector(state => !state.theme);
+    // https://weak-rose-seahorse-tutu.cyclic.app/api/Asia?_sort=price_per_day&_order=asc
 
+    function sortfunc(value, sortval) {
+        axios.get(`https://weak-rose-seahorse-tutu.cyclic.app/api/${location}?_limit=${limit}&_sort=${value}&_order=${sortval}`)
+            .then((res) => {
+                console.log(res.data)
+                dispatch({ type: 'LIST', payload: res.data })
+            })
+    }
     return (
         <>
             <Button colorScheme='none' onClick={onOpen} color={theme ? "white" : "black"} bg={theme ? "#008cc9" : "#3DC6EF"} fontSize='20px' fontWeight='600' p="25px 30px">
@@ -34,16 +49,45 @@ function SmallScreenSortingDrawer({ theme }) {
                     <DrawerBody>
                         <Box>
                             <Box mt={'25px'}>
-                                <Select bg={theme ? "white" : "#191b1d"} size='lg'>
-                                    <option value='PMPF' style={{ background: theme ? "white" : "#191b1d", fontSize: "15px" }}>Popularity: Most popular first</option>
-                                    <option value='TP-LF' style={{ background: theme ? "white" : "#191b1d", fontSize: "15px" }}>Total Price: Lowest first</option>
-                                    <option value='TP-HF' style={{ background: theme ? "white" : "#191b1d", fontSize: "15px" }}>Total Price: Higest first</option>
-                                    <option value='P/D-LF' style={{ background: theme ? "white" : "#191b1d", fontSize: "15px" }}>Price/Day: Lowest first</option>
-                                    <option value='P/D-HF' style={{ background: theme ? "white" : "#191b1d", fontSize: "15px" }}>Price/Day: Higest first</option>
-                                    <option value='D-SF' style={{ background: theme ? "white" : "#191b1d", fontSize: "15px" }}>Duration: Sortest first</option>
-                                    <option value='D-LF' style={{ background: theme ? "white" : "#191b1d", fontSize: "15px" }}>Duration: Longest first</option>
-                                    <option value='R-MR' style={{ background: theme ? "white" : "#191b1d", fontSize: "15px" }}>Reviews: Most reviewed</option>
-                                    <option value='BG-HS' style={{ background: theme ? "white" : "#191b1d", fontSize: "15px" }}>Biggest Deals: Higest savings</option>
+                                <Select bg={theme ? "white" : "#191b1d"} size='lg' onChange={(e) => {
+                                if(e.target.value==='rating'){
+                                    sortfunc('rating', 'desc')
+                                }
+                                else if(e.target.value==='str_priceL'){
+                                    sortfunc('str_price', 'asc')
+                                }
+                                else if(e.target.value==='str_priceH'){
+                                    sortfunc('str_price', 'desc')
+                                }
+                                else if(e.target.value==='price_per_dayL'){
+                                    sortfunc('price_per_day', 'asc')
+                                }
+                                else if(e.target.value==='price_per_dayH'){
+                                    sortfunc('price_per_day', 'desc')
+                                }
+                                else if(e.target.value==='tour_lengthS'){
+                                    sortfunc('tour_length', 'asc')
+                                }
+                                else if(e.target.value==='tour_lengthL'){
+                                    sortfunc('tour_length', 'desc')
+                                }
+                                else if(e.target.value==='reviews'){
+                                    sortfunc('reviews', 'desc')
+                                }
+                                else if(e.target.value==='save_price'){
+                                    sortfunc('save_price', 'desc')
+                                }
+                                
+                            }}>
+                                    <option value='rating' style={{ background: !theme ? "#191b1d" : "white", fontSize: "15px" }}>Popularity: Most popular first</option>
+                                    <option value='str_priceL' style={{ background: !theme ? "#191b1d" : "white", fontSize: "15px" }}>Total Price: Lowest first</option>
+                                    <option value='str_priceH' style={{ background: !theme ? "#191b1d" : "white", fontSize: "15px" }}>Total Price: Higest first</option>
+                                    <option value='price_per_dayL' style={{ background: !theme ? "#191b1d" : "white", fontSize: "15px" }}>Price/Day: Lowest first</option>
+                                    <option value='price_per_dayH' style={{ background: !theme ? "#191b1d" : "white", fontSize: "15px" }}>Price/Day: Higest first</option>
+                                    <option value='tour_lengthS' style={{ background: !theme ? "#191b1d" : "white", fontSize: "15px" }}>Duration: Sortest first</option>
+                                    <option value='tour_lengthL' style={{ background: !theme ? "#191b1d" : "white", fontSize: "15px" }}>Duration: Longest first</option>
+                                    <option value='reviews' style={{ background: !theme ? "#191b1d" : "white", fontSize: "15px" }}>Reviews: Most reviewed</option>
+                                    <option value='save_price' style={{ background: !theme ? "#191b1d" : "white", fontSize: "15px" }}>Biggest Deals: Higest savings</option>
                                 </Select>
                             </Box>
                             <Box mt={'25px'} border={'1px solid #DCDCDC'} borderRadius={'10px'}>

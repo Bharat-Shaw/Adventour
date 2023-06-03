@@ -1,6 +1,6 @@
 import {
   Box, Flex, Text, Input, Image, InputGroup, InputLeftElement, Popover, PopoverTrigger,
-  Button, PopoverContent, PopoverHeader,PopoverBody, HStack, useDisclosure, Drawer, 
+  Button, PopoverContent, PopoverHeader, PopoverBody, HStack, useDisclosure, Drawer,
   DrawerOverlay, DrawerContent, DrawerCloseButton, DrawerHeader, DrawerBody, Divider
 } from '@chakra-ui/react'
 import Logo from './Logos/LogoPic.png'
@@ -10,23 +10,40 @@ import { CgProfile } from "react-icons/cg";
 import {
   faMessage, faPercent, faCamera, faLocationDot, faBars, faArrowRightFromBracket, faSliders,
   faStar, faHeart, faTicket, faEnvelopeOpen, faCircleUser, faFontAwesome, faWandMagicSparkles,
-  faPersonHiking, faShip, faBicycle, faUtensils, faFilm, faCompass,faEnvelope, faPhone, faEarthAmericas
+  faPersonHiking, faShip, faBicycle, faUtensils, faFilm, faCompass, faEnvelope, faPhone, faEarthAmericas
 } from '@fortawesome/free-solid-svg-icons'
 import { useDispatch, useSelector } from 'react-redux';
-import { Link,useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { onAuthStateChanged } from 'firebase/auth'
 import { auth } from '../Firebase/Firebase'
 import { signOut } from 'firebase/auth';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 
 function NavBar() {
   const theme = useSelector(state => !state.theme);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
   const { currentUser } = useSelector(state => state);
   const name = currentUser?.displayName;
+  const {location}=useParams()
+  const [search, setsearch] = useState('')
+  const limit=useSelector((state)=>state.limit);
+
+  function searchfunc(value){
+    axios.get(`https://weak-rose-seahorse-tutu.cyclic.app/api/${location}?q=${value}`)
+    .then((res)=>{
+      dispatch({type:'LIST', payload:res.data})
+    })
+  }
+
+  function listfunc(limit){
+    axios.get(`https://weak-rose-seahorse-tutu.cyclic.app/api/${location}?_limit=${limit}`)
+      .then((res) => {
+        dispatch({type:'LIST', payload:res.data})
+      })
+  }
 
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, (user) => {
@@ -53,7 +70,19 @@ function NavBar() {
               <InputLeftElement pointerEvents='none'>
                 <SearchIcon color={theme ? "#101214" : "white"} />
               </InputLeftElement>
-              <Input type='text' placeholder='Where do you want to go' />
+              <Input type='text' placeholder='Where do you want to go'
+                onChange={(e) => {
+                  setsearch(e.target.value);
+                }}
+                onKeyDown={(e) => { 
+                  if (e.key === 'Enter' && e.target.value !== ''){
+                  searchfunc(search);
+                }else if(e.target.value === '' && e.key === 'Enter'){
+                  listfunc(limit);
+                }
+                
+              }}
+              />
             </InputGroup>
           </Box>
           <Flex alignItems={"center"} w={"40%"} justifyContent={"space-between"} ml={"20px"} display={{ base: 'none', md: 'none', lg: 'flex' }} >
@@ -201,7 +230,7 @@ function NavBar() {
               </PopoverContent>
             </Popover>
             <Box>
-              <HStack display={currentUser? "block" : "none"}>
+              <HStack display={currentUser ? "block" : "none"}>
                 {/*-------- After login Popover --------*/}
                 <Popover trigger={"hover"} >
                   <PopoverTrigger>
@@ -230,7 +259,7 @@ function NavBar() {
                         <Button colorScheme='none' my={"5px"} color={theme ? "black" : "white"}>
                           <FontAwesomeIcon icon={faSliders} fontSize={"20px"} />&nbsp;&nbsp; Account Settings
                         </Button>
-                        <Button colorScheme='none' my={"5px"} color={theme ? "black" : "white"} onClick={()=>{signOut(auth)}}>
+                        <Button colorScheme='none' my={"5px"} color={theme ? "black" : "white"} onClick={() => { signOut(auth) }}>
                           <FontAwesomeIcon icon={faArrowRightFromBracket} fontSize={"20px"} />&nbsp;&nbsp; Logout
                         </Button>
                       </Flex>
@@ -240,7 +269,7 @@ function NavBar() {
               </HStack>
 
               {/*-------- Before login Popover --------*/}
-              <HStack display={currentUser? "none" : "block"}>
+              <HStack display={currentUser ? "none" : "block"}>
                 <Popover trigger={"hover"} >
                   <PopoverTrigger>
                     <Button colorScheme='none' fontWeight={'700'} color={"#3DC6EF"} fontSize={"17px"} px={"-10px"} ml={'20px'}>Login</Button>
@@ -250,10 +279,10 @@ function NavBar() {
                     <Divider color={'gray'} />
                     <PopoverBody w={"180px"}>
                       <Flex flexDirection={"column"} alignItems={"start"} >
-                        <Button onClick={() => {navigate('/login')}} colorScheme='none' fontSize={'16px'} fontWeight={'700'} py={'20px'} w={'60%'} m={'auto'} mt={'15px'} color={theme ? "white" : "black"} bg={theme ? "#008cc9" : "#3DC6EF"}>
+                        <Button onClick={() => { navigate('/login') }} colorScheme='none' fontSize={'16px'} fontWeight={'700'} py={'20px'} w={'60%'} m={'auto'} mt={'15px'} color={theme ? "white" : "black"} bg={theme ? "#008cc9" : "#3DC6EF"}>
                           Log In
                         </Button>
-                        <Button onClick={() => {navigate('/signup')}} colorScheme='none' fontSize={'16px'} fontWeight={'700'} py={'20px'} w={'60%'} m={'auto'} my={'15px'} color={theme ? "white" : "black"} bg={theme ? "#008cc9" : "#3DC6EF"}>
+                        <Button onClick={() => { navigate('/signup') }} colorScheme='none' fontSize={'16px'} fontWeight={'700'} py={'20px'} w={'60%'} m={'auto'} my={'15px'} color={theme ? "white" : "black"} bg={theme ? "#008cc9" : "#3DC6EF"}>
                           Sign Up
                         </Button>
                       </Flex>
@@ -264,14 +293,14 @@ function NavBar() {
               </HStack>
             </Box>
           </Flex>
-          <Box display={currentUser? "block" : "none"}>
+          <Box display={currentUser ? "block" : "none"}>
             <Box display={{ base: 'flex', md: 'flex', lg: 'none' }}>
-              <HemBurgerMenuLogedIn theme={theme} name={name}/>
+              <HemBurgerMenuLogedIn theme={theme} name={name} />
             </Box>
           </Box>
-          <Box display={currentUser? "none" : "block"}>
+          <Box display={currentUser ? "none" : "block"}>
             <Box display={{ base: 'flex', md: 'flex', lg: 'none' }}>
-              <HemBurgerMenuLogedOut theme={theme} navigate={navigate}/>
+              <HemBurgerMenuLogedOut theme={theme} navigate={navigate} />
             </Box>
           </Box>
 
@@ -336,7 +365,7 @@ function HemBurgerMenuLogedIn({ theme, name }) {
               <Button colorScheme='none' my={"5px"} color={theme ? "black" : "white"}>
                 <FontAwesomeIcon icon={faSliders} fontSize={"22px"} />&nbsp;&nbsp; Account Settings
               </Button>
-              <Button colorScheme='none' my={"5px"} color={theme ? "black" : "white"} onClick={()=> handleSignout()}>
+              <Button colorScheme='none' my={"5px"} color={theme ? "black" : "white"} onClick={() => handleSignout()}>
                 <FontAwesomeIcon icon={faArrowRightFromBracket} fontSize={"22px"} />&nbsp;&nbsp; Logout
               </Button>
             </Flex>
@@ -392,10 +421,10 @@ function HemBurgerMenuLogedOut({ theme, navigate }) {
             <Text textAlign={"center"} fontSize={"20px"} fontWeight={"700"} mt={'22px'}>Welcome</Text>
             <Text textAlign={"center"} fontSize={"15px"} fontWeight={"700"} mt={'15px'} px={'10px'}> Please Login or Signup <br />from here </Text>
             <Flex flexDirection={"column"} alignItems={"start"} py={"15px"}>
-              <Button onClick={() => {navigate('/login')}} colorScheme='none' fontSize={'20px'} fontWeight={'700'} py={'24px'} w={'70%'} m={'auto'} mt={'35px'} color={theme ? "white" : "black"} bg={theme ? "#008cc9" : "#3DC6EF"}>
+              <Button onClick={() => { navigate('/login') }} colorScheme='none' fontSize={'20px'} fontWeight={'700'} py={'24px'} w={'70%'} m={'auto'} mt={'35px'} color={theme ? "white" : "black"} bg={theme ? "#008cc9" : "#3DC6EF"}>
                 Log In
               </Button>
-              <Button onClick={() => {navigate('/signup')}} colorScheme='none' fontSize={'20px'} fontWeight={'700'} py={'24px'} w={'70%'} m={'auto'} my={'35px'} color={theme ? "white" : "black"} bg={theme ? "#008cc9" : "#3DC6EF"}>
+              <Button onClick={() => { navigate('/signup') }} colorScheme='none' fontSize={'20px'} fontWeight={'700'} py={'24px'} w={'70%'} m={'auto'} my={'35px'} color={theme ? "white" : "black"} bg={theme ? "#008cc9" : "#3DC6EF"}>
                 Sign Up
               </Button>
 

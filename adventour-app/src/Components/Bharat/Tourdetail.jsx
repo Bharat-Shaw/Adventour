@@ -24,6 +24,7 @@ import NavBar from '../Vivek/NavBar';
 import { Link, useParams } from 'react-router-dom'
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
+import Detailnav from './Detailnav';
 
 
 function Tourdetail() {
@@ -63,7 +64,7 @@ function Tourdetail() {
   return (
     <Box bgColor={theme ? '#101214' : 'gray.100'} minH={'100vh'}>
       <Toggle  />
-      <NavBar/>
+      <Detailnav/>
 
 
       <Box m={'auto'} pt={'100px'} w={{ base: '90%', md: '76%', lg: '76%' }} color={theme ? 'white' : 'blackAlpha.800'}>
