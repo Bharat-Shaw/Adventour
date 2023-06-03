@@ -8,20 +8,20 @@ function Thankyou() {
     const [sec, setsec] = useState(5);
     const ref = useRef(null);
 
-    // useEffect(()=>{
+    useEffect(()=>{
 
-    //    ref.current= setInterval(()=>{
-    //         setsec(pre=>pre-1);
-    //     },1000)
+       ref.current= setInterval(()=>{
+            setsec(pre=>pre-1);
+        },1000)
 
-    //     setTimeout(()=>{
-    //         navigate('/')
-    //     },6000)
+        setTimeout(()=>{
+            navigate('/')
+        },6000)
 
-    //     return ()=>{
-    //         clearTimeout(ref.current)
-    //     }
-    // },[])
+        return ()=>{
+            clearTimeout(ref.current)
+        }
+    },[])
 
     return (
         <Flex h={'100vh'} bg={'gray.200'} py={'60px'} 
