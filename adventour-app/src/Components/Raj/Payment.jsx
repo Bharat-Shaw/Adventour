@@ -1,5 +1,5 @@
 
-import { Box, Button, Checkbox, Flex, FormControl, HStack, IconButton, Image, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, PinInput, PinInputField, Radio, RadioGroup, Select, Spacer, Text, VStack, useDisclosure, useToast } from '@chakra-ui/react'
+import { Box, Button, Checkbox, Flex, FormControl, HStack, IconButton, Image, Input, Modal, ModalBody, ModalContent, ModalOverlay, PinInput, PinInputField, Radio, RadioGroup, Select, Spacer, Text, VStack, useDisclosure, useToast } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
 import { AiFillCheckCircle, AiFillTag } from 'react-icons/ai';
 import { BsFill1SquareFill, BsFill2SquareFill, BsFill3SquareFill, BsFill4SquareFill, BsFillInfoCircleFill, BsLightningChargeFill } from 'react-icons/bs';
@@ -8,7 +8,7 @@ import { GrFormAdd, GrFormSubtract, GrRadialSelected } from 'react-icons/gr';
 import Toggle from '../Bharat/toggle';
 import { TfiHeadphoneAlt } from 'react-icons/tfi';
 import Logo from '../Vivek/Logos/LogoPic.png';
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux';
 
 function Payment() {
@@ -20,14 +20,30 @@ function Payment() {
   const len = storedata?.destinations?.length
   const [traveller, settraveller] = useState(1);
   const toast = useToast()
+  const navigate = useNavigate()
+  const [chk, setchk]=useState(false)
   const [pin, setpin] = useState({
     first: '',
     sec: '',
     third: '',
     fourth: ''
   })
-  const navigate = useNavigate()
-  const [chk, setchk]=useState(false)
+  const [formdata, setformdata] = useState({
+    title: '',
+    first_N: '',
+    last_N: '',
+    email: '',
+    phone:'',
+    day:'',
+    month:'',
+    year:'',
+    gender:'',
+    nationality:'',
+    c_holder:'',
+    c_number:'',
+    exp_day:'',
+    cvv:''
+  })
 
   useEffect(() => {
 
@@ -128,37 +144,38 @@ function Payment() {
                 <Text px={'10px'} fontWeight={'700'}>Lead Traveller</Text>
                 <Text px={'10px'}>This traveller will serve as the contact person for the booking.</Text>
               </Box>
-              <RadioGroup py={'35px'} isRequired>
+              {console.log(formdata)}
+              <RadioGroup py={'35px'} >
                 <HStack >
                   <Text fontWeight={'700'} fontSize={'14px'} px={'10px'}>Title*</Text>
-                  <Radio value='Mr.'>Mr.</Radio>
-                  <Radio value='Ms.'>Ms.</Radio>
-                  <Radio value='Mrs.'>Mrs.</Radio>
-                  <Radio value='Miss'>Miss</Radio>
+                  <Radio value='Mr.' onChange={(e)=>{setformdata({...formdata, title:e.target.value})}}>Mr.</Radio>
+                  <Radio value='Ms.' onChange={(e)=>{setformdata({...formdata, title:e.target.value})}}>Ms.</Radio>
+                  <Radio value='Mrs.' onChange={(e)=>{setformdata({...formdata, title:e.target.value})}}>Mrs.</Radio>
+                  <Radio value='Miss' onChange={(e)=>{setformdata({...formdata, title:e.target.value})}}>Miss</Radio>
                 </HStack>
               </RadioGroup>
               <FormControl ml={'13px'} >
                 <VStack align={'left'}>
                   <label style={{ marginBottom: '-19px', marginLeft: "15px", fontSize: "14px", fontWeight: "700", backgroundColor: theme ? '#191b1d' : 'white', zIndex: "1", width: "90px", paddingLeft: "6px" }}>First Name*</label>
-                  <Input isRequired w={{ base: "80%", md: "45%", lg: "45%" }} size={'lg'} border={'1px solid silver'} type='text' />
+                  <Input onChange={(e)=>{setformdata({...formdata, first_N:e.target.value})}} w={{ base: "80%", md: "45%", lg: "45%" }} size={'lg'} border={'1px solid silver'} type='text' />
                 </VStack>
                 <VStack align={'left'} my={'20px'}>
                   <label style={{ marginBottom: '-19px', marginLeft: "15px", fontSize: "14px", fontWeight: "700", backgroundColor: theme ? '#191b1d' : 'white', zIndex: "1", width: "85px", paddingLeft: "6px" }}>Last Name*</label>
-                  <Input isRequired w={{ base: "80%", md: "45%", lg: "45%" }} size={'lg'} border={'1px solid silver'} type='text' />
+                  <Input  onChange={(e)=>{setformdata({...formdata, last_N:e.target.value})}} w={{ base: "80%", md: "45%", lg: "45%" }} size={'lg'} border={'1px solid silver'} type='text' />
                 </VStack>
                 <VStack align={'left'}>
                   <label style={{ marginBottom: '-19px', marginLeft: "15px", fontSize: "14px", fontWeight: "700", backgroundColor: theme ? '#191b1d' : 'white', zIndex: "1", width: "55px", paddingLeft: "6px" }}>Email*</label>
-                  <Input isRequired w={{ base: "80%", md: "45%", lg: "45%" }} size={'lg'} border={'1px solid silver'} type='email' />
+                  <Input onChange={(e)=>{setformdata({...formdata, email:e.target.value})}} w={{ base: "80%", md: "45%", lg: "45%" }} size={'lg'} border={'1px solid silver'} type='email' />
                 </VStack>
                 <VStack align={'left'} my={'20px'}>
                   <label style={{ marginBottom: '-19px', marginLeft: "15px", fontSize: "14px", fontWeight: "700", backgroundColor: theme ? '#191b1d' : 'white', zIndex: "1", width: "115px", paddingLeft: "6px" }}>Phone Number*</label>
-                  <Input isRequired w={{ base: "80%", md: "45%", lg: "45%" }} size={'lg'} border={'1px solid silver'} type='tel' placeholder='e.g. +91 9876543210' />
+                  <Input onChange={(e)=>{setformdata({...formdata, phone:e.target.value})}} w={{ base: "80%", md: "45%", lg: "45%" }} size={'lg'} border={'1px solid silver'} type='tel' placeholder='e.g. +91 9876543210' />
                 </VStack>
                 <Text fontWeight={'700'} mb={'15px'} fontSize={'16px'}>Date of Birth*</Text>
                 <HStack>
                   <Box position={'relative'}>
                     <label style={{ position: 'absolute', top: '-9px', marginLeft: "15px", fontSize: "14px", fontWeight: "700", backgroundColor: theme ? '#191b1d' : 'white', zIndex: "4", width: "35px", paddingLeft: "6px" }}>Day</label>
-                    <Select isRequired size={'lg'} w={'80px'} border={'1px solid silver'}>
+                    <Select onChange={(e)=>{setformdata({...formdata, day:e.target.value})}} size={'lg'} w={'80px'} border={'1px solid silver'}>
                       <option value="" style={{ backgroundColor: theme ? '#191b1d' : 'white' }}> </option>
                       <option value="01" style={{ backgroundColor: theme ? '#191b1d' : 'white' }}>01</option>
                       <option value="02" style={{ backgroundColor: theme ? '#191b1d' : 'white' }}>02</option>
@@ -195,7 +212,7 @@ function Payment() {
                   </Box>
                   <Box position={'relative'}>
                     <label style={{ position: 'absolute', top: '-9px', marginLeft: "15px", fontSize: "14px", fontWeight: "700", backgroundColor: theme ? '#191b1d' : 'white', zIndex: "4", width: "58px", paddingLeft: "6px" }}>Month</label>
-                    <Select bg={theme ? '#191b1d' : 'white'} isRequired size={'lg'} w={{ base: '100px', md: '145px', lg: '145px' }} border={'1px solid silver'} >
+                    <Select onChange={(e)=>{setformdata({...formdata, month:e.target.value})}} bg={theme ? '#191b1d' : 'white'} size={'lg'} w={{ base: '100px', md: '145px', lg: '145px' }} border={'1px solid silver'} >
                       <option value="00" style={{ backgroundColor: theme ? '#191b1d' : 'white' }}> </option>
                       <option value="01" style={{ backgroundColor: theme ? '#191b1d' : 'white' }}>January</option>
                       <option value="02" style={{ backgroundColor: theme ? '#191b1d' : 'white' }}>February</option>
@@ -213,7 +230,7 @@ function Payment() {
                   </Box>
                   <Box position={'relative'}>
                     <label style={{ position: 'absolute', top: '-9px', marginLeft: "15px", fontSize: "14px", fontWeight: "700", backgroundColor: theme ? '#191b1d' : 'white', zIndex: "4", width: "40px", paddingLeft: "6px" }}>Year</label>
-                    <Select isRequired size={'lg'}  w={'80px'} border={'1px solid silver'}>
+                    <Select onChange={(e)=>{setformdata({...formdata, year:e.target.value})}} size={'lg'}  w={'80px'} border={'1px solid silver'}>
                     <option value="" style={{ backgroundColor: theme ? '#191b1d' : 'white' }}></option>
                       <option value="1988" style={{ backgroundColor: theme ? '#191b1d' : 'white' }}>1988</option>
                       <option value="1989" style={{ backgroundColor: theme ? '#191b1d' : 'white' }}>1989</option>
@@ -244,13 +261,13 @@ function Payment() {
                 <RadioGroup py={'35px'} isRequired>
                   <HStack>
                     <Text fontWeight={'700'} fontSize={'15px'} px={'10px'}>Gender*</Text>
-                    <Radio value='male'>Male</Radio>
-                    <Radio value='female'>Female</Radio>
+                    <Radio value='male' onChange={(e)=>{setformdata({...formdata, gender:e.target.value})}}>Male</Radio>
+                    <Radio value='female' onChange={(e)=>{setformdata({...formdata, gender:e.target.value})}}>Female</Radio>
                   </HStack>
                 </RadioGroup>
                 <Box position={'relative'}>
                   <label style={{ position: 'absolute', top: '-9px', marginLeft: "15px", fontSize: "14px", fontWeight: "700", backgroundColor: theme ? '#191b1d' : 'white', zIndex: "4", width: "90px", paddingLeft: "6px" }}>Nationality*</label>
-                  <Select isRequired w={'45%'} size={'lg'} border={'1px solid silver'} >
+                  <Select onChange={(e)=>{setformdata({...formdata, nationality:e.target.value})}} w={'45%'} size={'lg'} border={'1px solid silver'} >
                     <option value="" style={{ backgroundColor: theme ? '#191b1d' : 'white' }}></option>
                     <option value="India" style={{ backgroundColor: theme ? '#191b1d' : 'white' }}>India</option>
                     <option value="Russia" style={{ backgroundColor: theme ? '#191b1d' : 'white' }}>Russia</option>
@@ -299,21 +316,21 @@ function Payment() {
                   <Box p={'20px 15px 30px 15px'}>
                     <Flex direction={'column'}>
                       <label style={{ marginBottom: '-10px', marginLeft: "15px", fontSize: "14px", fontWeight: "700", backgroundColor: theme ? '#191b1d' : 'white', zIndex: "4", width: "125px", paddingLeft: "5px" }}>Cardholder Name</label>
-                      <Input isRequired w={{ base: "80%", md: "45%", lg: "45%" }} size='lg' border={'1px solid silver'} />
+                      <Input onChange={(e)=>{setformdata({...formdata, c_holder:e.target.value})}} w={{ base: "80%", md: "45%", lg: "45%" }} size='lg' border={'1px solid silver'} />
                     </Flex>
                     <Flex direction={'column'} my={'20px'}>
                       <label style={{ marginBottom: '-10px', marginLeft: "15px", fontSize: "14px", fontWeight: "700", backgroundColor: theme ? '#191b1d' : 'white', zIndex: "4", width: "110px", paddingLeft: "5px" }}>Card Number *</label>
-                      <Input isRequired w={{ base: "80%", md: "45%", lg: "45%" }} size='lg' border={'1px solid silver'} placeholder='**** **** **** ****' />
+                      <Input onChange={(e)=>{setformdata({...formdata, c_number:e.target.value})}} w={{ base: "80%", md: "45%", lg: "45%" }} size='lg' border={'1px solid silver'} placeholder='**** **** **** ****' />
                     </Flex>
 
                     <Flex direction={{ base: "column", md: "row", lg: "row" }}>
                       <Flex direction={'column'} w={{ base: "60%", md: "20%", lg: "20%" }}>
                         <label style={{ marginBottom: '-10px', marginLeft: "15px", fontSize: "14px", fontWeight: "700", backgroundColor: theme ? '#191b1d' : 'white', zIndex: "4", width: "95px", paddingLeft: "3px" }}>Expiry Date *</label>
-                        <Input isRequired w={"100%"} size='lg' border={'1px solid silver'} placeholder='MM / YY' />
+                        <Input onChange={(e)=>{setformdata({...formdata, exp_day:e.target.value})}} w={"100%"} size='lg' border={'1px solid silver'} placeholder='MM / YY' />
                       </Flex>
                       <Flex direction={'column'} w={{ base: "60%", md: "20%", lg: "20%" }} ml={{ base: "0%", md: '5%', lg: "5%" }} mt={{ base: "15px", md: "0px", lg: "0px" }}>
                         <label style={{ marginBottom: '-10px', marginLeft: "15px", fontSize: "14px", fontWeight: "700", backgroundColor: theme ? '#191b1d' : 'white', zIndex: "4", width: "45px", paddingLeft: "3px" }}>CVV *</label>
-                        <Input isRequired w={"100%"} size='lg' border={'1px solid silver'} placeholder='1 2 3' />
+                        <Input onChange={(e)=>{setformdata({...formdata, cvv:e.target.value})}} w={"100%"} size='lg' border={'1px solid silver'} placeholder='1 2 3' />
                       </Flex>
                     </Flex>
                   </Box>
@@ -327,14 +344,27 @@ function Payment() {
                   </Flex>
                 </Box>
                 <Button isDisabled={!chk} w={'100%'} onClick={() => {
-                  onOpen();
-                  toast({
-                    description: "Your OTP is 5637",
-                    status: 'success',
-                    position: 'top',
-                    duration: 3000,
-                    isClosable: true,
-                  });
+                  
+                  if(!formdata.first_N || !formdata.last_N || !formdata.title || !formdata.email || !formdata.phone || !formdata.day || !formdata.month || !formdata.year || !formdata.gender || !formdata.nationality || !formdata.c_holder || !formdata.c_number || !formdata.exp_day || !formdata.cvv){
+                    toast({
+                      title: 'Please fill all details',
+                      status: 'warning',
+                      position: 'top',
+                      duration: 3000,
+                      isClosable: true,
+                    });
+                  }else {
+                    onOpen();
+                    toast({
+                      description: "Your OTP is 5637",
+                      status: 'success',
+                      position: 'top',
+                      duration: 3000,
+                      isClosable: true,
+                    });
+                  }
+
+                  
                 }} colorScheme='none' bg={'#008cc9'} py={'30px'} mt={'30px'}>Book Spaces</Button>
                 <Modal isOpen={isOpen} >
                   <ModalOverlay />

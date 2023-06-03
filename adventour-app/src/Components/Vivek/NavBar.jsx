@@ -7,7 +7,6 @@ import Logo from './Logos/LogoPic.png'
 import { SearchIcon } from '@chakra-ui/icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { CgProfile } from "react-icons/cg";
-import { FaUserCircle } from "react-icons/fa";
 import {
   faMessage, faPercent, faCamera, faLocationDot, faBars, faArrowRightFromBracket, faSliders,
   faStar, faHeart, faTicket, faEnvelopeOpen, faCircleUser, faFontAwesome, faWandMagicSparkles,
@@ -28,7 +27,6 @@ function NavBar() {
 
   const { currentUser } = useSelector(state => state);
   const name = currentUser?.displayName;
-  console.log(name)
 
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, (user) => {
