@@ -42,7 +42,10 @@ function Tourdetail() {
     'https://cdn.tourradar.com/s3/tour/1500x800/14263_4a0e0afd.jpg'];
   const [image, setimage] = useState(imgarr[0])
   const [wish, setwish]=useState(false)
-
+  const [query, setquery]=useState({
+    title:'',
+    des:''
+  })
   useEffect(() => {
     axios.get(`https://weak-rose-seahorse-tutu.cyclic.app/api/${location}/${id}`)
     .then((res)=>{dispatch({type:'DETAIL', payload:res.data})})
@@ -120,20 +123,32 @@ function Tourdetail() {
                 <ModalCloseButton />
                 <ModalBody pb={6}>
                   <Text fontWeight={600} mb={'15px'}>Title:</Text>
-                  <Input mb={'15px'} placeholder='title' />
+                  <Input mb={'15px'} placeholder='title' onChange={(e)=>{setquery({...query, title:e.target.value})}}/>
                   <Text mb={'15px'} fontWeight={600}>Description:</Text>
-                  <Textarea placeholder='description........' />
+                  <Textarea placeholder='description........' onChange={(e)=>{setquery({...query, des:e.target.value})}}/>
                 </ModalBody>
                 <ModalFooter>
                   <Button mb={'15px'} color={'white'} colorScheme='cyan' mr={3} onClick={() => {
-                    onClose();
-                    toast({
-                      title: 'Submitted.',
-                      description: "Your query has been submitted.",
-                      status: 'success',
-                      duration: 3000,
-                      isClosable: true,
-                    })
+                    
+                    if(query.title!=='' && query.des!==''){
+                      onClose();
+                      toast({
+                        title: 'Submitted.',
+                        description: "Your query has been submitted.",
+                        status: 'success',
+                        duration: 3000,
+                        isClosable: true,
+                      })
+                    }else {
+                      toast({
+                        title: 'Fill all inputs',
+                        status: 'error',
+                        position: 'top',
+                        duration: 3000,
+                        isClosable: true,
+                      })
+                    }
+                    
                   }}>
                     Submit
                   </Button>
@@ -153,7 +168,7 @@ function Tourdetail() {
               icon={<AiOutlineCaretRight size={'20px'} />} />
             <div style={{ height: '100%', display: 'flex', translate: `${val}px 0px`, transition: '1s' }}>
               {storedata?.places_see_img?.map((el)=>{
-                return <Image borderRadius={'30px'} p={'10px'} w={'60%'} height='100%' src={el} />
+                return <Image borderRadius={'30px'} p={'10px'} w={'400px'} height='100%' src={el} />
               })}
             </div>
           </Box>

@@ -45,12 +45,12 @@ function Navbar(props) {
                             style={({ isActive }) => {
                                 return { color: isActive ? '' : '' }
                             }}
-                        ><Text fontWeight='600'>Categorie</Text></NavLink>
+                        ><Text fontWeight='600'>Categories</Text></NavLink>
                         <NavLink to={'#'}
                             style={({ isActive }) => {
                                 return { color: isActive ? '' : '' }
                             }}
-                        ><Text fontWeight='600' minW='5rem'>About Us</Text></NavLink>
+                        ><Text fontWeight='600' minW='5rem'>About us</Text></NavLink>
 
                         {
                             currentUser ? <>
