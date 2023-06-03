@@ -9,23 +9,23 @@ import { GiStarsStack } from "react-icons/gi";
 import { Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import SmallScreenSortingDrawer from './SmallScreenSortingDrawer';
+import axios from 'axios';
 
 function TourlistBody() {
-    const data=useSelector((state)=>state.data);
-    const {location}=useParams();
-    const dispatch=useDispatch();
-    const theme=useSelector(state=>state.theme);
-    console.log(data[0]?.region)
+    const data = useSelector((state) => state.data);
+    const { location } = useParams();
+    const dispatch = useDispatch();
+    const theme = useSelector(state => state.theme);
 
-    useEffect(()=>{
+    useEffect(() => {
         window.scrollTo({
-            top: 0, 
-          });
-    },[])
+            top: 0,
+        });
+    }, [])
 
     const mainBoxStyles = {
         w: { base: '92%', md: '92%', lg: '76%' },
-        bg: theme ? "#101214":"gray.100",
+        bg: theme ? "#101214" : "gray.100",
         py: '3px',
         m: 'auto',
         pt: '20px'
@@ -40,7 +40,7 @@ function TourlistBody() {
     }
 
     const pathStyles = {
-        color: theme ?  "whiteAlpha.700" : "blackAlpha.700" ,
+        color: theme ? "whiteAlpha.700" : "blackAlpha.700",
         fontSize: "14px",
         fontWeight: "600"
     }
@@ -58,8 +58,8 @@ function TourlistBody() {
         p: "14px 24px",
         borderRadius: "5px",
         // bg: '#3DC6EF',
-        color: theme ?  "black": "white" ,
-        bg: theme ?  "#3DC6EF":"#008cc9" ,
+        color: theme ? "black" : "white",
+        bg: theme ? "#3DC6EF" : "#008cc9",
         alignItems: "center",
     }
 
@@ -81,14 +81,14 @@ function TourlistBody() {
     const detailsBox_2_Styles = {
         w: '70%',
         fontSize: '13px',
-        color: theme ? "whiteAlpha.700":"blackAlpha.700" ,
+        color: theme ? "whiteAlpha.700" : "blackAlpha.700",
         py: '1px'
     }
 
     const flex_Card_Styles = {
         mb: '35px',
         justifyContent: 'space-between',
-        bg: theme ? "#191b1d":"white" ,
+        bg: theme ? "#191b1d" : "white",
         borderRadius: '20px',
         display: { base: 'block', md: 'flex', lg: 'flex' }
     }
@@ -106,7 +106,7 @@ function TourlistBody() {
     }
 
     const card_Mid_Box_Text_I = {
-        color: theme ? "#3DC6EF":"#008cc9" ,
+        color: theme ? "#3DC6EF" : "#008cc9",
         fontSize: { base: '12.5px', md: "14px", lg: '15.5px' },
         fontWeight: { base: '500', md: '700', lg: '700' }
     }
@@ -118,7 +118,7 @@ function TourlistBody() {
 
     const card_Mid_Box_Text_III = {
         fontSize: { base: "12px", md: "13px", lg: '13px' },
-        color: theme ? "#3DC6EF":"#008cc9"
+        color: theme ? "#3DC6EF" : "#008cc9"
     }
 
     const card_Right_Box = {
@@ -165,12 +165,22 @@ function TourlistBody() {
     }
 
     const view_Tour_Button = {
-        bg: theme ? "#3DC6EF" : "#008cc9" ,
+        bg: theme ? "#3DC6EF" : "#008cc9",
         w: { base: '100%', md: '100%', lg: '100%' },
         mt: '20px',
         fontWeight: '700',
         mb: { base: '10px' },
         color: theme ? "black" : "white"
+    }
+    const limit=useSelector((state)=>state.limit);
+    // https://weak-rose-seahorse-tutu.cyclic.app/api/Asia?_sort=price_per_day&_order=asc
+
+    function sortfunc(value, sortval) {
+        axios.get(`https://weak-rose-seahorse-tutu.cyclic.app/api/${location}?_limit=${limit}&_sort=${value}&_order=${sortval}`)
+            .then((res) => {
+                console.log(res.data)
+                dispatch({ type: 'LIST', payload: res.data })
+            })
     }
 
 
@@ -202,16 +212,45 @@ function TourlistBody() {
                             Sort & filter
                         </Flex>
                         <Box mt={'25px'} >
-                            <Select bg={theme ? "#191b1d" : "white"} size='lg' border={'none'}>
-                                <option value='PMPF' style={{ background: theme ? "#191b1d" : "white", fontSize: "15px" }}>Popularity: Most popular first</option>
-                                <option value='TP-LF' style={{ background: theme ? "#191b1d" : "white", fontSize: "15px" }}>Total Price: Lowest first</option>
-                                <option value='TP-HF' style={{ background: theme ? "#191b1d" : "white", fontSize: "15px" }}>Total Price: Higest first</option>
-                                <option value='P/D-LF' style={{ background: theme ? "#191b1d" : "white", fontSize: "15px" }}>Price/Day: Lowest first</option>
-                                <option value='P/D-HF' style={{ background: theme ?"#191b1d" : "white", fontSize: "15px" }}>Price/Day: Higest first</option>
-                                <option value='D-SF' style={{ background: theme ? "#191b1d" : "white", fontSize: "15px" }}>Duration: Sortest first</option>
-                                <option value='D-LF' style={{ background: theme ? "#191b1d" : "white", fontSize: "15px" }}>Duration: Longest first</option>
-                                <option value='R-MR' style={{ background: theme ?"#191b1d" : "white", fontSize: "15px" }}>Reviews: Most reviewed</option>
-                                <option value='BG-HS' style={{ background: theme ? "#191b1d" : "white", fontSize: "15px" }}>Biggest Deals: Higest savings</option>
+                            <Select bg={theme ? "#191b1d" : "white"} size='lg' border={'none'} onChange={(e) => {
+                                if(e.target.value==='rating'){
+                                    sortfunc('rating', 'desc')
+                                }
+                                else if(e.target.value==='str_priceL'){
+                                    sortfunc('str_price', 'asc')
+                                }
+                                else if(e.target.value==='str_priceH'){
+                                    sortfunc('str_price', 'desc')
+                                }
+                                else if(e.target.value==='price_per_dayL'){
+                                    sortfunc('price_per_day', 'asc')
+                                }
+                                else if(e.target.value==='price_per_dayH'){
+                                    sortfunc('price_per_day', 'desc')
+                                }
+                                else if(e.target.value==='tour_lengthS'){
+                                    sortfunc('tour_length', 'asc')
+                                }
+                                else if(e.target.value==='tour_lengthL'){
+                                    sortfunc('tour_length', 'desc')
+                                }
+                                else if(e.target.value==='reviews'){
+                                    sortfunc('reviews', 'desc')
+                                }
+                                else if(e.target.value==='save_price'){
+                                    sortfunc('save_price', 'desc')
+                                }
+                                
+                            }}>
+                                <option value='rating' style={{ background: theme ? "#191b1d" : "white", fontSize: "15px" }}>Popularity: Most popular first</option>
+                                <option value='str_priceL' style={{ background: theme ? "#191b1d" : "white", fontSize: "15px" }}>Total Price: Lowest first</option>
+                                <option value='str_priceH' style={{ background: theme ? "#191b1d" : "white", fontSize: "15px" }}>Total Price: Higest first</option>
+                                <option value='price_per_dayL' style={{ background: theme ? "#191b1d" : "white", fontSize: "15px" }}>Price/Day: Lowest first</option>
+                                <option value='price_per_dayH' style={{ background: theme ? "#191b1d" : "white", fontSize: "15px" }}>Price/Day: Higest first</option>
+                                <option value='tour_lengthS' style={{ background: theme ? "#191b1d" : "white", fontSize: "15px" }}>Duration: Sortest first</option>
+                                <option value='tour_lengthL' style={{ background: theme ? "#191b1d" : "white", fontSize: "15px" }}>Duration: Longest first</option>
+                                <option value='reviews' style={{ background: theme ? "#191b1d" : "white", fontSize: "15px" }}>Reviews: Most reviewed</option>
+                                <option value='save_price' style={{ background: theme ? "#191b1d" : "white", fontSize: "15px" }}>Biggest Deals: Higest savings</option>
                             </Select>
                         </Box>
                         <Box mt={'25px'} borderRadius={'10px'} bg={theme ? "#191b1d" : "white"}>
@@ -270,7 +309,7 @@ function TourlistBody() {
                                         </AccordionButton>
                                     </h2>
                                     <AccordionPanel pb={4}>
-                                        <VStack alignItems={"start"} color={theme ? "white" :  "blackAlpha.700"}>
+                                        <VStack alignItems={"start"} color={theme ? "white" : "blackAlpha.700"}>
                                             <Checkbox size='lg'>June 2023</Checkbox>
                                             <Checkbox size='lg'>July 2023</Checkbox>
                                             <Checkbox size='lg'>Augest 2023</Checkbox>
@@ -386,7 +425,7 @@ function TourlistBody() {
                                 return (
                                     <Flex sx={flex_Card_Styles} minH={"240px"} key={ele.id}>
                                         {/*---- Left Box ----*/}
-                                        <Box w={{ base: '100%', md: '30%', lg: '30%' }} key={ele.id+1}>
+                                        <Box w={{ base: '100%', md: '30%', lg: '30%' }} key={ele.id + 1}>
                                             <Link to={`/tourdetail/${location}/${ele.id}`}>
                                                 <Image sx={main_Img_Styles} src={ele.main_image} alt="mainImg" />
                                             </Link>
@@ -486,11 +525,11 @@ function TourlistBody() {
                         </Box>
                     </Box>
                 </Flex>
-                        
+
             </Box >
-            <Center><Button isDisabled={data.length===20} color={theme ? "white" : "black"} colorScheme='none' onClick={()=>{dispatch({type:'LIMIT'})}} bg={theme ? "#008cc9" : "#3DC6EF"}>Load More</Button></Center> 
-            
-           
+            <Center><Button isDisabled={data.length === 20} color={theme ? "white" : "black"} colorScheme='none' onClick={() => { dispatch({ type: 'LIMIT' }) }} bg={theme ? "#008cc9" : "#3DC6EF"}>Load More</Button></Center>
+
+
         </Box >
     )
 }

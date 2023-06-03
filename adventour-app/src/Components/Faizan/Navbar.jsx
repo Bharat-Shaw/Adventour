@@ -19,8 +19,6 @@ function Navbar(props) {
 
     const { theme, currentUser } = useSelector(state => state);
 
-    console.log(currentUser)
-
     return (
         <Box p={{ base: '0 1.5rem', md: '0 3rem', lg: '0 4.5rem' }} color={theme ? 'darkgray' : 'blackAlpha.800'} bg={theme ? '#101214' : 'white'} justify='space-between'>
             <Flex p='1.2rem 0' align='center'>
@@ -110,12 +108,12 @@ function Navbar(props) {
                                     style={({ isActive }) => {
                                         return { color: isActive ? '' : '' }
                                     }}
-                                ><Text fontWeight='600'>Categorie</Text></NavLink>
+                                ><Text fontWeight='600'>Categories</Text></NavLink>
                                 <NavLink to={'#'}
                                     style={({ isActive }) => {
                                         return { color: isActive ? '' : '' }
                                     }}
-                                ><Text fontWeight='600' minW='5rem'>About Us</Text></NavLink>
+                                ><Text fontWeight='600' minW='5rem'>About us</Text></NavLink>
 
                                 {
                                     currentUser ? <>
