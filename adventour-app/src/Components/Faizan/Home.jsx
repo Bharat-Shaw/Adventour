@@ -497,7 +497,12 @@ function Home() {
             </Box>
 
             <Box p={{ base: '1rem 0', md: 'none', lg: 'none' }}>
-              <Button rightIcon={<ArrowForwardIcon />} bg={theme ? "#3DC6EF" : "#008cc9"} _hover={theme ? { bg: '#74d4f0' } : { bg: '#008cc9' }} color={theme ? 'black' : 'white'} borderRadius='0.8rem' p='0 2rem'><Text fontWeight='600'>Get Started</Text></Button>
+              <Button onClick={()=>{
+                window.scrollTo({
+                  top: 0, 
+                  behavior: 'smooth'
+                });
+              }} rightIcon={<ArrowForwardIcon />} bg={theme ? "#3DC6EF" : "#008cc9"} _hover={theme ? { bg: '#74d4f0' } : { bg: '#008cc9' }} color={theme ? 'black' : 'white'} borderRadius='0.8rem' p='0 2rem'><Text fontWeight='600'>Get Started</Text></Button>
             </Box>
           </Flex>
 
