@@ -29,6 +29,11 @@ function Home() {
   const theme = useSelector(state => state.theme);
 
   useEffect(()=>{
+
+    window.scrollTo({
+      top: 0, 
+    });
+
     const unsub = onAuthStateChanged(auth, (user) => {
       dispatch({type: 'CURRENTUSER', payload: user})
     })

@@ -148,7 +148,10 @@ function Tourdetail() {
                         isClosable: true,
                       })
                     }
-                    
+                    setquery({
+                      title:'',
+                      des:''
+                    })
                   }}>
                     Submit
                   </Button>
