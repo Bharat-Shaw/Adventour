@@ -30,6 +30,11 @@ function Payment() {
   const [chk, setchk]=useState(false)
 
   useEffect(() => {
+
+    window.scrollTo({
+      top: 0, 
+    });
+
     storedata?.destinations?.filter((el, i) => {
       if (i === 0) {
         setstart(el)
