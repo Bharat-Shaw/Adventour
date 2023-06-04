@@ -119,7 +119,7 @@ function Navbar(props) {
                                     currentUser ? <>
                                         <Popover>
                                             <PopoverTrigger>
-                                                <Button minW='6rem' colorScheme='none' bg={theme ? 'gray.800' : 'gray.200'} color='#008cc9' fontSize='1.2rem' fontWeight='700' borderRadius='0.8rem' p='0.5rem 0.5rem'>{currentUser.displayName}</Button>
+                                                <Button w='150px' colorScheme='none' bg={theme ? 'gray.800' : 'gray.200'} color='#008cc9' fontSize='1.2rem' fontWeight='700' borderRadius='0.8rem' p='0.5rem 0.5rem'>{currentUser.displayName}</Button>
                                             </PopoverTrigger>
                                             <PopoverContent w='6rem' border='none' borderRadius='1rem' bg={theme ? '#191b1d' : 'gray.200'} >
                                                 <PopoverBody p='0'>
