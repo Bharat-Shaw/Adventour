@@ -103,7 +103,7 @@ function SmallScreenSortingDrawer() {
                                         </h2>
                                         <AccordionPanel pb={4} >
                                             <VStack alignItems={"start"} color={theme ? "blackAlpha.700" : "white"}>
-                                                <Checkbox size='lg'>India</Checkbox>
+                                                <Checkbox size='lg' value={'india'}>India</Checkbox>
                                                 <Checkbox size='lg'>Thailand</Checkbox>
                                                 <Checkbox size='lg'>Vietnam</Checkbox>
                                                 <Checkbox size='lg'>Nepal</Checkbox>

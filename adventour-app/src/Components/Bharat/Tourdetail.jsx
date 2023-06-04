@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { Box, Button, Flex, HStack, Heading, IconButton, Image, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, SimpleGrid, Spacer, Tag, Text, Textarea, useDisclosure, useToast } from '@chakra-ui/react'
 import { DownloadIcon, QuestionOutlineIcon } from '@chakra-ui/icons'
-import brochure from './ext/brochure.pdf'
+import brochure from './ext/brochure.pdf';
 import { AiOutlineHeart, AiOutlineFieldTime } from "react-icons/ai";
 import { BsCheck2 } from "react-icons/bs";
 import { RiFileCopy2Line } from "react-icons/ri";
@@ -20,7 +20,6 @@ import { BsStars } from "react-icons/bs";
 import styles from './ext/Tourdetail.module.css'
 import ExpandComp from './ExpandComp';
 import Footer from '../Faizan/Footer';
-import NavBar from '../Vivek/NavBar';
 import { Link, useParams } from 'react-router-dom'
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
@@ -42,18 +41,10 @@ function Tourdetail() {
     title:'',
     des:''
   })
-  const [image, setimage] = useState('')
-
 
   useEffect(() => {
     axios.get(`https://weak-rose-seahorse-tutu.cyclic.app/api/${location}/${id}`)
-    .then((res)=>{dispatch({type:'DETAIL', payload:res.data});
-    res.data.top_crousel_img?.filter((el, i)=>{
-      if(i===0){
-        setimage(el)
-      }
-    })
-  })
+    .then((res)=>{dispatch({type:'DETAIL', payload:res.data})})
     window.scrollTo({
       top: 0, 
     });
@@ -71,7 +62,7 @@ function Tourdetail() {
 
 
         <Flex flexDirection={{ base: 'column', md: 'column', lg: 'row' }} >
-          <Image src={image} boxShadow={'md'} mb={{ base: '30px' }} borderRadius={'20px'} width={{ base: '100%', md: '100%', lg: '60%' }} h={{ base: '100%', md: '100%', lg: '40%' }}/>
+          <Image src={storedata?.main_image} boxShadow={'md'} mb={{ base: '30px' }} borderRadius={'20px'} width={{ base: '100%', md: '100%', lg: '60%' }} h={{ base: '100%', md: '100%', lg: '40%' }}/>
           <Box textAlign={'left'} pl={'40px'} w={{ base: '90%', md: '70%', lg: '38%' }}>
             <Heading size='xl' pb={'15px'}>{storedata?.title}</Heading>
             <Text pb={'10px'}><strong> {storedata?.tour_length} days • {storedata?.rating}</strong> ⭐ ({storedata?.reviews})</Text>
@@ -100,9 +91,9 @@ function Tourdetail() {
           <Flex alignItems={'center'} flexDirection={{ base: 'column', md: 'row' }} px={'30px'} bgColor={theme ? '#191b1d' : 'white'} color={'black'} mt={{ base: '30px', md: '20px', lg: '5px' }} borderRadius={'20px'} boxShadow={'md'}>
             <Text fontWeight={'700'} color={theme ? 'white' : 'blackAlpha.800'} py={'20px'} px={'10px'} fontSize={'14px'}>Plan your adventure:</Text>
             <Spacer />
-            <HStack cursor={'pointer'} color={'#3DC6EF'} py={'20px'} px={'10px'}><Link href={brochure} download={true}> <DownloadIcon color={'#3DC6EF'} />&nbsp;</Link><Text fontSize={'14px'}> Download PDF Brochure</Text></HStack>
+            <HStack cursor={'pointer'} color={'#3DC6EF'} py={'20px'} px={'10px'}><a href={brochure} download> <DownloadIcon color={'#3DC6EF'} />&nbsp;<Text as={'span'} fontSize={'14px'} fontWeight={'600'}> Download PDF Brochure</Text></a></HStack>
             <Spacer />
-            <HStack onClick={onOpen} cursor={'pointer'} color={'#3DC6EF'} py={'20px'} px={'10px'}><Link><QuestionOutlineIcon color={'#3DC6EF'} />&nbsp;</Link><Text fontSize={'14px'}>Ask a Question</Text></HStack>
+            <HStack onClick={onOpen} cursor={'pointer'} color={'#3DC6EF'} py={'20px'} px={'10px'}><Link><QuestionOutlineIcon color={'#3DC6EF'} />&nbsp;</Link><Text fontSize={'14px'} fontWeight={'600'}>Ask a Question</Text></HStack>
 
             <Modal isOpen={isOpen} onClose={onClose} isCentered>
               <ModalOverlay />
@@ -171,7 +162,7 @@ function Tourdetail() {
               </Flex>
               <Text w={{ base: '100%', md: '100%', lg: '300px' }} textAlign={'left'} fontSize='4xl' fontWeight={'700'}>₹{(storedata?.act_price)?.toLocaleString("en-US")}</Text>
               <Flex mb={'20px'} w={{ base: '100%', md: '100%', lg: '300px' }} alignItems={'center'} pt={'10px'} pb={'10px'}>
-                <Link to={`/payment/${location}/${id}`}><Button h={'45px'} w={{ base: '85%', md: '85%', lg: '230px' }} colorScheme='none' fontWeight={'700'} bg={theme ? "#3DC6EF" : "#008cc9"} color={theme ? 'white' : 'blackAlpha.700'} borderRadius={'40px'}>Check Availability</Button></Link>
+                <Link to={`/payment/${location}/${id}`}><Button fontSize={'16px'} h={'45px'} w={'230px'} colorScheme='none' fontWeight={'700'} bg={theme ? "#3DC6EF" : "#008cc9"} color={theme ? 'white' : 'blackAlpha.700'} borderRadius={'40px'}>Check Availability</Button></Link>
                 <Spacer />
                 <IconButton onClick={()=>{
                   if(!wish){

@@ -183,6 +183,14 @@ function TourlistBody() {
             })
     }
 
+    // function filter(value){
+    //     axios.get(`https://weak-rose-seahorse-tutu.cyclic.app/api/${location}?_limit=${limit}&q=${value}`)
+    //         .then((res) => {
+    //             console.log(res.data)
+    //             dispatch({ type: 'LIST', payload: res.data })
+    //         })
+    // }
+
 
     return (
         <Box w={"100%"} pt={"80px"}>
