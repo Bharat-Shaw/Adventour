@@ -156,19 +156,19 @@ function Payment() {
               </RadioGroup>
               <FormControl ml={'13px'} >
                 <VStack align={'left'}>
-                  <label style={{ marginBottom: '-19px', marginLeft: "15px", fontSize: "14px", fontWeight: "700", backgroundColor: theme ? '#191b1d' : 'white', zIndex: "1", width: "90px", paddingLeft: "6px" }}>First Name*</label>
+                  <label style={{ marginBottom: '-19px', marginLeft: "15px", fontSize: "14px", fontWeight: "700", backgroundColor: theme ? '#191b1d' : 'white', zIndex: "4", width: "90px", paddingLeft: "6px" }}>First Name*</label>
                   <Input  autoComplete='on' onChange={(e)=>{setformdata({...formdata, first_N:e.target.value})}} w={{ base: "80%", md: "45%", lg: "45%" }} size={'lg'} border={'1px solid silver'} type='text' />
                 </VStack>
                 <VStack align={'left'} my={'20px'}>
-                  <label style={{ marginBottom: '-19px', marginLeft: "15px", fontSize: "14px", fontWeight: "700", backgroundColor: theme ? '#191b1d' : 'white', zIndex: "1", width: "85px", paddingLeft: "6px" }}>Last Name*</label>
+                  <label style={{ marginBottom: '-19px', marginLeft: "15px", fontSize: "14px", fontWeight: "700", backgroundColor: theme ? '#191b1d' : 'white', zIndex: "4", width: "85px", paddingLeft: "6px" }}>Last Name*</label>
                   <Input autoComplete='on' onChange={(e)=>{setformdata({...formdata, last_N:e.target.value})}} w={{ base: "80%", md: "45%", lg: "45%" }} size={'lg'} border={'1px solid silver'} type='text' />
                 </VStack>
                 <VStack align={'left'}>
-                  <label style={{ marginBottom: '-19px', marginLeft: "15px", fontSize: "14px", fontWeight: "700", backgroundColor: theme ? '#191b1d' : 'white', zIndex: "1", width: "55px", paddingLeft: "6px" }}>Email*</label>
+                  <label style={{ marginBottom: '-19px', marginLeft: "15px", fontSize: "14px", fontWeight: "700", backgroundColor: theme ? '#191b1d' : 'white', zIndex: "4", width: "55px", paddingLeft: "6px" }}>Email*</label>
                   <Input autoComplete='on' onChange={(e)=>{setformdata({...formdata, email:e.target.value})}} w={{ base: "80%", md: "45%", lg: "45%" }} size={'lg'} border={'1px solid silver'} type='email' />
                 </VStack>
                 <VStack align={'left'} my={'20px'}>
-                  <label style={{ marginBottom: '-19px', marginLeft: "15px", fontSize: "14px", fontWeight: "700", backgroundColor: theme ? '#191b1d' : 'white', zIndex: "1", width: "115px", paddingLeft: "6px" }}>Phone Number*</label>
+                  <label style={{ marginBottom: '-19px', marginLeft: "15px", fontSize: "14px", fontWeight: "700", backgroundColor: theme ? '#191b1d' : 'white', zIndex: "4", width: "115px", paddingLeft: "6px" }}>Phone Number*</label>
                   <Input autoComplete='on' onChange={(e)=>{setformdata({...formdata, phone:e.target.value})}} w={{ base: "80%", md: "45%", lg: "45%" }} size={'lg'} border={'1px solid silver'} type='tel' placeholder='e.g. +91 9876543210' />
                 </VStack>
                 <Text fontWeight={'700'} mb={'15px'} fontSize={'16px'}>Date of Birth*</Text>
