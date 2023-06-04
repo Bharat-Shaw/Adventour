@@ -4,7 +4,6 @@ import {
     DrawerOverlay, DrawerContent, DrawerCloseButton, DrawerHeader, DrawerBody, Divider
   } from '@chakra-ui/react'
   import Logo from '../Vivek/Logos/LogoPic.png'
-  import { SearchIcon } from '@chakra-ui/icons'
   import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
   import { CgProfile } from "react-icons/cg";
   import {
