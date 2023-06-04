@@ -7,6 +7,7 @@ function Thankyou() {
     const navigate = useNavigate();
     const [sec, setsec] = useState(5);
     const ref = useRef(null);
+    const ref2 = useRef(null);
 
     useEffect(()=>{
 
@@ -14,12 +15,13 @@ function Thankyou() {
             setsec(pre=>pre-1);
         },1000)
 
-        setTimeout(()=>{
+        ref2.current=setTimeout(()=>{
             navigate('/')
         },6000)
 
         return ()=>{
-            clearTimeout(ref.current)
+            clearInterval(ref.current)
+            clearTimeout(ref2.current)
         }
     },[])
 

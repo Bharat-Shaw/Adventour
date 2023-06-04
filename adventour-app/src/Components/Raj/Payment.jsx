@@ -157,19 +157,19 @@ function Payment() {
               <FormControl ml={'13px'} >
                 <VStack align={'left'}>
                   <label style={{ marginBottom: '-19px', marginLeft: "15px", fontSize: "14px", fontWeight: "700", backgroundColor: theme ? '#191b1d' : 'white', zIndex: "1", width: "90px", paddingLeft: "6px" }}>First Name*</label>
-                  <Input onChange={(e)=>{setformdata({...formdata, first_N:e.target.value})}} w={{ base: "80%", md: "45%", lg: "45%" }} size={'lg'} border={'1px solid silver'} type='text' />
+                  <Input  autoComplete='on' onChange={(e)=>{setformdata({...formdata, first_N:e.target.value})}} w={{ base: "80%", md: "45%", lg: "45%" }} size={'lg'} border={'1px solid silver'} type='text' />
                 </VStack>
                 <VStack align={'left'} my={'20px'}>
                   <label style={{ marginBottom: '-19px', marginLeft: "15px", fontSize: "14px", fontWeight: "700", backgroundColor: theme ? '#191b1d' : 'white', zIndex: "1", width: "85px", paddingLeft: "6px" }}>Last Name*</label>
-                  <Input  onChange={(e)=>{setformdata({...formdata, last_N:e.target.value})}} w={{ base: "80%", md: "45%", lg: "45%" }} size={'lg'} border={'1px solid silver'} type='text' />
+                  <Input autoComplete='on' onChange={(e)=>{setformdata({...formdata, last_N:e.target.value})}} w={{ base: "80%", md: "45%", lg: "45%" }} size={'lg'} border={'1px solid silver'} type='text' />
                 </VStack>
                 <VStack align={'left'}>
                   <label style={{ marginBottom: '-19px', marginLeft: "15px", fontSize: "14px", fontWeight: "700", backgroundColor: theme ? '#191b1d' : 'white', zIndex: "1", width: "55px", paddingLeft: "6px" }}>Email*</label>
-                  <Input onChange={(e)=>{setformdata({...formdata, email:e.target.value})}} w={{ base: "80%", md: "45%", lg: "45%" }} size={'lg'} border={'1px solid silver'} type='email' />
+                  <Input autoComplete='on' onChange={(e)=>{setformdata({...formdata, email:e.target.value})}} w={{ base: "80%", md: "45%", lg: "45%" }} size={'lg'} border={'1px solid silver'} type='email' />
                 </VStack>
                 <VStack align={'left'} my={'20px'}>
                   <label style={{ marginBottom: '-19px', marginLeft: "15px", fontSize: "14px", fontWeight: "700", backgroundColor: theme ? '#191b1d' : 'white', zIndex: "1", width: "115px", paddingLeft: "6px" }}>Phone Number*</label>
-                  <Input onChange={(e)=>{setformdata({...formdata, phone:e.target.value})}} w={{ base: "80%", md: "45%", lg: "45%" }} size={'lg'} border={'1px solid silver'} type='tel' placeholder='e.g. +91 9876543210' />
+                  <Input autoComplete='on' onChange={(e)=>{setformdata({...formdata, phone:e.target.value})}} w={{ base: "80%", md: "45%", lg: "45%" }} size={'lg'} border={'1px solid silver'} type='tel' placeholder='e.g. +91 9876543210' />
                 </VStack>
                 <Text fontWeight={'700'} mb={'15px'} fontSize={'16px'}>Date of Birth*</Text>
                 <HStack>
@@ -288,7 +288,15 @@ function Payment() {
                 <BsFill3SquareFill size={'30px'} />
                 <Text pb={'5px'} fontWeight={'700'} fontSize={'20px'} px={'10px'}>Adventour Savings</Text>
               </HStack>
-              <Text mt={'30px'} mb={'8px'} color={'blue.500'}>Redeem Promo Code</Text>
+              <Text mt={'30px'} mb={'8px'} color={'blue.500'} cursor={'pointer'} onClick={()=>{
+                toast({
+                  title: "No promo code available",
+                  status: 'info',
+                  position: 'top',
+                  duration: 3000,
+                  isClosable: true,
+                });
+              }}>Redeem Promo Code</Text>
             </Box>
             {/* vivek */}
             <Box my={'25px'} p={'20px'} boxShadow={'md'} bg={theme ? '#191b1d' : 'white'} borderRadius={'15px'}>
@@ -316,11 +324,11 @@ function Payment() {
                   <Box p={'20px 15px 30px 15px'}>
                     <Flex direction={'column'}>
                       <label style={{ marginBottom: '-10px', marginLeft: "15px", fontSize: "14px", fontWeight: "700", backgroundColor: theme ? '#191b1d' : 'white', zIndex: "4", width: "125px", paddingLeft: "5px" }}>Cardholder Name</label>
-                      <Input onChange={(e)=>{setformdata({...formdata, c_holder:e.target.value})}} w={{ base: "80%", md: "45%", lg: "45%" }} size='lg' border={'1px solid silver'} />
+                      <Input autoComplete='on' onChange={(e)=>{setformdata({...formdata, c_holder:e.target.value})}} w={{ base: "80%", md: "45%", lg: "45%" }} size='lg' border={'1px solid silver'} />
                     </Flex>
                     <Flex direction={'column'} my={'20px'}>
                       <label style={{ marginBottom: '-10px', marginLeft: "15px", fontSize: "14px", fontWeight: "700", backgroundColor: theme ? '#191b1d' : 'white', zIndex: "4", width: "110px", paddingLeft: "5px" }}>Card Number *</label>
-                      <Input onChange={(e)=>{setformdata({...formdata, c_number:e.target.value})}} w={{ base: "80%", md: "45%", lg: "45%" }} size='lg' border={'1px solid silver'} placeholder='**** **** **** ****' />
+                      <Input autoComplete='on' onChange={(e)=>{setformdata({...formdata, c_number:e.target.value})}} w={{ base: "80%", md: "45%", lg: "45%" }} size='lg' border={'1px solid silver'} placeholder='**** **** **** ****' />
                     </Flex>
 
                     <Flex direction={{ base: "column", md: "row", lg: "row" }}>
@@ -330,7 +338,7 @@ function Payment() {
                       </Flex>
                       <Flex direction={'column'} w={{ base: "60%", md: "20%", lg: "20%" }} ml={{ base: "0%", md: '5%', lg: "5%" }} mt={{ base: "15px", md: "0px", lg: "0px" }}>
                         <label style={{ marginBottom: '-10px', marginLeft: "15px", fontSize: "14px", fontWeight: "700", backgroundColor: theme ? '#191b1d' : 'white', zIndex: "4", width: "45px", paddingLeft: "3px" }}>CVV *</label>
-                        <Input onChange={(e)=>{setformdata({...formdata, cvv:e.target.value})}} w={"100%"} size='lg' border={'1px solid silver'} placeholder='1 2 3' />
+                        <Input  onChange={(e)=>{setformdata({...formdata, cvv:e.target.value})}} w={"100%"} size='lg' border={'1px solid silver'} placeholder='1 2 3' />
                       </Flex>
                     </Flex>
                   </Box>
