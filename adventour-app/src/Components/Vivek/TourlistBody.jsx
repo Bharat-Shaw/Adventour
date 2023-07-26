@@ -173,10 +173,10 @@ function TourlistBody() {
         color: theme ? "black" : "white"
     }
     const limit=useSelector((state)=>state.limit);
-    // https://weak-rose-seahorse-tutu.cyclic.app/api/Asia?_sort=price_per_day&_order=asc
+    // https://kind-erin-greyhound-hat.cyclic.app/api/Asia?_sort=price_per_day&_order=asc
 
     function sortfunc(value, sortval) {
-        axios.get(`https://weak-rose-seahorse-tutu.cyclic.app/api/${location}?_limit=${limit}&_sort=${value}&_order=${sortval}`)
+        axios.get(`https://kind-erin-greyhound-hat.cyclic.app/api/${location}?_limit=${limit}&_sort=${value}&_order=${sortval}`)
             .then((res) => {
                 console.log(res.data)
                 dispatch({ type: 'LIST', payload: res.data })
@@ -184,7 +184,7 @@ function TourlistBody() {
     }
 
     // function filter(value){
-    //     axios.get(`https://weak-rose-seahorse-tutu.cyclic.app/api/${location}?_limit=${limit}&q=${value}`)
+    //     axios.get(`https://kind-erin-greyhound-hat.cyclic.app/api/${location}?_limit=${limit}&q=${value}`)
     //         .then((res) => {
     //             console.log(res.data)
     //             dispatch({ type: 'LIST', payload: res.data })

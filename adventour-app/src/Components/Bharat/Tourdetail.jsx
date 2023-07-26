@@ -43,7 +43,7 @@ function Tourdetail() {
   })
 
   useEffect(() => {
-    axios.get(`https://weak-rose-seahorse-tutu.cyclic.app/api/${location}/${id}`)
+    axios.get(`https://kind-erin-greyhound-hat.cyclic.app/api/${location}/${id}`)
     .then((res)=>{dispatch({type:'DETAIL', payload:res.data})})
     window.scrollTo({
       top: 0, 
