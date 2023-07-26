@@ -16,7 +16,7 @@ function Tourlist() {
   const dispatch=useDispatch()
 
   useEffect(() => {
-    axios.get(`https://weak-rose-seahorse-tutu.cyclic.app/api/${location}?_limit=${limit}`)
+    axios.get(`https://kind-erin-greyhound-hat.cyclic.app/api/${location}?_limit=${limit}`)
       .then((res) => {
         dispatch({type:'LIST', payload:res.data})
       })

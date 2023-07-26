@@ -31,14 +31,14 @@ import {
     const limit=useSelector((state)=>state.limit);
   
     function searchfunc(value){
-      axios.get(`https://weak-rose-seahorse-tutu.cyclic.app/api/${location}?q=${value}`)
+      axios.get(`https://kind-erin-greyhound-hat.cyclic.app/api/${location}?q=${value}`)
       .then((res)=>{
         dispatch({type:'LIST', payload:res.data})
       })
     }
   
     function listfunc(limit){
-      axios.get(`https://weak-rose-seahorse-tutu.cyclic.app/api/${location}?_limit=${limit}`)
+      axios.get(`https://kind-erin-greyhound-hat.cyclic.app/api/${location}?_limit=${limit}`)
         .then((res) => {
           dispatch({type:'LIST', payload:res.data})
         })
